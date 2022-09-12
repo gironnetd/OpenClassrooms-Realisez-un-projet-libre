@@ -27,6 +27,7 @@
 		6D495C2028CF9C8B007F1C72 /* cache */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cache; sourceTree = "<group>"; };
 		6D495C2228CF9CCA007F1C72 /* remote */ = {isa = PBXFileReference; lastKnownFileType = folder; path = remote; sourceTree = "<group>"; };
 		6D495C2428CF9F5E007F1C72 /* preferences */ = {isa = PBXFileReference; lastKnownFileType = folder; path = preferences; sourceTree = "<group>"; };
+		6D72962528D0C41F0084062F /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 		6D495C0428CF9BD8007F1C72 = {
 			isa = PBXGroup;
 			children = (
+				6D72962528D0C41F0084062F /* model */,
 				6D495C2428CF9F5E007F1C72 /* preferences */,
 				6D495C2228CF9CCA007F1C72 /* remote */,
 				6D495C2028CF9C8B007F1C72 /* cache */,
