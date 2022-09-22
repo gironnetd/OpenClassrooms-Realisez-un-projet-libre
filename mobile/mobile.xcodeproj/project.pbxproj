@@ -45,6 +45,8 @@
 		6D495BC328CF9A4F007F1C72 /* mobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D495BC728CF9A4F007F1C72 /* mobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobileUITests.swift; sourceTree = "<group>"; };
 		6D495BC928CF9A4F007F1C72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D52C8EF28D2090E00288466 /* libcore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D52C8F128D2093700288466 /* libfeature.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libfeature.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				6D495BBB28CF9A4F007F1C72 /* mobileTests */,
 				6D495BC628CF9A4F007F1C72 /* mobileUITests */,
 				6D495BA828CF9A41007F1C72 /* Products */,
+				6D52C8EE28D2090E00288466 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +133,15 @@
 			path = mobileUITests;
 			sourceTree = "<group>";
 		};
+		6D52C8EE28D2090E00288466 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D52C8F128D2093700288466 /* libfeature.a */,
+				6D52C8EF28D2090E00288466 /* libcore.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +158,8 @@
 			dependencies = (
 			);
 			name = mobile;
+			packageProductDependencies = (
+			);
 			productName = mobile;
 			productReference = 6D495BA728CF9A41007F1C72 /* mobile.app */;
 			productType = "com.apple.product-type.application";
