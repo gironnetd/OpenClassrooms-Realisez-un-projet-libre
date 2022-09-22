@@ -19,32 +19,32 @@ protocol CachedMovementDao {
     /// - Parameters:
     ///   - idMovement: The identifier of the movement
     ///
-    /// - Returns: An AnyPublisher returning a CachedMovement or an Error
-    func findMovement(byIdMovement idMovement: Int) -> AnyPublisher<CachedMovement, Error>
+    /// - Returns: A Future returning a CachedMovement or an Error
+    func findMovement(byIdMovement idMovement: Int) -> Future<CachedMovement, Error>
     
     /// Retrieve a movement from its name, from the cache
     ///
     /// - Parameters:
     ///   - name: The name of the movement
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedMovement or an Error
-    func findMovements(byName name: String) -> AnyPublisher<[CachedMovement], Error>
+    /// - Returns: A Future returning an Array of CachedMovement or an Error
+    func findMovements(byName name: String) -> Future<[CachedMovement], Error>
     
     /// Retrieve a list of movements containing with same parent identifier, from the cache
     ///
     /// - Parameters:
     ///   - idParent: The identifier of the parent movement
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedMovement or an Error
-    func findMovements(byIdParent idParent: Int) -> AnyPublisher<[CachedMovement], Error>
+    /// - Returns: A Future returning an Array of CachedMovement or an Error
+    func findMovements(byIdParent idParent: Int) -> Future<[CachedMovement], Error>
     
     /// Retrieve a list of main movements containing  authors, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedMovement or an Error
-    func findMainMovements() -> AnyPublisher<[CachedMovement], Error>
+    /// - Returns: A Future returning an Array of CachedMovement or an Error
+    func findMainMovements() -> Future<[CachedMovement], Error>
     
     /// Retrieve all movements, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedMovement or an Error
-    func findAllMovements() -> AnyPublisher<[CachedMovement], Error>
+    /// - Returns: A Future returning an Array of CachedMovement or an Error
+    func findAllMovements() -> Future<[CachedMovement], Error>
 }

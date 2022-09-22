@@ -19,32 +19,32 @@ protocol CachedUrlDao {
     /// - Parameters:
     ///   - idUrl: The identifier of the url
     ///
-    /// - Returns: An AnyPublisher returning an CachedUrl or an Error
-    func findUrl(byIdUrl idUrl : Int) -> AnyPublisher<CachedUrl, Error>
+    /// - Returns: A Future returning an CachedUrl or an Error
+    func findUrl(byIdUrl idUrl : Int) -> Future<CachedUrl, Error>
     
     /// Retrieve a list of urls from an identifier author, from the cache
     ///
     /// - Parameters:
     ///   - idAuthor: The identifier of the author
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedUrl or an Error
-    func findUrls(byIdAuthor idAuthor: Int) -> AnyPublisher<[CachedUrl], Error>
+    /// - Returns: A Future returning an Array of CachedUrl or an Error
+    func findUrls(byIdAuthor idAuthor: Int) -> Future<[CachedUrl], Error>
     
     /// Retrieve a list of urls from an identifier book, from the cache
     ///
     /// - Parameters:
     ///   - idBook: The identifier of the book
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedUrl or an Error
-    func findUrls(byIdBook idBook: Int) -> AnyPublisher<[CachedUrl], Error>
+    /// - Returns: A Future returning an Array of CachedUrl or an Error
+    func findUrls(byIdBook idBook: Int) -> Future<[CachedUrl], Error>
     
     /// Retrieve a list of urls from an identifier movement, from the cache
     ///
     /// - Parameters:
     ///   - idMovement: The identifier of the movement
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedUrl or an Error
-    func findUrls(byIdMovement idMovement: Int) -> AnyPublisher<[CachedUrl], Error>
+    /// - Returns: A Future returning an Array of CachedUrl or an Error
+    func findUrls(byIdMovement idMovement: Int) -> Future<[CachedUrl], Error>
     
     /// Retrieve a list of urls from an identifier source, from the cache
     ///
@@ -52,19 +52,19 @@ protocol CachedUrlDao {
     ///   - idSource: The identifier of the source
     ///   - sourceType: The type of the source
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedUrl or an Error
-    func findUrls(byIdSource idSource: Int, sourceType: String) -> AnyPublisher<[CachedUrl], Error>
+    /// - Returns: A Future returning an Array of CachedUrl or an Error
+    func findUrls(byIdSource idSource: Int, sourceType: String) -> Future<[CachedUrl], Error>
     
     /// Retrieve a list of urls from an type source, from the cache
     ///
     /// - Parameters:
     ///   - sourceType: The type of the source
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedUrl or an Error
-    func findUrls(bySourceType sourceType: String) -> AnyPublisher<[CachedUrl], Error>
+    /// - Returns: A Future returning an Array of CachedUrl or an Error
+    func findUrls(bySourceType sourceType: String) -> Future<[CachedUrl], Error>
     
     /// Retrieve all urls, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedUrl or an Error
-    func findAllUrls() -> AnyPublisher<[CachedUrl], Error>
+    /// - Returns: A Future returning an Array of CachedUrl or an Error
+    func findAllUrls() -> Future<[CachedUrl], Error>
 }

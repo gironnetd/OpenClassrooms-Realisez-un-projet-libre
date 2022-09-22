@@ -19,32 +19,32 @@ protocol CachedThemeDao {
     /// - Parameters:
     ///   - idTheme: The identifier of the theme
     ///
-    /// - Returns: An AnyPublisher returning a CachedTheme or an Error
-    func findTheme(byIdTheme idTheme: Int) -> AnyPublisher<CachedTheme, Error>
+    /// - Returns: A Future returning a CachedTheme or an Error
+    func findTheme(byIdTheme idTheme: Int) -> Future<CachedTheme, Error>
     
     /// Retrieve a theme from its name, from the cache
     ///
     /// - Parameters:
     ///   - name: The identifier of the name
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findThemes(byName name: String) -> AnyPublisher<[CachedTheme], Error>
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findThemes(byName name: String) -> Future<[CachedTheme], Error>
     
     /// Retrieve a list of themes containing with same parent identifier, from the cache
     ///
     /// - Parameters:
     ///   - idParent: The identifier of the parent theme
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findThemes(byIdParent idParent: Int) -> AnyPublisher<[CachedTheme], Error>
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findThemes(byIdParent idParent: Int) -> Future<[CachedTheme], Error>
     
     /// Retrieve a list of main themes containing with sub themes, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findMainThemes() -> AnyPublisher<[CachedTheme], Error>
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findMainThemes() -> Future<[CachedTheme], Error>
     
     /// Retrieve all themes, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findAllThemes() -> AnyPublisher<[CachedTheme], Error>
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findAllThemes() -> Future<[CachedTheme], Error>
 }

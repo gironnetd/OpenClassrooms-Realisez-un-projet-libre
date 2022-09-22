@@ -19,6 +19,8 @@ public class CachedCentury: Object {
     @Persisted var century: String
     @Persisted var presentations: Map<String, String>
 
+    public override init() {}
+    
     public init(idCentury: Int,
                 century: String,
                 presentations: Map<String, String>) {

@@ -27,6 +27,8 @@ public class CachedPresentation: Object {
     @Persisted var presentation4: String?
     @Persisted var sourcePresentation: String?
     
+    public override init() {}
+    
     public init(idPresentation: Int,
                 presentation: String? = nil,
                 presentationTitle1: String? = nil,

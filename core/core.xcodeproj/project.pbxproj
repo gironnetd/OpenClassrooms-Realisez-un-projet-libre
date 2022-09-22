@@ -28,6 +28,7 @@
 		6D495C2228CF9CCA007F1C72 /* remote */ = {isa = PBXFileReference; lastKnownFileType = folder; path = remote; sourceTree = "<group>"; };
 		6D495C2428CF9F5E007F1C72 /* preferences */ = {isa = PBXFileReference; lastKnownFileType = folder; path = preferences; sourceTree = "<group>"; };
 		6D72962528D0C41F0084062F /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
+		6D9D497728D8D10B0032CF25 /* testing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testing; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +45,7 @@
 		6D495C0428CF9BD8007F1C72 = {
 			isa = PBXGroup;
 			children = (
+				6D9D497728D8D10B0032CF25 /* testing */,
 				6D72962528D0C41F0084062F /* model */,
 				6D495C2428CF9F5E007F1C72 /* preferences */,
 				6D495C2228CF9CCA007F1C72 /* remote */,
@@ -80,6 +82,8 @@
 			dependencies = (
 			);
 			name = core;
+			packageProductDependencies = (
+			);
 			productName = core;
 			productReference = 6D495C0D28CF9BD8007F1C72 /* libcore.a */;
 			productType = "com.apple.product-type.library.static";
@@ -107,6 +111,8 @@
 				Base,
 			);
 			mainGroup = 6D495C0428CF9BD8007F1C72;
+			packageReferences = (
+			);
 			productRefGroup = 6D495C0E28CF9BD8007F1C72 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

@@ -25,6 +25,8 @@ public class CachedQuote: Object {
     @Persisted var comment: String?
     @Persisted var commentName: String?
     
+    public override init() {}
+    
     public init(idQuote: Int,
                 idAuthor: Int? = nil,
                 idBook: Int? = nil,

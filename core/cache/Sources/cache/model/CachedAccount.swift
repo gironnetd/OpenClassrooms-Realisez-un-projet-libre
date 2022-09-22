@@ -23,6 +23,8 @@ public class CachedAccount: Object {
     @Persisted var photo: Data?
     @Persisted var favourites: CachedFavourite?
     
+    public override init() {}
+    
     public init(uuid: UUID,
                 providerId: String,
                 email: String? = nil,

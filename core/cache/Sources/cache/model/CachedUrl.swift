@@ -22,6 +22,8 @@ public class CachedUrl: Object {
     @Persisted var url: String
     @Persisted var presentation: String?
     
+    public override init() {}
+    
     public init(idUrl: Int,
                 sourceType: String,
                 idSource: Int,

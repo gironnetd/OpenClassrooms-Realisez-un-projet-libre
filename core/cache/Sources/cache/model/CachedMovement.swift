@@ -42,6 +42,8 @@ public class CachedMovement: Object {
     @Persisted var pictures: List<CachedPicture>
     @Persisted var urls: List<CachedUrl>
 
+    public override init() {}
+    
     public init(idMovement : Int,
                 idParentMovement: Int? = nil,
                 name: String,

@@ -23,6 +23,8 @@ public class CachedPicture: Object {
     @Persisted var height: Int
     @Persisted var portrait: Bool
     @Persisted var picture: Data?
+    
+    public override init() {}
 
     public init(idPicture: Int,
                 nameSmall: String,

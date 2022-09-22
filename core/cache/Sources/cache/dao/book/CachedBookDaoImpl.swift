@@ -20,13 +20,15 @@ public class CachedBookDaoImpl : CachedBookDao {
     /// - Parameters:
     ///   - idBook: The identifier of the book
     ///
-    /// - Returns: An AnyPublisher returning a CachedBook or an Error
-    func findBook(byIdBook idBook: Int) -> AnyPublisher<CachedBook, Error> {
-        if let book = try? Realm().objects(CachedBook.self)
-            .where({ book in book.idBook == idBook }).first {
-            return Just(book).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning a CachedBook or an Error
+    func findBook(byIdBook idBook: Int) -> Future<CachedBook, Error> {
+        Future { promise in
+            guard let book = try? Realm().objects(CachedBook.self)
+                    .where({ book in book.idBook == idBook }).first else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(book))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve  books from a name, from the cache
@@ -34,25 +36,30 @@ public class CachedBookDaoImpl : CachedBookDao {
     /// - Parameters:
     ///   - name: The name of the book
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedBook or an Error
-    func findBooks(byName name: String) -> AnyPublisher<[CachedBook], Error> {
-        guard let books = try? Realm().objects(CachedBook.self)
-            .where({ book in book.name == name }) else {
-            return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedBook or an Error
+    func findBooks(byName name: String) -> Future<[CachedBook], Error> {
+        Future { promise in
+            guard let books = try? Realm().objects(CachedBook.self)
+                    .where({ book in book.name == name }), !books.isEmpty else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            
+            guard books.count == 1, let book = books.first, !book.idRelatedBooks.isEmpty else {
+                return promise(.success(books.toArray()))
+            }
+            
+            promise(
+                .success(
+                        book.idRelatedBooks
+                            .reduce(into: [CachedBook](arrayLiteral: book)) { result, idBook in
+                                if let book = try? Realm().objects(CachedBook.self)
+                                    .where({ book in book.idBook == idBook }).first {
+                                    result.append(book)
+                                }
+                            }
+                )
+            )
         }
-        
-        if books.count == 1, let book = books.first {
-            return Just(
-                book.idRelatedBooks
-                    .reduce(into: [CachedBook](arrayLiteral: book)) { result, idBook in
-                          if let book = try? Realm().objects(CachedBook.self)
-                              .where({ book in book.idBook == idBook }).first {
-                              result.append(book)
-                          }
-                }
-            ).setFailureType(to:Error.self).eraseToAnyPublisher()
-        }
-        return Just(books.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of books from its identifier movement, from the cache
@@ -60,13 +67,15 @@ public class CachedBookDaoImpl : CachedBookDao {
     /// - Parameters:
     ///   - idMovement: The identifier of the movement of the book
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedBook or an Error
-    func findBooks(byIdMovement idMovement: Int) -> AnyPublisher<[CachedBook], Error> {
-        if let books = try? Realm().objects(CachedMovement.self)
-            .where({ movement in movement.idMovement == idMovement }).first?.books {
-            return Just(books.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedBook or an Error
+    func findBooks(byIdMovement idMovement: Int) -> Future<[CachedBook], Error> {
+        Future { promise in
+            guard let books = try? Realm().objects(CachedMovement.self)
+                    .where({ movement in movement.idMovement == idMovement }).first?.books else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(books.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of books containing in a theme, from the cache
@@ -74,13 +83,15 @@ public class CachedBookDaoImpl : CachedBookDao {
     /// - Parameters:
     ///   - idTheme: The identifier of the theme containing the book
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedBook or an Error
-    func findBooks(byIdTheme idTheme: Int) -> AnyPublisher<[CachedBook], Error> {
-        if let books = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.idTheme == idTheme }).first?.books {
-            return Just(books.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedBook or an Error
+    func findBooks(byIdTheme idTheme: Int) -> Future<[CachedBook], Error> {
+        Future { promise in
+            guard let books = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.idTheme == idTheme }).first?.books, !books.isEmpty else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(books.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a book from its identifier presentation, from the cache
@@ -88,13 +99,15 @@ public class CachedBookDaoImpl : CachedBookDao {
     /// - Parameters:
     ///   - idPresentation: The identifier of the presentation
     ///
-    /// - Returns: An AnyPublisher returning a CachedBook or an Error
-    func findBook(byIdPresentation idPresentation: Int) -> AnyPublisher<CachedBook, Error> {
-        if let book = try? Realm().objects(CachedBook.self)
-            .where({ book in book.presentation.idPresentation == idPresentation }).first {
-            return Just(book).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning a CachedBook or an Error
+    func findBook(byIdPresentation idPresentation: Int) -> Future<CachedBook, Error> {
+        Future { promise in
+            guard let book = try? Realm().objects(CachedBook.self)
+                    .where({ book in book.presentation.idPresentation == idPresentation }).first else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(book))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a book from a identifier picture, from the cache
@@ -102,24 +115,28 @@ public class CachedBookDaoImpl : CachedBookDao {
     /// - Parameters:
     ///   - idPicture: The identifier of the picture
     ///
-    /// - Returns: An AnyPublisher returning an AccountEntity or an Error
-    func findBook(byIdPicture idPicture: Int) -> AnyPublisher<CachedBook, Error> {
-        if let picture = try? Realm().objects(CachedPicture.self)
-            .where({ picture in picture.idPicture == idPicture}).first,
-           let book = try? Realm().objects(CachedBook.self)
-            .where({ book in book.pictures.contains(picture)}).first {
-            return Just(book).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an AccountEntity or an Error
+    func findBook(byIdPicture idPicture: Int) -> Future<CachedBook, Error> {
+        Future { promise in
+            guard let picture = try? Realm().objects(CachedPicture.self)
+                    .where({ picture in picture.idPicture == idPicture}).first,
+                  let book = try? Realm().objects(CachedBook.self)
+                    .where({ book in book.pictures.contains(picture)}).first else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(book))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve all books, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an AccountEntity or an Error
-    func findAllBooks() -> AnyPublisher<[CachedBook], Error> {
-        if let books = try? Realm().objects(CachedBook.self) {
-            return Just(books.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an AccountEntity or an Error
+    func findAllBooks() -> Future<[CachedBook], Error> {
+        Future { promise in
+            guard let books = try? Realm().objects(CachedBook.self), !books.isEmpty else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(books.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
 }

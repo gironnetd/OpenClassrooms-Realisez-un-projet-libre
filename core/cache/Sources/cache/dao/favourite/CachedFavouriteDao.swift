@@ -19,30 +19,33 @@ protocol CachedFavouriteDao {
     /// - Parameters:
     ///   - idDirectory: The identifier of the favorite folder
     ///
-    /// - Returns: An AnyPublisher returning a CachedFavourite or an Error
-    func findFavourite(byIdDirectory idDirectory: Int) -> AnyPublisher<CachedFavourite, Error>
+    /// - Returns: A Future returning a CachedFavourite or an Error
+    func findFavourite(byIdDirectory idDirectory: Int) -> Future<CachedFavourite, Error>
     
     /// Retrieve all favorites, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedFavourite or an Error
-    func findAllFavourites() -> AnyPublisher<[CachedFavourite], Error>
+    /// - Returns: A Future returning an Array of CachedFavourite or an Error
+    func findAllFavourites() -> Future<[CachedFavourite], Error>
     
     /// Save a list of favorites to the cache
     ///
     /// - Parameters:
     ///   - favorites: An Array of CachedFavourite
     /// - Remark: This function is used only for Unit Testing
+    @discardableResult
     func save(favourites: [CachedFavourite]) -> AnyPublisher<Void, Error>
 
     /// Save or update a favorite to the cache
     ///
     /// - Parameters:
     ///   - favorite: A CachedFavourite
+    @discardableResult
     func saveOrUpdate(favourite: CachedFavourite) -> AnyPublisher<Void, Error>
     
     /// Delete a favorite to the cache
     ///
     /// - Parameters:
     ///   - idDirectory: The identifier of the favorite folder
+    @discardableResult
     func delete(byIdDirectory idDirectory: Int) -> AnyPublisher<Void, Error>
 }

@@ -20,13 +20,15 @@ public class CachedThemeDaoImpl : CachedThemeDao {
     /// - Parameters:
     ///   - idTheme: The identifier of the theme
     ///
-    /// - Returns: An AnyPublisher returning a CachedTheme or an Error
-    func findTheme(byIdTheme idTheme: Int) -> AnyPublisher<CachedTheme, Error> {
-        if let theme = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.idTheme == idTheme }).first {
-            return Just(theme).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning a CachedTheme or an Error
+    func findTheme(byIdTheme idTheme: Int) -> Future<CachedTheme, Error> {
+        Future { promise in
+            guard let theme = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.idTheme == idTheme }).first else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(theme))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a theme from its name, from the cache
@@ -34,25 +36,31 @@ public class CachedThemeDaoImpl : CachedThemeDao {
     /// - Parameters:
     ///   - name: The identifier of the name
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findThemes(byName name: String) -> AnyPublisher<[CachedTheme], Error> {
-        guard let themes = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.name == name }) else {
-            return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findThemes(byName name: String) -> Future<[CachedTheme], Error> {
+        Future { promise in
+            guard let themes = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.name == name }), !themes.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            
+            guard themes.count == 1, let theme = themes.first,
+                  !theme.idRelatedThemes.isEmpty else {
+                return promise(.success(themes.toArray()))
+            }
+            
+            promise(
+                .success(
+                    theme.idRelatedThemes
+                        .reduce(into: [CachedTheme](arrayLiteral: theme)) { result, idTheme in
+                            if let theme = try? Realm().objects(CachedTheme.self)
+                                .where({ theme in theme.idTheme == idTheme }).first {
+                                result.append(theme)
+                            }
+                        }
+                )
+            )
         }
-        
-        if themes.count == 1, let theme = themes.first {
-            return Just(
-                theme.idRelatedThemes
-                    .reduce(into: [CachedTheme](arrayLiteral: theme)) { result, idTheme in
-                          if let theme = try? Realm().objects(CachedTheme.self)
-                              .where({ theme in theme.idTheme == idTheme }).first {
-                              result.append(theme)
-                          }
-                }
-            ).setFailureType(to:Error.self).eraseToAnyPublisher()
-        }
-        return Just(themes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of themes containing with same parent identifier, from the cache
@@ -60,33 +68,39 @@ public class CachedThemeDaoImpl : CachedThemeDao {
     /// - Parameters:
     ///   - idParent: The identifier of the parent theme
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findThemes(byIdParent idParent: Int) -> AnyPublisher<[CachedTheme], Error> {
-        if let themes = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.idTheme == idParent }).first?.themes {
-            return Just(themes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findThemes(byIdParent idParent: Int) -> Future<[CachedTheme], Error> {
+        Future { promise in
+            guard let themes = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.idTheme == idParent }).first?.themes, !themes.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(themes.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of main themes containing with sub themes, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findMainThemes() -> AnyPublisher<[CachedTheme], Error> {
-        if let themes = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.idParentTheme == nil }).first?.themes {
-            return Just(themes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findMainThemes() -> Future<[CachedTheme], Error> {
+        Future { promise in
+            guard let themes = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.idParentTheme == nil }), !themes.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(themes.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve all themes, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedTheme or an Error
-    func findAllThemes() -> AnyPublisher<[CachedTheme], Error> {
-        if let themes = try? Realm().objects(CachedTheme.self) {
-            return Just(themes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedTheme or an Error
+    func findAllThemes() -> Future<[CachedTheme], Error> {
+        Future { promise in
+            guard let themes = try? Realm().objects(CachedTheme.self), !themes.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(themes.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
 }

@@ -27,6 +27,8 @@ public class CachedFavourite: Object {
     @Persisted var pictures: List<CachedPicture>
     @Persisted var presentations: List<CachedPresentation>
     @Persisted var urls: List<CachedUrl>
+    
+    public override init() {}
 
     public init(idDirectory: Int,
                 idParentDirectory: Int?,

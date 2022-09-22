@@ -20,13 +20,15 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - idQuote: The identifier of the quote
     ///
-    /// - Returns: An AnyPublisher returning a CachedQuote or an Error
-    func findQuote(byIdQuote idQuote: Int) -> AnyPublisher<CachedQuote, Error> {
-        if let quote = try? Realm().objects(CachedQuote.self)
-            .where({ quote in quote.idQuote == idQuote }).first {
-            return Just(quote).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning a CachedQuote or an Error
+    func findQuote(byIdQuote idQuote: Int) -> Future<CachedQuote, Error> {
+        Future { promise in
+            guard let quote = try? Realm().objects(CachedQuote.self)
+                    .where({ quote in quote.idQuote == idQuote }).first else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quote))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from an identifier author, from the cache
@@ -34,13 +36,15 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - idAuthor: The identifier of the author
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byIdAuthor idAuthor: Int) -> AnyPublisher<[CachedQuote], Error> {
-        if let quotes = try? Realm().objects(CachedAuthor.self)
-            .where({ author in author.idAuthor == idAuthor }).first?.quotes {
-            return Just(quotes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byIdAuthor idAuthor: Int) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let quotes = try? Realm().objects(CachedAuthor.self)
+                    .where({ author in author.idAuthor == idAuthor }).first?.quotes, !quotes.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from a author name, from the cache
@@ -48,13 +52,21 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - name: The name of the author
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byAuthor name: String) -> AnyPublisher<[CachedQuote], Error> {
-        if let quotes = try? Realm().objects(CachedAuthor.self)
-            .where({ author in author.name == name }).first?.quotes {
-            return Just(quotes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byAuthor name: String) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let authors = try? Realm().objects(CachedAuthor.self)
+                    .where({ author in author.name == name }),
+                  !authors.isEmpty,
+                  let quotes = Optional(authors.reduce(into: [CachedQuote](), { result, author in
+                    result += author.quotes
+                  })),
+                  !quotes.isEmpty
+            else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from an identifier book, from the cache
@@ -62,13 +74,15 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - idBook: The identifier of the book
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byIdBook idBook: Int) -> AnyPublisher<[CachedQuote], Error> {
-        if let quotes = try? Realm().objects(CachedBook.self)
-            .where({ book in book.idBook == idBook }).first?.quotes {
-            return Just(quotes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byIdBook idBook: Int) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let quotes = try? Realm().objects(CachedBook.self)
+                    .where({ book in book.idBook == idBook }).first?.quotes, !quotes.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from a book name, from the cache
@@ -76,13 +90,21 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - name: The name of the book
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byBook name: String) -> AnyPublisher<[CachedQuote], Error> {
-        if let quotes = try? Realm().objects(CachedBook.self)
-            .where({ book in book.name == name }).first?.quotes {
-            return Just(quotes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byBook name: String) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let books = try? Realm().objects(CachedBook.self)
+                    .where({ book in book.name == name }),
+                  !books.isEmpty,
+                  let quotes = Optional(books.reduce(into: [CachedQuote](), { result, book in
+                    result += book.quotes
+                  })),
+                  !quotes.isEmpty
+            else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from an identifier movement, from the cache
@@ -90,23 +112,22 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - idMovement: The identifier of the movement
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byIdMovement idMovement: Int) -> AnyPublisher<[CachedQuote], Error> {
-        guard let movement = try? Realm().objects(CachedMovement.self)
-                .where({ movement in movement.idMovement == idMovement }).first else {
-            return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
-        }
-        
-        if movement.nbTotalQuotes != 0 {
-            return Just(
-                movement.authors.reduce(into: [CachedQuote]()) { result, author in
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byIdMovement idMovement: Int) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let movement = try? Realm().objects(CachedMovement.self)
+                    .where({ movement in movement.idMovement == idMovement }).first,
+                  let quotes = Optional(movement.authors.reduce(into: [CachedQuote]()) { result, author in
                     result.append(contentsOf: author.quotes)
-                } + movement.books.reduce(into: [CachedQuote]()) { result, book in
+                  } + movement.books.reduce(into: [CachedQuote]()) { result, book in
                     result.append(contentsOf: book.quotes)
-                }
-            ).setFailureType(to:Error.self).eraseToAnyPublisher()
+                  }),
+                  !quotes.isEmpty
+            else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from a movement name, from the cache
@@ -114,23 +135,24 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - name: The name of the movement
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byMovement name: String) -> AnyPublisher<[CachedQuote], Error> {
-        guard let movement = try? Realm().objects(CachedMovement.self)
-            .where({ movement in movement.name == name }).first else {
-            return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byMovement name: String) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let movements = try? Realm().objects(CachedMovement.self)
+                    .where({ movement in movement.name == name }),
+                  !movements.isEmpty,
+                  let quotes = Optional(movements.reduce(into: [CachedQuote](), { result, movement in
+                    result += movement.authors.reduce(into: [CachedQuote]()) { result, author in
+                        result += author.quotes
+                    } + movement.books.reduce(into: [CachedQuote]()) { result, book in
+                        result += book.quotes
+                    }})),
+                  !quotes.isEmpty
+            else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes))
         }
-        
-        if movement.nbTotalQuotes != 0 {
-            return Just(
-                movement.authors.reduce(into: [CachedQuote]()) { result, author in
-                    result.append(contentsOf: author.quotes)
-                } + movement.books.reduce(into: [CachedQuote]()) { result, book in
-                    result.append(contentsOf: book.quotes)
-                }
-            ).setFailureType(to:Error.self).eraseToAnyPublisher()
-        }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from an identifier theme, from the cache
@@ -138,13 +160,22 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - idTheme: The identifier of the theme
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byIdTheme idTheme: Int) -> AnyPublisher<[CachedQuote], Error> {
-        if let quotes = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.idTheme == idTheme }).first?.quotes {
-            return Just(quotes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byIdTheme idTheme: Int) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let theme = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.idTheme == idTheme }).first,
+                  let quotes = Optional(theme.authors.reduce(into: [CachedQuote]()) { result, author in
+                    result.append(contentsOf: author.quotes)
+                  } + theme.books.reduce(into: [CachedQuote]()) { result, book in
+                    result.append(contentsOf: book.quotes)
+                  }),
+                  !quotes.isEmpty
+            else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of quotes from a theme name, from the cache
@@ -152,22 +183,35 @@ public class CachedQuoteDaoImpl : CachedQuoteDao {
     /// - Parameters:
     ///   - name: The name of the theme
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findQuotes(byTheme name: String) -> AnyPublisher<[CachedQuote], Error> {
-        if let quotes = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.name == name }).first?.quotes {
-            return Just(quotes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findQuotes(byTheme name: String) -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let themes = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.name == name }),
+                  !themes.isEmpty,
+                  let quotes = Optional(themes.reduce(into: [CachedQuote](), { result, theme in
+                    result += theme.authors.reduce(into: [CachedQuote]()) { result, author in
+                        result += author.quotes
+                    } + theme.books.reduce(into: [CachedQuote]()) { result, book in
+                        result += book.quotes
+                    }})),
+                  !quotes.isEmpty
+            else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve all quotes, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedQuote or an Error
-    func findAllQuotes() -> AnyPublisher<[CachedQuote], Error> {
-        if let quotes = try? Realm().objects(CachedQuote.self) {
-            return Just(quotes.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedQuote or an Error
+    func findAllQuotes() -> Future<[CachedQuote], Error> {
+        Future { promise in
+            guard let quotes = try? Realm().objects(CachedQuote.self), !quotes.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(quotes.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
 }

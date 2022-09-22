@@ -20,23 +20,27 @@ public class CachedFavouriteDaoImpl : CachedFavouriteDao {
     /// - Parameters:
     ///   - idDirectory: The identifier of the favorite folder
     ///
-    /// - Returns: An AnyPublisher returning a CachedFavourite or an Error
-    func findFavourite(byIdDirectory idDirectory: Int) -> AnyPublisher<CachedFavourite, Error> {
-        if let favourite = try? Realm().objects(CachedFavourite.self)
-            .where({ favourite in favourite.idDirectory == idDirectory }).first {
-            return Just(favourite).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning a CachedFavourite or an Error
+    func findFavourite(byIdDirectory idDirectory: Int) -> Future<CachedFavourite, Error> {
+        Future { promise in
+            guard let favourite = try? Realm().objects(CachedFavourite.self)
+                .where({ favourite in favourite.idDirectory == idDirectory }).first else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(favourite))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve all favorites, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedFavourite or an Error
-    func findAllFavourites() -> AnyPublisher<[CachedFavourite], Error> {
-        if let favourites = try? Realm().objects(CachedFavourite.self) {
-            return Just(favourites.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedFavourite or an Error
+    func findAllFavourites() -> Future<[CachedFavourite], Error> {
+        Future { promise in
+            guard let favourites = try? Realm().objects(CachedFavourite.self), !favourites.isEmpty else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(favourites.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Save a list of favorites to the cache
@@ -44,29 +48,21 @@ public class CachedFavouriteDaoImpl : CachedFavouriteDao {
     /// - Parameters:
     ///   - favorites: An Array of CachedFavourite
     /// - Remark: This function is used only for Unit Testing
+    @discardableResult
     func save(favourites: [CachedFavourite]) -> AnyPublisher<Void, Error> {
-        do {
-            try Realm().write {
-                try Realm().add(favourites, update: .modified)
-            }
-            return Empty().eraseToAnyPublisher()
-        } catch (let error) {
-            return Fail(error: error).eraseToAnyPublisher()
-        }
+        favourites.forEach { favourite in saveOrUpdate(favourite: favourite) }
+        return Empty().eraseToAnyPublisher()
     }
 
     /// Save or update a favorite to the cache
     ///
     /// - Parameters:
     ///   - favorite: A CachedFavourite
+    @discardableResult
     func saveOrUpdate(favourite: CachedFavourite) -> AnyPublisher<Void, Error> {
-        do {
-            try Realm().write {
-                try Realm().add(favourite, update: .modified)
-            }
+        try! Realm().write {
+            try Realm().add(favourite, update: .modified)
             return Empty().eraseToAnyPublisher()
-        } catch (let error) {
-            return Fail(error: error).eraseToAnyPublisher()
         }
     }
     
@@ -74,16 +70,16 @@ public class CachedFavouriteDaoImpl : CachedFavouriteDao {
     ///
     /// - Parameters:
     ///   - idDirectory: The identifier of the favorite folder
+    @discardableResult
     func delete(byIdDirectory idDirectory: Int) -> AnyPublisher<Void, Error> {
-        do {
-            try Realm().write {
-                if let favourite = try Realm().object(ofType: CachedFavourite.self, forPrimaryKey: idDirectory) {
-                    try Realm().delete(favourite)
+        Future { promise in
+            try? Realm().write {
+                guard let favourite = try Realm().object(ofType: CachedFavourite.self, forPrimaryKey: idDirectory) else {
+                    return promise(.failure(Realm.Error(Realm.Error.fail)))
                 }
+                try Realm().delete(favourite)
+                return promise(.success(()))
             }
-            return Empty().eraseToAnyPublisher()
-        } catch (let error) {
-            return Fail(error: error).eraseToAnyPublisher()
-        }
+        }.eraseToAnyPublisher()
     }
 }

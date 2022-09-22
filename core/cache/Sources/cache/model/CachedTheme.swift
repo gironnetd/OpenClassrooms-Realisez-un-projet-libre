@@ -30,6 +30,8 @@ public class CachedTheme: Object {
     @Persisted var quotes: List<CachedQuote>
     @Persisted var urls: List<CachedUrl>
     
+    public override init() {}
+    
     public init(idTheme : Int,
                 idParentTheme: Int? = nil,
                 name: String,

@@ -20,13 +20,15 @@ public class CachedPictureDaoImpl : CachedPictureDao {
     /// - Parameters:
     ///   - idPicture: The identifier of the picture
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedPicture or an Error
-    func findPicture(byIdPicture idPicture: Int) -> AnyPublisher<CachedPicture, Error> {
-        if let picture = try? Realm().objects(CachedPicture.self)
-            .where({ picture in picture.idPicture == idPicture }).first {
-            return Just(picture).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedPicture or an Error
+    func findPicture(byIdPicture idPicture: Int) -> Future<CachedPicture, Error> {
+        Future { promise in
+            guard let picture = try? Realm().objects(CachedPicture.self)
+                .where({ picture in picture.idPicture == idPicture }).first else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(picture))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of pictures from an identifier author, from the cache
@@ -34,13 +36,15 @@ public class CachedPictureDaoImpl : CachedPictureDao {
     /// - Parameters:
     ///   - idAuthor: The identifier of the author
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedPicture or an Error
-    func findPictures(byIdAuthor idAuthor: Int) -> AnyPublisher<[CachedPicture], Error> {
-        if let pictures = try? Realm().objects(CachedAuthor.self)
-            .where({ author in author.idAuthor == idAuthor }).first?.pictures {
-            return Just(pictures.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedPicture or an Error
+    func findPictures(byIdAuthor idAuthor: Int) -> Future<[CachedPicture], Error> {
+        Future { promise in
+            guard let pictures = try? Realm().objects(CachedAuthor.self)
+                    .where({ author in author.idAuthor == idAuthor }).first?.pictures, !pictures.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(pictures.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of pictures from a identifier book, from the cache
@@ -48,13 +52,15 @@ public class CachedPictureDaoImpl : CachedPictureDao {
     /// - Parameters:
     ///   - idBook: The identifier of the book
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedPicture or an Error
-    func findPictures(byIdBook idBook: Int) -> AnyPublisher<[CachedPicture], Error> {
-        if let pictures = try? Realm().objects(CachedBook.self)
-            .where({ book in book.idBook == idBook }).first?.pictures {
-            return Just(pictures.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedPicture or an Error
+    func findPictures(byIdBook idBook: Int) -> Future<[CachedPicture], Error> {
+        Future { promise in
+            guard let pictures = try? Realm().objects(CachedBook.self)
+                    .where({ book in book.idBook == idBook }).first?.pictures, !pictures.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(pictures.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of pictures from a movement, from the cache
@@ -62,13 +68,15 @@ public class CachedPictureDaoImpl : CachedPictureDao {
     /// - Parameters:
     ///   - idMovement: The identifier of the movement
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedPicture or an Error
-    func findPictures(byIdMovement idMovement: Int) -> AnyPublisher<[CachedPicture], Error> {
-        if let pictures = try? Realm().objects(CachedMovement.self)
-            .where({ movement in movement.idMovement == idMovement }).first?.pictures {
-            return Just(pictures.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedPicture or an Error
+    func findPictures(byIdMovement idMovement: Int) -> Future<[CachedPicture], Error> {
+        Future { promise in
+            guard let pictures = try? Realm().objects(CachedMovement.self)
+                    .where({ movement in movement.idMovement == idMovement }).first?.pictures, !pictures.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(pictures.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of pictures from a theme, from the cache
@@ -76,13 +84,15 @@ public class CachedPictureDaoImpl : CachedPictureDao {
     /// - Parameters:
     ///   - idTheme: The identifier of the theme
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedPicture or an Error
-    func findPictures(byIdTheme idTheme: Int) -> AnyPublisher<[CachedPicture], Error> {
-        if let pictures = try? Realm().objects(CachedTheme.self)
-            .where({ theme in theme.idTheme == idTheme }).first?.pictures {
-            return Just(pictures.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedPicture or an Error
+    func findPictures(byIdTheme idTheme: Int) -> Future<[CachedPicture], Error> {
+        Future { promise in
+            guard let pictures = try? Realm().objects(CachedTheme.self)
+                    .where({ theme in theme.idTheme == idTheme }).first?.pictures, !pictures.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(pictures.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve a list of pictures from its small name, from the cache
@@ -90,22 +100,26 @@ public class CachedPictureDaoImpl : CachedPictureDao {
     /// - Parameters:
     ///   - nameSmall: The nameSmall of the picture
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedPicture or an Error
-    func findPictures(byNameSmall nameSmall: String) -> AnyPublisher<[CachedPicture], Error> {
-        if let pictures = try? Realm().objects(CachedPicture.self)
-            .where({ picture in picture.nameSmall == nameSmall }) {
-            return Just(pictures.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedPicture or an Error
+    func findPictures(byNameSmall nameSmall: String) -> Future<[CachedPicture], Error> {
+        Future { promise in
+            guard let pictures = try? Realm().objects(CachedPicture.self)
+                    .where({ picture in picture.nameSmall == nameSmall }), !pictures.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(pictures.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve all pictures, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedPicture or an Error
-    func findAllPictures() -> AnyPublisher<[CachedPicture], Error> {
-        if let pictures = try? Realm().objects(CachedPicture.self) {
-            return Just(pictures.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedPicture or an Error
+    func findAllPictures() -> Future<[CachedPicture], Error> {
+        Future { promise in
+            guard let pictures = try? Realm().objects(CachedPicture.self), !pictures.isEmpty else {
+                return promise(.failure(Realm.Error(Realm.Error.fail)))
+            }
+            promise(.success(pictures.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
 }

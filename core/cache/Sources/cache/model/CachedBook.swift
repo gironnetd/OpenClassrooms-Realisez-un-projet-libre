@@ -29,6 +29,8 @@ public class CachedBook: Object {
     @Persisted var pictures: List<CachedPicture>
     @Persisted var urls: List<CachedUrl>
     
+    public override init() {}
+    
     public init(idBook: Int,
                 name: String,
                 language: CachedLanguage,

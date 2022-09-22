@@ -20,52 +20,48 @@ public class CachedAccountDaoImpl : CachedAccountDao {
     /// - Parameters:
     ///   - uuid: The UUID of the account
     ///
-    /// - Returns: An AnyPublisher returning an CachedAccount or an Error
-    func findAccount(byUuid uuid: UUID) -> AnyPublisher<CachedAccount, Error> {
-        if let account = try? Realm().objects(CachedAccount.self)
-            .where({ account in account.uuid == uuid }).first {
-            return Just(account).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an CachedAccount or an Error
+    func findAccount(byUuid uuid: UUID) -> Future<CachedAccount, Error> {
+        Future { promise in
+            guard let account = try? Realm().objects(CachedAccount.self)
+                    .where({ account in account.uuid == uuid }).first else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(account))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Retrieve an array of all accounts, from the cache
     ///
-    /// - Returns: An AnyPublisher returning an Array of CachedAccount or an Error
-    func findAllAccounts() -> AnyPublisher<[CachedAccount], Error> {
-        if let accounts = try? Realm().objects(CachedAccount.self), !accounts.isEmpty {
-            return Just(accounts.toArray()).setFailureType(to:Error.self).eraseToAnyPublisher()
+    /// - Returns: A Future returning an Array of CachedAccount or an Error
+    func findAllAccounts() -> Future<[CachedAccount], Error> {
+        Future { promise in
+            guard let accounts = try? Realm().objects(CachedAccount.self), !accounts.isEmpty else {
+                return promise(.failure(Realm.Error.init(Realm.Error.fail)))
+            }
+            promise(.success(accounts.toArray()))
         }
-        return Fail(error: Realm.Error.init(Realm.Error.fail)).eraseToAnyPublisher()
     }
     
     /// Save a list of accounts to the cache
     ///
     /// - Parameters:
     ///   - accounts: An Array of CachedAccount
+    @discardableResult
     func save(accounts: [CachedAccount]) -> AnyPublisher<Void, Error> {
-        do {
-            try Realm().write {
-                try Realm().add(accounts, update: .modified)
-            }
-            return Empty().eraseToAnyPublisher()
-        } catch (let error) {
-            return Fail(error: error).eraseToAnyPublisher()
-        }
+        accounts.forEach { account in saveOrUpdate(account: account) }
+        return Empty().eraseToAnyPublisher()
     }
     
     /// Save or update an account to the cache
     ///
     /// - Parameters:
     ///   - account: An CachedAccount
+    @discardableResult
     func saveOrUpdate(account: CachedAccount) -> AnyPublisher<Void, Error> {
-        do {
-            try Realm().write {
-                try Realm().add(account, update: .modified)
-            }
+        try! Realm().write {
+            try Realm().add(account, update: .modified)
             return Empty().eraseToAnyPublisher()
-        } catch (let error) {
-            return Fail(error: error).eraseToAnyPublisher()
         }
     }
     
@@ -73,16 +69,16 @@ public class CachedAccountDaoImpl : CachedAccountDao {
     ///
     /// - Parameters:
     ///   - uuid: The UUID of the account
+    @discardableResult
     func delete(byUuid uuid: UUID) -> AnyPublisher<Void, Error> {
-        do {
-            try Realm().write {
-                if let account = try Realm().object(ofType: CachedAccount.self, forPrimaryKey: uuid) {
-                    try Realm().delete(account)
+        Future { promise in
+            try? Realm().write {
+                guard let account = try Realm().object(ofType: CachedAccount.self, forPrimaryKey: uuid) else {
+                    return promise(.failure(Realm.Error(Realm.Error.fail)))
                 }
+                try Realm().delete(account)
+                return promise(.success(()))
             }
-            return Empty().eraseToAnyPublisher()
-        } catch (let error) {
-            return Fail(error: error).eraseToAnyPublisher()
-        }
+        }.eraseToAnyPublisher()
     }
 }
