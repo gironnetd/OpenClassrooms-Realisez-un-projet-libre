@@ -19,294 +19,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F73AF59E-A0BA-4245-B3A5-1E353CD225BA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "spec()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AAE17BC7-65B9-4F83-B65F-31B9E8FB1457"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "spec()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "89D8186D-596E-4A24-AFF1-C3DFA1CC1517"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "89D8186D-596E-4A24-AFF1-C3DFA1CC1517 - ccbba0c31108a807"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "951">
-               </Location>
-               <Location
-                  uuid = "89D8186D-596E-4A24-AFF1-C3DFA1CC1517 - b2115238123d7f47"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; Swift.Optional&lt;cache.CachedAccount&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;cache.CachedAccount&gt; in closure #1 () -&gt; () in closure #1 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "116">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "36A85F55-04A9-4953-A3F1-65A5A67378E1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "36A85F55-04A9-4953-A3F1-65A5A67378E1 - ccbba0c31108a5e9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "951">
-               </Location>
-               <Location
-                  uuid = "36A85F55-04A9-4953-A3F1-65A5A67378E1 - 49716e87da760372"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAccount&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAccount&gt;&gt; in closure #1 () -&gt; () in closure #2 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A32AA247-83BC-416C-AA4E-1437D63CDFB3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A32AA247-83BC-416C-AA4E-1437D63CDFB3 - aeb2e7bf1d929426"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #4 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
-                  offsetFromSymbolStart = "885">
-               </Location>
-               <Location
-                  uuid = "A32AA247-83BC-416C-AA4E-1437D63CDFB3 - b256f56ae3d754ff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;cache.CachedAccount&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Array&lt;cache.CachedAccount&gt; in closure #1 () -&gt; () in closure #1 () -&gt; () in closure #4 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B51A194A-F38F-4BC7-9787-71EF7FC891F6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B51A194A-F38F-4BC7-9787-71EF7FC891F6 - aeb2e7bf1d929690"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; () in closure #4 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
-                  offsetFromSymbolStart = "544">
-               </Location>
-               <Location
-                  uuid = "B51A194A-F38F-4BC7-9787-71EF7FC891F6 - b256f56ae3d754ff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;cache.CachedAccount&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Array&lt;cache.CachedAccount&gt; in closure #1 () -&gt; () in closure #2 () -&gt; () in closure #4 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "65DE4E42-A076-4DC5-91BC-37A5AEAE41F3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "65DE4E42-A076-4DC5-91BC-37A5AEAE41F3 - ccbba0c31108a6b0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #4 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98"
-                  offsetFromSymbolStart = "173">
-               </Location>
-               <Location
-                  uuid = "65DE4E42-A076-4DC5-91BC-37A5AEAE41F3 - 7e02df370d48d192"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #4 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAccountDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98"
-                  offsetFromSymbolStart = "59">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ECBF3E61-DA65-4E1E-8878-A2FFCB02C861"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "spec()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "B8C8D0FF-F48F-4F81-AD36-D0656E8ECBC2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -371,22 +83,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C079EC36-75D3-44A7-8C7E-632E20CFA2DF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAccountDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "spec()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "57146C46-993B-4835-AA96-C36CDCD899C9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -430,54 +126,6 @@
             endingLineNumber = "30"
             landmarkName = "findAccount(byUuid:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F064A56F-3D4E-4C4E-994C-2C7EA48D3084"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F064A56F-3D4E-4C4E-994C-2C7EA48D3084 - 13f779a4f72b2c5a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #5 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "173">
-               </Location>
-               <Location
-                  uuid = "F064A56F-3D4E-4C4E-994C-2C7EA48D3084 - dff46d2de01e47f2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #5 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "59">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -547,214 +195,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0EA06164-FF71-4921-90C2-7479D6DF66E2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0EA06164-FF71-4921-90C2-7479D6DF66E2 - 13f779a4f72b2ee7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #3 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "793">
-               </Location>
-               <Location
-                  uuid = "0EA06164-FF71-4921-90C2-7479D6DF66E2 - 87665e3eb98da8b2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Optional&lt;cache.CachedAuthor&gt;&gt;&gt; in closure #1 () -&gt; () in closure #3 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "38">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "05FBC627-71D0-4C9A-8106-8ECB0AD553D7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "05FBC627-71D0-4C9A-8106-8ECB0AD553D7 - 13f779a4f72b2c94"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #4 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "793">
-               </Location>
-               <Location
-                  uuid = "05FBC627-71D0-4C9A-8106-8ECB0AD553D7 - 87665e3eb98da8b2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Optional&lt;cache.CachedAuthor&gt;&gt;&gt; in closure #1 () -&gt; () in closure #4 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "38">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1280B6E0-F99D-4697-A8F9-A4ABD1B2956E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1280B6E0-F99D-4697-A8F9-A4ABD1B2956E - 13f779a4f72b30f6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "793">
-               </Location>
-               <Location
-                  uuid = "1280B6E0-F99D-4697-A8F9-A4ABD1B2956E - e3e1bf79088db190"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in closure #1 () -&gt; () in closure #2 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "38">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "44AC935A-DD3E-406D-9897-8EE7A75C94F9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "44AC935A-DD3E-406D-9897-8EE7A75C94F9 - 13f779a4f72b2aa2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #5 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "114"
-                  endingLineNumber = "114"
-                  offsetFromSymbolStart = "767">
-               </Location>
-               <Location
-                  uuid = "44AC935A-DD3E-406D-9897-8EE7A75C94F9 - a4b70a16f31a47aa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in closure #1 () -&gt; () in closure #5 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "111">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "516BEE0C-12A4-487A-963E-5D5969224AB3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "spec()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BBB12EF6-3FD5-4248-8865-EB40EFBA1218"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -782,102 +222,6 @@
             endingLineNumber = "77"
             landmarkName = "findAuthors(byIdMovement:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C4CC719A-0052-47E7-BD59-5CF1484F9860"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C4CC719A-0052-47E7-BD59-5CF1484F9860 - 13f779a4f72b2648"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #7 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152"
-                  offsetFromSymbolStart = "793">
-               </Location>
-               <Location
-                  uuid = "C4CC719A-0052-47E7-BD59-5CF1484F9860 - a4b70a16f31a47aa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in closure #1 () -&gt; () in closure #7 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "111">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9B48EC45-0A99-4729-AC5B-9784A8CF5C90"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9B48EC45-0A99-4729-AC5B-9784A8CF5C90 - 13f779a4f72b28d7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #6 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "833">
-               </Location>
-               <Location
-                  uuid = "9B48EC45-0A99-4729-AC5B-9784A8CF5C90 - 7bedb59142f5fa4c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Optional&lt;cache.CachedAuthor&gt;&gt;&gt; in closure #1 () -&gt; () in closure #6 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -915,198 +259,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "39B8C107-F75B-43E9-B773-C9E90132FDAE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "39B8C107-F75B-43E9-B773-C9E90132FDAE - 13f779a4f72b218b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #9 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185"
-                  offsetFromSymbolStart = "985">
-               </Location>
-               <Location
-                  uuid = "39B8C107-F75B-43E9-B773-C9E90132FDAE - a4b70a16f31a47aa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in closure #1 () -&gt; () in closure #9 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "342BBFAB-8426-49AD-9506-8CF77B643C83"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "342BBFAB-8426-49AD-9506-8CF77B643C83 - 13f779a4f72b2479"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #8 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "167"
-                  endingLineNumber = "167"
-                  offsetFromSymbolStart = "833">
-               </Location>
-               <Location
-                  uuid = "342BBFAB-8426-49AD-9506-8CF77B643C83 - 7bedb59142f5fa4c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Optional&lt;cache.CachedAuthor&gt;&gt;&gt; in closure #1 () -&gt; () in closure #8 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A4BF3A49-2262-4A4B-B015-9E55415BEABD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A4BF3A49-2262-4A4B-B015-9E55415BEABD - 64abfd715ea451da"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #11 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "212"
-                  endingLineNumber = "212"
-                  offsetFromSymbolStart = "884">
-               </Location>
-               <Location
-                  uuid = "A4BF3A49-2262-4A4B-B015-9E55415BEABD - cffc253e2ccf7168"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in closure #1 () -&gt; () in closure #11 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E63CF6B9-CB6A-47E6-AAA8-757C8B4552F9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E63CF6B9-CB6A-47E6-AAA8-757C8B4552F9 - 64abfd715ea46f87"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #10 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "199"
-                  endingLineNumber = "199"
-                  offsetFromSymbolStart = "884">
-               </Location>
-               <Location
-                  uuid = "E63CF6B9-CB6A-47E6-AAA8-757C8B4552F9 - cffc253e2ccf7168"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in closure #1 () -&gt; () in closure #10 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2F54A9F3-0EA2-4740-9CCD-E02CFA8989FB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1139,102 +291,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BC3E7565-6098-48AB-9A70-BBCF3536D7B0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BC3E7565-6098-48AB-9A70-BBCF3536D7B0 - 64abfd715ea4555f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #13 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "239"
-                  endingLineNumber = "239"
-                  offsetFromSymbolStart = "884">
-               </Location>
-               <Location
-                  uuid = "BC3E7565-6098-48AB-9A70-BBCF3536D7B0 - cffc253e2ccf7168"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in closure #1 () -&gt; () in closure #13 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3825208E-F4E7-4EB4-A3B3-97218470F4E9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3825208E-F4E7-4EB4-A3B3-97218470F4E9 - 64abfd715ea4530c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #12 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "226"
-                  endingLineNumber = "226"
-                  offsetFromSymbolStart = "884">
-               </Location>
-               <Location
-                  uuid = "3825208E-F4E7-4EB4-A3B3-97218470F4E9 - cffc253e2ccf7168"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;cache.CachedAuthor&gt; in closure #1 () -&gt; () in closure #12 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A4C78E8C-3080-46F4-B10C-F6BEF6EA22BC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1262,102 +318,6 @@
             endingLineNumber = "127"
             landmarkName = "findAuthor(byIdPicture:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D140EC1B-D41F-4F09-B271-518C4443C23A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D140EC1B-D41F-4F09-B271-518C4443C23A - 958a1510b09dc833"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #4 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "258"
-                  endingLineNumber = "258"
-                  offsetFromSymbolStart = "50">
-               </Location>
-               <Location
-                  uuid = "D140EC1B-D41F-4F09-B271-518C4443C23A - 528b478e65bdbdab"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in closure #1 () -&gt; () in closure #1 () -&gt; () in closure #4 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "55">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E5B4703A-FD20-4452-917F-C6E3A2D023E9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E5B4703A-FD20-4452-917F-C6E3A2D023E9 - 64abfd715ea456f4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #14 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "250"
-                  endingLineNumber = "250"
-                  offsetFromSymbolStart = "783">
-               </Location>
-               <Location
-                  uuid = "E5B4703A-FD20-4452-917F-C6E3A2D023E9 - 565ad97be25aa6df"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedAuthor&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Optional&lt;cache.CachedAuthor&gt;&gt;&gt; in closure #1 () -&gt; () in closure #14 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedAuthorDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedAuthorDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "55">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1507,111 +467,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7A6F7C44-5C94-4A21-9F68-6B633D184D8F"
+            uuid = "89BC99B2-8FF9-466D-865F-FC49DABD6AA4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7A6F7C44-5C94-4A21-9F68-6B633D184D8F - c7e085ce0be37eef"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #20 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "407"
-                  endingLineNumber = "407"
-                  offsetFromSymbolStart = "2310">
-               </Location>
-               <Location
-                  uuid = "7A6F7C44-5C94-4A21-9F68-6B633D184D8F - b3579499d4bf10c5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedQuote&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Optional&lt;cache.CachedQuote&gt;&gt;&gt; in closure #1 () -&gt; () in closure #20 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "563CFB92-9380-48CB-9FD6-E7A2DB06FA56"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
-            landmarkName = "spec()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "563CFB92-9380-48CB-9FD6-E7A2DB06FA56 - c7e085ce0be37e25"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #20 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "401"
-                  endingLineNumber = "401"
-                  offsetFromSymbolStart = "1705">
-               </Location>
-               <Location
-                  uuid = "563CFB92-9380-48CB-9FD6-E7A2DB06FA56 - 53cb1c59def089fd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #20 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "401"
-                  endingLineNumber = "401"
-                  offsetFromSymbolStart = "59">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3E0AD4B2-577D-4B53-8971-9B1086C79013"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "spec()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1619,47 +483,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ED1037C2-9869-412F-AA32-1AC4E4663409"
+            uuid = "BDA1006B-C270-411B-8578-8AD5F2C1A6F7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "305CBB88-50EC-4D60-BE07-DEE963112A9A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03FDB7DD-14EE-4F30-BC82-F142C3236165"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "007F9A51-E706-42D2-BA41-30E6778806E1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE84290F-4B08-4168-B5B7-FF884C09852B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6C51854-8221-4FF1-A20E-A70B2AEF7215"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "spec()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "ED1037C2-9869-412F-AA32-1AC4E4663409 - c7e085ce0be373c7"
+                  uuid = "B6C51854-8221-4FF1-A20E-A70B2AEF7215 - 3991e901467a8922"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #21 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #3 () -&gt; () in remoteTests.remoteSpec.spec() -&gt; ()"
+                  moduleName = "remoteTests"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Tests/remoteTests/remoteTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "431"
-                  endingLineNumber = "431"
-                  offsetFromSymbolStart = "2303">
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "76">
                </Location>
                <Location
-                  uuid = "ED1037C2-9869-412F-AA32-1AC4E4663409 - f63e9cb38a893d83"
+                  uuid = "B6C51854-8221-4FF1-A20E-A70B2AEF7215 - 85e701eb7ffe2d73"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedQuote&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedQuote&gt;&gt; in closure #1 () -&gt; () in closure #21 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
+                  symbolName = "closure #1 ((Swift.Result&lt;(), Swift.Error&gt;) -&gt; ()) -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; () in closure #3 () -&gt; () in remoteTests.remoteSpec.spec() -&gt; ()"
+                  moduleName = "remoteTests"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Tests/remoteTests/remoteTests.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "55">
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "584">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1667,49 +611,528 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C8BD84DC-1B64-42A3-B8C6-B5D2988B75F9"
+            uuid = "C8DE983D-3748-44A8-80B1-873E28868D7B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "saveOrUpdate(account:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C7C98E7-A971-4EB0-B2F2-26A028A7A85F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "saveOrUpdate(account:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5966524-2C17-4ABE-8FCD-26401F7DCE08"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "saveOrUpdate(account:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04CE04BE-1821-477D-A74B-F64348273BBF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "saveOrUpdate(account:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CC2F586-C50B-4CA5-BCE2-19E1CF2D92E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "saveOrUpdate(account:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1A82CCB7-7834-4C99-9706-92CF17AFC8C5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "saveOrUpdate(account:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CEB879B0-87DD-4E51-98C5-750AA23F5A57"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEEBF337-C11F-478C-8905-090E315E8265"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FDFF06A7-F7A6-4128-9149-B3D46DF1B5D1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E5687BB-2CF9-44DC-BD2B-117017C7ACFF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/remoteTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3620D810-5197-4E75-9219-A720E3EA78B5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/RemoteDataSourceSpec.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82C30DDF-CAB2-4F83-8A1D-974849EFFD14"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/RemoteDataSourceSpec.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95181B4F-3BD3-4C22-9763-817DCF24688D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Tests/remoteTests/RemoteDataSourceSpec.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "spec()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0175FC4-D314-41B1-9DE3-8AF21A591C17"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "10BA9880-7B3A-4144-BA69-37E4DC80CE58"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C090BA6F-909F-4F0A-88EC-6B5FCB44FA62"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2C6355B0-47CF-46D0-9C5F-22D29DF13DD8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "findAccount(byUuid:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C8BD84DC-1B64-42A3-B8C6-B5D2988B75F9 - c7e085ce0be3773e"
+                  uuid = "2C6355B0-47CF-46D0-9C5F-22D29DF13DD8 - b69195ef65628000"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #22 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
+                  symbolName = "remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "456"
-                  endingLineNumber = "456"
-                  offsetFromSymbolStart = "2270">
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "101">
                </Location>
                <Location
-                  uuid = "C8BD84DC-1B64-42A3-B8C6-B5D2988B75F9 - f63e9cb38a893d83"
+                  uuid = "2C6355B0-47CF-46D0-9C5F-22D29DF13DD8 - b69195ef65628000"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedQuote&gt;&gt; in implicit closure #1 () -&gt; () throws -&gt; Swift.Optional&lt;Swift.Array&lt;cache.CachedQuote&gt;&gt; in closure #1 () -&gt; () in closure #22 () -&gt; () in closure #3 () -&gt; () in cacheTests.CachedQuoteDaoTest.spec() -&gt; ()"
-                  moduleName = "cacheTests"
+                  symbolName = "remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/cache/Tests/cacheTests/CachedQuoteDaoTest.swift"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "105">
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "141">
+               </Location>
+               <Location
+                  uuid = "2C6355B0-47CF-46D0-9C5F-22D29DF13DD8 - cfefe4d39bc20979"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; ()) -&gt; () in remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "135">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC3237E2-D98A-4030-86A3-645C18A501BF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FC3237E2-D98A-4030-86A3-645C18A501BF - cfefe4d39bc2093b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; ()) -&gt; () in remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "544">
+               </Location>
+               <Location
+                  uuid = "FC3237E2-D98A-4030-86A3-645C18A501BF - 75692e4b5a1de66d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; () in closure #1 ((Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; ()) -&gt; () in remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "341">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96260EC8-D1E0-469A-8979-C2DBA120E607"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C579B73-75C4-488C-9B7D-2D9D69FDE8C4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0C579B73-75C4-488C-9B7D-2D9D69FDE8C4 - 59224fdd83e1a34b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; () in closure #1 ((Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; ()) -&gt; () in remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "625">
+               </Location>
+               <Location
+                  uuid = "0C579B73-75C4-488C-9B7D-2D9D69FDE8C4 - 3cd67e3ee15e0041"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; Swift.Optional&lt;remote.RemoteFavourite&gt; in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; () in closure #1 ((Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; ()) -&gt; () in remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B46E3E2-09B5-43B6-9E8E-BF386F1D5350"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C9B7164-14F7-4188-88A6-0F050CFC353E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B05A279-B5FD-4651-9533-6D94EDF52DBA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "findAccount(byUuid:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6B05A279-B5FD-4651-9533-6D94EDF52DBA - 59224fdd83e1a34b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; () in closure #1 ((Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; ()) -&gt; () in remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "756">
+               </Location>
+               <Location
+                  uuid = "6B05A279-B5FD-4651-9533-6D94EDF52DBA - a3d8a54d69ca1d3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (inout Swift.Array&lt;remote.RemoteFavourite&gt;, remote.RemoteFavourite) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; () in closure #1 ((Swift.Result&lt;remote.RemoteAccount, Swift.Error&gt;) -&gt; ()) -&gt; () in remote.FirestoreRemoteDataSource.findAccount(byUuid: Foundation.UUID) -&gt; Combine.Future&lt;remote.RemoteAccount, Swift.Error&gt;"
+                  moduleName = "remoteTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/damien/Documents/Trainings/OpenClassrooms/iOS/Dev_iOS_2022/Projet_12_Re%CC%81alisez_un_projet_libre/Modularization/core/remote/Sources/remote/api/firestore/FirestoreRemoteDataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38919BD1-C631-4FFE-9CD0-3AF000341DC6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "core/remote/Sources/remote/model/RemoteFavourite.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "subDirectories"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
