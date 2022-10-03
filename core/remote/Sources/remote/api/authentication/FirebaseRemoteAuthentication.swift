@@ -12,7 +12,7 @@ import FirebaseAuth
 /**
  * Default Implementation for the Remote Authentication Protocol.
  */
-class AuthenticationRemoteDataSource: OlaRemoteAuthentication {
+class FirebaseRemoteAuthentication: OlaRemoteAuthentication {
     
     private let firebaseAuth: Auth
     
@@ -36,8 +36,8 @@ class AuthenticationRemoteDataSource: OlaRemoteAuthentication {
                     return
                 }
 
-                var account = RemoteAccount(uuid: UUID(uuidString: authResult.user.uid)!,
-                                            providerId: authResult.user.providerID,
+                var account = RemoteAccount(uid: authResult.user.uid,
+                                            providerID: authResult.user.providerID,
                                             email: authResult.user.email,
                                             displayName: authResult.user.displayName,
                                             phoneNumber: authResult.user.phoneNumber)
@@ -73,8 +73,8 @@ class AuthenticationRemoteDataSource: OlaRemoteAuthentication {
                     return
                 }
                 
-                var account = RemoteAccount(uuid: UUID(uuidString: authResult.user.uid)!,
-                                            providerId: authResult.user.providerID,
+                var account = RemoteAccount(uid: authResult.user.uid,
+                                            providerID: authResult.user.providerID,
                                             email: authResult.user.email,
                                             displayName: authResult.user.displayName,
                                             phoneNumber: authResult.user.phoneNumber)
@@ -110,8 +110,8 @@ class AuthenticationRemoteDataSource: OlaRemoteAuthentication {
                     return
                 }
 
-                var account = RemoteAccount(uuid: UUID(uuidString: authResult.user.uid)!,
-                                            providerId: authResult.user.providerID,
+                var account = RemoteAccount(uid: authResult.user.uid,
+                                            providerID: authResult.user.providerID,
                                             email: authResult.user.email,
                                             displayName: authResult.user.displayName,
                                             phoneNumber: authResult.user.phoneNumber)

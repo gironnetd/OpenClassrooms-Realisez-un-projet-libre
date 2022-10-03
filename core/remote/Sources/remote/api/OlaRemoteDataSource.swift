@@ -16,10 +16,10 @@ protocol OlaRemoteDataSource {
     /// Retrieve an Account from its identifier UUID, from remote
     ///
     /// - Parameters:
-    ///   - uuid: The UUID of the Account
+    ///   - uuid: The identifier of the Account
     ///
     /// - Returns: A Future returning an RemoteAccount or an Error
-    func findAccount(byUuid uuid: UUID) -> Future<RemoteAccount, Error>
+    func findAccount(byUid uid: String) -> Future<RemoteAccount, Error>
     
     /// Save or update an Account to the cache
     ///
@@ -33,7 +33,7 @@ protocol OlaRemoteDataSource {
     /// - Parameters:
     ///   - uuid: The UUID identifier of the account
     @discardableResult
-    func deleteAccount(byUuid uuid: UUID) -> AnyPublisher<Void, Error>
+    func deleteAccount(byUid uid: String) -> AnyPublisher<Void, Error>
 
     /// Save or update an Favourite to remote
     ///

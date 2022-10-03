@@ -12,10 +12,19 @@ import model
 /**
  * Remote Representation for a Account
  */
-struct RemoteAccount: Codable  {
+struct RemoteAccount: Codable, Equatable  {
     
-    var uuid: UUID
-    var providerId: String
+    static func == (lhs: RemoteAccount, rhs: RemoteAccount) -> Bool {
+         return lhs.uid == rhs.uid &&
+                lhs.providerID == rhs.providerID &&
+                lhs.email == rhs.email &&
+                lhs.displayName == rhs.displayName &&
+                lhs.phoneNumber == rhs.phoneNumber &&
+                lhs.photo == rhs.photo
+    }
+    
+    var uid: String
+    var providerID: String
     var email: String?
     var displayName: String?
     var phoneNumber: String?
@@ -23,41 +32,20 @@ struct RemoteAccount: Codable  {
     var favourites: RemoteFavourite?
     
     enum CodingKeys: String, CodingKey {
-        case uuid
-        case providerId
+        case uid
+        case providerID
         case email
         case displayName
         case phoneNumber
-        case photo
     }
     
     var dictionary: [String: Any?] {
         return [
-            "uuid": uuid.uuidString,
-            "providerId": providerId,
+            "uid": uid,
+            "providerID": providerID,
             "email": email,
             "displayName": displayName,
-            "phoneNumber": phoneNumber,
-            "photo": photo,
-            "favourites": favourites
+            "phoneNumber": phoneNumber
         ]
-    }
-}
-
-extension RemoteAccount: DocumentSerializable {
-    
-    init?(dictionary: [String : Any]) {
-        guard let uuid = UUID(uuidString: dictionary["uuid"] as! String),
-          let providerId = dictionary["providerId"] as? String,
-          let email = dictionary["email"] as? String?,
-          let displayName = dictionary["displayName"] as? String?,
-          let phoneNumber = dictionary["phoneNumber"] as? String?
-        else { return nil }
-
-      self.init(uuid: uuid,
-                providerId: providerId,
-                email: email,
-                displayName: displayName,
-                phoneNumber: phoneNumber)
     }
 }

@@ -8,11 +8,12 @@ let package = Package(
     platforms: [
         .iOS(.v13)
     ],
+    
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "remote",
-            targets: ["remote"]),
+            targets: ["remote"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -39,6 +40,19 @@ let package = Package(
         ),
         .testTarget(
             name: "remoteTests",
-            dependencies: ["remote"]),
+            dependencies: [
+                "remote",
+                "Quick",
+                "Nimble",
+                "testing",
+                .product(name: "FirebaseAuth", package: "Firebase"),
+                .product(name: "FirebaseFirestore", package: "Firebase"),
+                .product(name: "FirebaseFirestoreSwift", package: "Firebase")
+            ],
+            resources: [
+                .process("GoogleService-Info.plist"),
+                .process("mobile.entitlements")
+            ]
+        ),
     ]
 )

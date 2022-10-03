@@ -11,13 +11,30 @@ import FirebaseFirestoreSwift
 /**
  * Remote Representation for a Favorite
  */
-public class RemoteFavourite: Codable {
+public class RemoteFavourite: Codable, Equatable {
+    
+    public static func == (lhs: RemoteFavourite, rhs: RemoteFavourite) -> Bool {
+         return lhs.idDirectory == rhs.idDirectory &&
+                lhs.uuidAccount == rhs.uuidAccount &&
+                lhs.idParentDirectory == rhs.idParentDirectory &&
+                lhs.directoryName == rhs.directoryName &&
+                lhs.subDirectories == rhs.subDirectories &&
+                lhs.authors == rhs.authors &&
+                lhs.books == rhs.books &&
+                lhs.movements == rhs.movements &&
+                lhs.themes == rhs.themes &&
+                lhs.quotes == rhs.quotes &&
+                lhs.pictures == rhs.pictures &&
+                lhs.presentations == rhs.presentations &&
+                lhs.urls == rhs.urls
+    }
+    
     
     var idDirectory: String
     var uuidAccount: String
     var idParentDirectory: String?
     var directoryName: String?
-    lazy var subDirectories: [RemoteFavourite]? = {
+    lazy var subDirectories: [RemoteFavourite] = {
         [RemoteFavourite]()
     }()
     var authors: [Int]?
@@ -33,7 +50,7 @@ public class RemoteFavourite: Codable {
          uuidAccount: String,
          idParentDirectory: String?,
          directoryName: String?,
-         subDirectories: [RemoteFavourite]?,
+         //subDirectories: [RemoteFavourite],
          authors: [Int]?,
          books: [Int]?,
          movements: [Int]?,
@@ -46,7 +63,7 @@ public class RemoteFavourite: Codable {
         self.uuidAccount = uuidAccount
         self.idParentDirectory = idParentDirectory
         self.directoryName = directoryName
-        self.subDirectories = subDirectories
+        //self.subDirectories = subDirectories
         self.authors = authors
         self.books = books
         self.movements = movements

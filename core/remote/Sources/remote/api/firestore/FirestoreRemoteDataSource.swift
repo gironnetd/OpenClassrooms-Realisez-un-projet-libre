@@ -25,18 +25,18 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
     /// Retrieve an Account from its identifier UUID, from remote
     ///
     /// - Parameters:
-    ///   - uuid: The UUID of the account
+    ///   - uuid: The identifier of the account
     ///
     /// - Returns: A Future returning an RemoteAccount or an Error
-    func findAccount(byUuid uuid: UUID) -> Future<RemoteAccount, Error> {
+    func findAccount(byUid uid: String) -> Future<RemoteAccount, Error> {
         Future { [self] promise in
-            let docRef = firestore.collection(Constants.ACCOUNT_TABLE).document(uuid.uuidString)
+            let docRef = firestore.collection(Constants.ACCOUNT_TABLE).document(uid)
             
             docRef.getDocument(as: RemoteAccount.self) { result in
                 switch result {
                 case .success(var account):
                     firestore.collection(Constants.FAVOURITE_TABLE)
-                        .whereField("uuidAccount", isEqualTo: account.uuid.uuidString)
+                        .whereField("uuidAccount", isEqualTo: account.uid)
                         .getDocuments() { (querySnapshot, err) in
                             guard let querySnapshot = querySnapshot, !querySnapshot.isEmpty else {
                                 return promise(.success(account))
@@ -45,7 +45,7 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
                             let favourites = querySnapshot.documents.compactMap { document in try? document.data(as: RemoteFavourite.self) }
                             
                             account.favourites = favourites.reduce(into: favourites) { result, favourite in
-                                result.first(where: { idParentFavourite in idParentFavourite.idDirectory == favourite.idParentDirectory })?.subDirectories?.append(favourite)
+                                result.first(where: { idParentFavourite in idParentFavourite.idDirectory == favourite.idParentDirectory })?.subDirectories.append(favourite)
                             }.first { favourite in favourite.idParentDirectory == nil }
                             
                             promise(.success(account))
@@ -65,24 +65,14 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
     func saveOrUpdate(account: RemoteAccount) -> AnyPublisher<Void, Error> {
         Future { [self] promise in
             do {
-                let docRef = firestore.collection(Constants.ACCOUNT_TABLE).document(account.uuid.uuidString)
+                let docRef = firestore.collection(Constants.ACCOUNT_TABLE).document(account.uid)
                 docRef.getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        docRef.updateData(account.dictionary as [AnyHashable : Any]) { error in
-                            if let error = error {
-                                promise(.failure(error))
-                            } else {
-                                promise(.success(()))
-                            }
-                        }
-                    } else {
-                        do {
-                            try firestore.collection(Constants.ACCOUNT_TABLE).document(account.uuid.uuidString).setData(from: account)
-                            promise(.success(()))
-                        } catch let error {
-                            promise(.failure(error))
-                        }
+                    guard let document = document, document.exists else {
+                        firestore.collection(Constants.ACCOUNT_TABLE).document(account.uid).setData(account.dictionary as [String : Any])
+                            return promise(.success(()))
                     }
+                    docRef.updateData(account.dictionary as [AnyHashable : Any])
+                    promise(.success(()))
                 }
             }
         }.eraseToAnyPublisher()
@@ -93,13 +83,17 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
     /// - Parameters:
     ///   - uuid: The UUID of the account
     @discardableResult
-    func deleteAccount(byUuid uuid: UUID) -> AnyPublisher<Void, Error> {
+    func deleteAccount(byUid uid: String) -> AnyPublisher<Void, Error> {
         Future { [self] promise in
-            firestore.collection(Constants.ACCOUNT_TABLE).document(uuid.uuidString).delete() { error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
+            let accountRef = firestore.collection(Constants.ACCOUNT_TABLE).document(uid)
+            
+            accountRef.getDocument(as: RemoteAccount.self) { result in
+                switch result {
+                case .success:
+                    accountRef.delete()
                     promise(.success(()))
+                case .failure(let error):
+                    promise(.failure(error))
                 }
             }
         }.eraseToAnyPublisher()
@@ -114,23 +108,13 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
         Future { [self] promise in
             do {
                 let docRef = firestore.collection(Constants.FAVOURITE_TABLE).document(favourite.idDirectory)
-                docRef.getDocument { [self] (document, error) in
-                    if let document = document, document.exists {
-                        docRef.updateData(favourite.dictionary as [AnyHashable : Any]) { error in
-                            if let error = error {
-                                promise(.failure(error))
-                            } else {
-                                promise(.success(()))
-                            }
-                        }
-                    } else {
-                        do {
-                            try firestore.collection(Constants.FAVOURITE_TABLE).document(favourite.idDirectory).setData(from: favourite)
-                            promise(.success(()))
-                        } catch let error {
-                            promise(.failure(error))
-                        }
+                docRef.getDocument { (document, error) in
+                    guard let document = document, document.exists else {
+                        firestore.collection(Constants.FAVOURITE_TABLE).document(favourite.idDirectory).setData(favourite.dictionary as [String : Any])
+                            return promise(.success(()))
                     }
+                    docRef.updateData(favourite.dictionary as [AnyHashable : Any])
+                    promise(.success(()))
                 }
             }
         }.eraseToAnyPublisher()
@@ -143,11 +127,15 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
     @discardableResult
     func deleteFavourite(byIdDirectory idDirectory: String) -> AnyPublisher<Void, Error> {
         Future { [self] promise in
-            firestore.collection(Constants.FAVOURITE_TABLE).document(idDirectory).delete() { error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
+            let favouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(idDirectory)
+            
+            favouriteRef.getDocument(as: RemoteFavourite.self) { result in
+                switch result {
+                case .success:
+                    favouriteRef.delete()
                     promise(.success(()))
+                case .failure(let error):
+                    promise(.failure(error))
                 }
             }
         }.eraseToAnyPublisher()
