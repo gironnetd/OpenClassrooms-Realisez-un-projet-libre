@@ -25,7 +25,7 @@ public class CachedPicture: Object {
     @Persisted var picture: Data?
     
     public override init() {}
-
+    
     public init(idPicture: Int,
                 nameSmall: String,
                 `extension`: String,
@@ -48,18 +48,34 @@ public class CachedPicture: Object {
 
 extension CachedPicture {
     
-    func asExternalModel() -> Picture {
-        Picture(idPicture: idPicture,
-                             nameSmall: nameSmall,
-                             extension: `extension`,
-                             comments: comments.count != 0 ? comments.asKeyValueSequence()
-                                .reduce(into: [String: String](), { result, comment in
-                                    result[comment.key] = comment.value
-                                }) : nil,
-                             width: width,
-                             height: height,
-                             portrait: portrait,
-                             picture: picture)
+    public func asExternalModel() -> Picture {
+        Picture(idPicture: self.idPicture,
+                nameSmall: self.nameSmall,
+                extension: self.`extension`,
+                comments: self.comments.count != 0 ? self.comments.asKeyValueSequence()
+                    .reduce(into: [String: String](), { result, comment in
+                        result[comment.key] = comment.value
+                    }) : nil,
+                width: self.width,
+                height: self.height,
+                portrait: self.portrait,
+                picture: self.picture)
+    }
+}
+
+extension Picture {
+    
+    public func asCached() -> CachedPicture {
+        CachedPicture(idPicture: self.idPicture,
+                      nameSmall: self.nameSmall,
+                      extension: self.`extension`,
+                      comments: self.comments?.reduce(into: Map<String, String>(), { result, comment in
+                        result[comment.key] = comment.value
+                      }) ?? Map<String, String>(),
+                      width: self.width,
+                      height: self.height,
+                      portrait: self.portrait,
+                      picture: self.picture)
     }
 }
 

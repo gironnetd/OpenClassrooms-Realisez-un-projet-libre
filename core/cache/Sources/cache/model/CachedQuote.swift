@@ -50,16 +50,31 @@ public class CachedQuote: Object {
 }
 
 extension CachedQuote {
+    
+    public func asExternalModel() -> Quote {
+        Quote(idQuote: self.idQuote,
+              idAuthor: self.idAuthor,
+              idBook: self.idBook,
+              quote: self.quote,
+              source: self.source,
+              reference: self.reference,
+              remarque: self.remarque,
+              comment: self.comment,
+              commentName: self.commentName)
+    }
+}
 
-    func asExternalModel() -> Quote {
-        return Quote(idQuote: idQuote,
-                           idAuthor: idAuthor,
-                           idBook: idBook,
-                           quote: quote,
-                           source: source,
-                           reference: reference,
-                           remarque: remarque,
-                           comment: comment,
-                           commentName: commentName)
+extension Quote {
+    
+    public func asCached() -> CachedQuote {
+        CachedQuote(idQuote: self.idQuote,
+                    idAuthor: self.idAuthor,
+                    idBook: self.idBook,
+                    quote: self.quote,
+                    source: self.source,
+                    reference: self.reference,
+                    remarque: self.remarque,
+                    comment: self.comment,
+                    commentName: self.commentName)
     }
 }

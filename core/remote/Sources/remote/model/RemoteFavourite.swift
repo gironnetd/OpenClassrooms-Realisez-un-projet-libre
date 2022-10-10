@@ -15,94 +15,91 @@ public class RemoteFavourite: Codable, Equatable {
     
     public static func == (lhs: RemoteFavourite, rhs: RemoteFavourite) -> Bool {
          return lhs.idDirectory == rhs.idDirectory &&
-                lhs.uuidAccount == rhs.uuidAccount &&
+                lhs.uidAccount == rhs.uidAccount &&
                 lhs.idParentDirectory == rhs.idParentDirectory &&
                 lhs.directoryName == rhs.directoryName &&
                 lhs.subDirectories == rhs.subDirectories &&
-                lhs.authors == rhs.authors &&
-                lhs.books == rhs.books &&
-                lhs.movements == rhs.movements &&
-                lhs.themes == rhs.themes &&
-                lhs.quotes == rhs.quotes &&
-                lhs.pictures == rhs.pictures &&
-                lhs.presentations == rhs.presentations &&
-                lhs.urls == rhs.urls
+                lhs.idAuthors == rhs.idAuthors &&
+                lhs.idBooks == rhs.idBooks &&
+                lhs.idMovements == rhs.idMovements &&
+                lhs.idThemes == rhs.idThemes &&
+                lhs.idQuotes == rhs.idQuotes &&
+                lhs.idPictures == rhs.idPictures &&
+                lhs.idPresentations == rhs.idPresentations &&
+                lhs.idUrls == rhs.idUrls
     }
     
-    
-    var idDirectory: String
-    var uuidAccount: String
-    var idParentDirectory: String?
-    var directoryName: String?
-    lazy var subDirectories: [RemoteFavourite] = {
+    public var idDirectory: String
+    public var uidAccount: String
+    public var idParentDirectory: String?
+    public var directoryName: String?
+    public lazy var subDirectories: [RemoteFavourite] = {
         [RemoteFavourite]()
     }()
-    var authors: [Int]?
-    var books: [Int]?
-    var movements: [Int]?
-    var themes: [Int]?
-    var quotes: [Int]?
-    var pictures: [Int]?
-    var presentations: [Int]?
-    var urls: [Int]?
+    public var idAuthors: [Int]?
+    public var idBooks: [Int]?
+    public var idMovements: [Int]?
+    public var idThemes: [Int]?
+    public var idQuotes: [Int]?
+    public var idPictures: [Int]?
+    public var idPresentations: [Int]?
+    public var idUrls: [Int]?
     
     init(idDirectory: String,
-         uuidAccount: String,
+         uidAccount: String,
          idParentDirectory: String?,
          directoryName: String?,
-         //subDirectories: [RemoteFavourite],
-         authors: [Int]?,
-         books: [Int]?,
-         movements: [Int]?,
-         themes: [Int]?,
-         quotes: [Int]?,
-         pictures: [Int]?,
-         presentations: [Int]?,
-         urls: [Int]?) {
+         idAuthors: [Int]?,
+         idBooks: [Int]?,
+         idMovements: [Int]?,
+         idThemes: [Int]?,
+         idQuotes: [Int]?,
+         idPictures: [Int]?,
+         idPresentations: [Int]?,
+         idUrls: [Int]?) {
         self.idDirectory = idDirectory
-        self.uuidAccount = uuidAccount
+        self.uidAccount = uidAccount
         self.idParentDirectory = idParentDirectory
         self.directoryName = directoryName
-        //self.subDirectories = subDirectories
-        self.authors = authors
-        self.books = books
-        self.movements = movements
-        self.themes = themes
-        self.quotes = quotes
-        self.pictures = pictures
-        self.presentations = presentations
-        self.urls = urls
+        self.idAuthors = idAuthors
+        self.idBooks = idBooks
+        self.idMovements = idMovements
+        self.idThemes = idThemes
+        self.idQuotes = idQuotes
+        self.idPictures = idPictures
+        self.idPresentations = idPresentations
+        self.idUrls = idUrls
     }
 
     enum CodingKeys: String, CodingKey {
         case idDirectory
-        case uuidAccount
+        case uidAccount
         case idParentDirectory
         case directoryName
-        case authors
-        case books
-        case movements
-        case themes
-        case quotes
-        case pictures
-        case presentations
-        case urls
+        case idAuthors
+        case idBooks
+        case idMovements
+        case idThemes
+        case idQuotes
+        case idPictures
+        case idPresentations
+        case idUrls
     }
     
     var dictionary: [String: Any?] {
         return [
             "idDirectory": idDirectory,
-            "uuidAccount": uuidAccount,
+            "uidAccount": uidAccount,
             "idParentDirectory": idParentDirectory,
             "directoryName": directoryName,
-            "authors": authors,
-            "books": books,
-            "movements": movements,
-            "themes": themes,
-            "quotes": quotes,
-            "pictures": pictures,
-            "presentations": presentations,
-            "urls": urls
+            "idAuthors": idAuthors,
+            "idBooks": idBooks,
+            "idMovements": idMovements,
+            "idThemes": idThemes,
+            "idQuotes": idQuotes,
+            "idPictures": idPictures,
+            "idPresentations": idPresentations,
+            "idUrls": idUrls
         ]
     }
 }

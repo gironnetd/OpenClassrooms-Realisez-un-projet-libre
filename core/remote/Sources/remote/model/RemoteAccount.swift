@@ -12,9 +12,9 @@ import model
 /**
  * Remote Representation for a Account
  */
-struct RemoteAccount: Codable, Equatable  {
+public struct RemoteAccount: Codable, Equatable  {
     
-    static func == (lhs: RemoteAccount, rhs: RemoteAccount) -> Bool {
+    public static func == (lhs: RemoteAccount, rhs: RemoteAccount) -> Bool {
          return lhs.uid == rhs.uid &&
                 lhs.providerID == rhs.providerID &&
                 lhs.email == rhs.email &&
@@ -23,13 +23,13 @@ struct RemoteAccount: Codable, Equatable  {
                 lhs.photo == rhs.photo
     }
     
-    var uid: String
-    var providerID: String
-    var email: String?
-    var displayName: String?
-    var phoneNumber: String?
-    var photo: Data?
-    var favourites: RemoteFavourite?
+    public var uid: String
+    public var providerID: String
+    public var email: String?
+    public var displayName: String?
+    public var phoneNumber: String?
+    public var photo: Data?
+    public var favourites: RemoteFavourite?
     
     enum CodingKeys: String, CodingKey {
         case uid

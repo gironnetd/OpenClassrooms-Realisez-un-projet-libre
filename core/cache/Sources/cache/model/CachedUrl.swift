@@ -41,13 +41,25 @@ public class CachedUrl: Object {
 }
 
 extension CachedUrl {
+    
+    public func asExternalModel() -> Url {
+        Url(idUrl: self.idUrl,
+            sourceType: self.sourceType,
+            idSource: self.idSource,
+            title: self.title,
+            url: self.url,
+            presentation: self.presentation)
+    }
+}
 
-    func asExternalModel() -> Url {
-        return Url(idUrl: idUrl,
-                         sourceType: sourceType,
-                         idSource: idSource,
-                         title: title,
-                         url: url,
-                         presentation: presentation)
+extension Url {
+    
+    public func asCached() -> CachedUrl {
+        CachedUrl(idUrl: self.idUrl,
+                  sourceType: self.sourceType,
+                  idSource: self.idSource,
+                  title: self.title,
+                  url: self.url,
+                  presentation: self.presentation)
     }
 }

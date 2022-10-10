@@ -41,7 +41,7 @@ public class CachedMovement: Object {
     @Persisted var movements: List<CachedMovement>
     @Persisted var pictures: List<CachedPicture>
     @Persisted var urls: List<CachedUrl>
-
+    
     public override init() {}
     
     public init(idMovement : Int,
@@ -102,33 +102,66 @@ public class CachedMovement: Object {
 
 extension CachedMovement {
     
-    func asExternalModel() -> Movement {
-        Movement(idMovement : idMovement,
-                              idParentMovement: idParentMovement,
-                              name: name,
-                              language: language.rawValue,
-                              idRelatedMovements: !idRelatedMovements.isEmpty ? idRelatedMovements.toArray() : nil,
-                              mcc1: mcc1,
-                              mcc2: mcc2,
-                              presentation: presentation?.asExternalModel(),
-                              mcc3: mcc3,
-                              nbQuotes: nbQuotes,
-                              nbAuthors: nbAuthors,
-                              nbAuthorsQuotes: nbAuthorsQuotes,
-                              nbBooks: nbBooks,
-                              nbBooksQuotes: nbBooksQuotes,
-                              selected: selected,
-                              nbTotalQuotes: nbTotalQuotes,
-                              nbTotalAuthors: nbTotalAuthors,
-                              nbTotalBooks: nbTotalBooks,
-                              nbSubcourants: nbSubcourants,
-                              nbAuthorsSubcourants: nbAuthorsSubcourants,
-                              nbBooksSubcourants : nbBooksSubcourants,
-                              authors : !authors.isEmpty ? authors.map { author in author.asExternalModel()} : nil,
-                              books : !books.isEmpty ? books.map { book in book.asExternalModel()} : nil,
-                              movements : !movements.isEmpty ? movements.map { movement in movement.asExternalModel()} : nil,
-                              pictures : !pictures.isEmpty ? pictures.map { picture in picture.asExternalModel()} : nil,
-                              urls: !urls.isEmpty ? urls.map { url in url.asExternalModel()} : nil)
+    public func asExternalModel() -> Movement {
+        Movement(idMovement : self.idMovement,
+                 idParentMovement: self.idParentMovement,
+                 name: self.name,
+                 language: self.language.rawValue,
+                 idRelatedMovements: !self.idRelatedMovements.isEmpty ? self.idRelatedMovements.toArray() : nil,
+                 mcc1: self.mcc1,
+                 mcc2: self.mcc2,
+                 presentation: self.presentation?.asExternalModel(),
+                 mcc3: self.mcc3,
+                 nbQuotes: self.nbQuotes,
+                 nbAuthors: self.nbAuthors,
+                 nbAuthorsQuotes: self.nbAuthorsQuotes,
+                 nbBooks: self.nbBooks,
+                 nbBooksQuotes: self.nbBooksQuotes,
+                 selected: self.selected,
+                 nbTotalQuotes: self.nbTotalQuotes,
+                 nbTotalAuthors: self.nbTotalAuthors,
+                 nbTotalBooks: self.nbTotalBooks,
+                 nbSubcourants: self.nbSubcourants,
+                 nbAuthorsSubcourants: self.nbAuthorsSubcourants,
+                 nbBooksSubcourants : self.nbBooksSubcourants,
+                 authors : !self.authors.isEmpty ? self.authors.map { author in author.asExternalModel()} : nil,
+                 books : !self.books.isEmpty ? self.books.map { book in book.asExternalModel()} : nil,
+                 movements : !self.movements.isEmpty ? self.movements.map { movement in movement.asExternalModel()} : nil,
+                 pictures : !self.pictures.isEmpty ? self.pictures.map { picture in picture.asExternalModel()} : nil,
+                 urls: !self.urls.isEmpty ? self.urls.map { url in url.asExternalModel()} : nil)
+    }
+}
+
+extension Movement {
+    
+    public func asCached() -> CachedMovement {
+        
+        CachedMovement(idMovement : self.idMovement,
+                       idParentMovement: self.idParentMovement,
+                       name: self.name,
+                       language: CachedLanguage(rawValue: self.language) ?? .none,
+                       idRelatedMovements: self.idRelatedMovements != nil ? self.idRelatedMovements!.toList() : List<Int>(),
+                       mcc1: self.mcc1,
+                       mcc2: self.mcc2,
+                       presentation: self.presentation?.asCached(),
+                       mcc3: self.mcc3,
+                       nbQuotes: self.nbQuotes,
+                       nbAuthors: self.nbAuthors,
+                       nbAuthorsQuotes: self.nbAuthorsQuotes,
+                       nbBooks: self.nbBooks,
+                       nbBooksQuotes: self.nbBooksQuotes,
+                       selected: self.selected,
+                       nbTotalQuotes: self.nbTotalQuotes,
+                       nbTotalAuthors: self.nbTotalAuthors,
+                       nbTotalBooks: self.nbTotalBooks,
+                       nbSubcourants: self.nbSubcourants,
+                       nbAuthorsSubcourants: self.nbAuthorsSubcourants,
+                       nbBooksSubcourants : self.nbBooksSubcourants,
+                       authors : self.authors != nil ? self.authors!.map { author in author.asCached()}.toList() : List<CachedAuthor>(),
+                       books : self.books != nil ? self.books!.map { book in book.asCached()}.toList() : List<CachedBook>(),
+                       movements : self.movements != nil ? self.movements!.map { movement in movement.asCached()}.toList() : List<CachedMovement>(),
+                       pictures : self.pictures != nil ? self.pictures!.map { picture in picture.asCached()}.toList() : List<CachedPicture>(),
+                       urls: self.urls != nil ? self.urls!.map { url in url.asCached()}.toList() : List<CachedUrl>())
     }
 }
 

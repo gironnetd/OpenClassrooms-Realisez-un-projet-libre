@@ -15,8 +15,8 @@ import model
  */
 public class CachedAccount: Object {
     
-    @Persisted(primaryKey: true) var uuid: UUID
-    @Persisted var providerId: String
+    @Persisted(primaryKey: true) var uid: String
+    @Persisted var providerID: String
     @Persisted var email: String?
     @Persisted var displayName: String?
     @Persisted var phoneNumber: String?
@@ -25,16 +25,16 @@ public class CachedAccount: Object {
     
     public override init() {}
     
-    public init(uuid: UUID,
-                providerId: String,
+    public init(uid: String,
+                providerID: String,
                 email: String? = nil,
                 displayName: String? = nil,
                 phoneNumber: String? = nil,
                 photo: Data? = nil,
                 favourites: CachedFavourite? = nil) {
         super.init()
-        self.uuid = uuid
-        self.providerId = providerId
+        self.uid = uid
+        self.providerID = providerID
         self.email = email
         self.displayName = displayName
         self.phoneNumber = phoneNumber
@@ -45,13 +45,26 @@ public class CachedAccount: Object {
 
 extension CachedAccount {
     
-    func asExternalModel() -> Account {
-        Account(uuid: uuid,
-                providerId: providerId,
-                email:  email,
-                displayName: displayName,
-                phoneNumber: phoneNumber,
-                photo:  photo,
-                favourites: favourites?.asExternalModel())
+    public func asExternalModel() -> Account {
+        Account(uid: self.uid,
+                providerID: self.providerID,
+                email:  self.email,
+                displayName: self.displayName,
+                phoneNumber: self.phoneNumber,
+                photo:  self.photo,
+                favourites: self.favourites?.asExternalModel())
+    }
+}
+
+extension Account {
+    
+    public func asCached() -> CachedAccount {
+        CachedAccount(uid: self.uid,
+                      providerID: self.providerID,
+                      email: self.email,
+                      displayName: self.displayName,
+                      phoneNumber: self.phoneNumber,
+                      photo: self.photo,
+                      favourites: nil)
     }
 }

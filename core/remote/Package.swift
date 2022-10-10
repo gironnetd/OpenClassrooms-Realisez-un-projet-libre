@@ -50,8 +50,7 @@ let package = Package(
                 .product(name: "FirebaseFirestoreSwift", package: "Firebase")
             ],
             resources: [
-                .process("GoogleService-Info.plist"),
-                .process("mobile.entitlements")
+                .process("GoogleService-Info.plist")
             ]
         ),
     ]

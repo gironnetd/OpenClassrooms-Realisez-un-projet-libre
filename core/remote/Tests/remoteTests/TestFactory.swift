@@ -27,17 +27,17 @@ extension RemoteFavourite {
     
     static func testFavourite() -> RemoteFavourite {
         RemoteFavourite(idDirectory: DataFactory.randomString(),
-                        uuidAccount: DataFactory.randomString(),
+                        uidAccount: DataFactory.randomString(),
                         idParentDirectory: DataFactory.randomString(),
                         directoryName: DataFactory.randomString(),
-                        authors: nil,
-                        books: nil,
-                        movements: nil,
-                        themes: nil,
-                        quotes: nil,
-                        pictures: nil,
-                        presentations: nil,
-                        urls: nil)
+                        idAuthors: nil,
+                        idBooks: nil,
+                        idMovements: nil,
+                        idThemes: nil,
+                        idQuotes: nil,
+                        idPictures: nil,
+                        idPresentations: nil,
+                        idUrls: nil)
     }
 }
 

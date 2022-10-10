@@ -72,23 +72,49 @@ public class CachedAuthor: Object {
 
 extension CachedAuthor {
     
-    func asExternalModel() -> Author {
-        Author(idAuthor: idAuthor,
-               language: language.rawValue,
-               name: name,
-               idRelatedAuthors: !idRelatedAuthors.isEmpty ? idRelatedAuthors.toArray() : nil,
-               century: century?.asExternalModel(),
-               surname: surname,
-               details: details,
-               period:  period,
-               idMovement: idMovement,
-               bibliography:  bibliography,
-               presentation: presentation?.asExternalModel(),
-               mainPicture:  mainPicture,
-               mcc1:  mcc1,
-               quotes: quotes.map { quote in quote.asExternalModel() },
-               pictures : !pictures.isEmpty ? pictures.map { picture in picture.asExternalModel()} : nil,
-               urls: !urls.isEmpty ? urls.map { url in url.asExternalModel()} : nil)
+    public func asExternalModel() -> Author {
+        Author(idAuthor: self.idAuthor,
+               language: self.language.rawValue,
+               name: self.name,
+               idRelatedAuthors: !self.idRelatedAuthors.isEmpty ? self.idRelatedAuthors.toArray() : nil,
+               century: self.century?.asExternalModel(),
+               surname: self.surname,
+               details: self.details,
+               period:  self.period,
+               idMovement: self.idMovement,
+               bibliography:  self.bibliography,
+               presentation: self.presentation?.asExternalModel(),
+               mainPicture:  self.mainPicture,
+               mcc1:  self.mcc1,
+               quotes: self.quotes.map { quote in quote.asExternalModel() },
+               pictures : !self.pictures.isEmpty ? self.pictures.map { picture in picture.asExternalModel()} : nil,
+               urls: !self.urls.isEmpty ? urls.map { url in url.asExternalModel()} : nil)
     }
 }
+
+extension Author {
+    
+    public func asCached() -> CachedAuthor {
+        
+        CachedAuthor(idAuthor: self.idAuthor,
+                     language: CachedLanguage(rawValue: self.language) ?? .none,
+                     name: self.name,
+                     idRelatedAuthors: self.idRelatedAuthors != nil ? self.idRelatedAuthors!.toList() : List<Int>(),
+                     century: self.century?.asCached(),
+                     surname: self.surname,
+                     details: self.details,
+                     period:  self.period,
+                     idMovement: self.idMovement,
+                     bibliography:  self.bibliography,
+                     presentation: self.presentation?.asCached(),
+                     mainPicture:  self.mainPicture,
+                     mcc1:  self.mcc1,
+                     quotes: self.quotes.map { quote in quote.asCached()}.toList(),
+                     pictures : self.pictures != nil ? self.pictures!.map { picture in picture.asCached()}.toList() : List<CachedPicture>(),
+                     urls: self.urls != nil ? self.urls!.map { url in url.asCached()}.toList() : List<CachedUrl>()
+        )
+    }
+}
+
+
 

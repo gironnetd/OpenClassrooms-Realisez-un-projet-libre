@@ -33,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D34EBCF28EDFA8A00B49528 /* mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mobile.entitlements; sourceTree = "<group>"; };
 		6D495BA728CF9A41007F1C72 /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D495BAA28CF9A41007F1C72 /* mobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobileApp.swift; sourceTree = "<group>"; };
 		6D495BAC28CF9A41007F1C72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		6D495BA928CF9A41007F1C72 /* mobile */ = {
 			isa = PBXGroup;
 			children = (
+				6D34EBCF28EDFA8A00B49528 /* mobile.entitlements */,
 				6D495BAA28CF9A41007F1C72 /* mobileApp.swift */,
 				6D495BAC28CF9A41007F1C72 /* ContentView.swift */,
 				6D495BAE28CF9A4F007F1C72 /* Assets.xcassets */,
@@ -431,6 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = mobile/mobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"mobile/Preview Content\"";
 				DEVELOPMENT_TEAM = S63P59N943;
@@ -453,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = mobile/mobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"mobile/Preview Content\"";
 				DEVELOPMENT_TEAM = S63P59N943;

@@ -12,23 +12,23 @@ import Foundation
  */
 public struct Account : Equatable {
     
-    public var uuid: UUID
-    public var providerId: String
+    public var uid: String
+    public var providerID: String
     public var email: String?
     public var displayName: String?
     public var phoneNumber: String?
     public var photo: Data?
     public var favourites: Favourite?
     
-    public init(uuid: UUID,
-                providerId: String,
+    public init(uid: String,
+                providerID: String,
                 email: String? = nil,
                 displayName: String? = nil,
                 phoneNumber: String? = nil,
                 photo: Data? = nil,
                 favourites: Favourite? = nil) {
-        self.uuid = uuid
-        self.providerId = providerId
+        self.uid = uid
+        self.providerID = providerID
         self.email = email
         self.displayName = displayName
         self.phoneNumber = phoneNumber

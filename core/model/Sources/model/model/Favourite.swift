@@ -12,8 +12,8 @@ import Foundation
  */
 public struct Favourite : Equatable {
     
-    public var idDirectory: Int
-    public var idParentDirectory: Int?
+    public var idDirectory: String
+    public var idParentDirectory: String?
     public var directoryName: String?
     public var subDirectories: [Favourite]?
     public var authors: [Author]?
@@ -25,8 +25,8 @@ public struct Favourite : Equatable {
     public var presentations: [Presentation]?
     public var urls: [Url]?
     
-    public init(idDirectory: Int,
-                idParentDirectory: Int? = nil,
+    public init(idDirectory: String,
+                idParentDirectory: String? = nil,
                 directoryName: String?,
                 subDirectories: [Favourite]? = nil,
                 authors: [Author]? = nil,

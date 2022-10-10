@@ -57,17 +57,34 @@ public class CachedPresentation: Object {
 
 extension CachedPresentation {
     
-    func asExternalModel() -> Presentation {
-        return Presentation(idPresentation: idPresentation,
-                                  presentation: presentation,
-                                  presentationTitle1: presentationTitle1,
-                                  presentation1: presentation1,
-                                  presentationTitle2: presentationTitle2,
-                                  presentation2: presentation2,
-                                  presentationTitle3: presentationTitle3,
-                                  presentation3: presentation3,
-                                  presentationTitle4: presentationTitle4,
-                                  presentation4: presentation4,
-                                  sourcePresentation: sourcePresentation)
+    public func asExternalModel() -> Presentation {
+        Presentation(idPresentation: self.idPresentation,
+                     presentation: self.presentation,
+                     presentationTitle1: self.presentationTitle1,
+                     presentation1: self.presentation1,
+                     presentationTitle2: self.presentationTitle2,
+                     presentation2: self.presentation2,
+                     presentationTitle3: self.presentationTitle3,
+                     presentation3: self.presentation3,
+                     presentationTitle4: self.presentationTitle4,
+                     presentation4: self.presentation4,
+                     sourcePresentation: self.sourcePresentation)
+    }
+}
+
+extension Presentation {
+    
+    public func asCached() -> CachedPresentation {
+        CachedPresentation(idPresentation: self.idPresentation,
+                           presentation: self.presentation,
+                           presentationTitle1: self.presentationTitle1,
+                           presentation1: self.presentation1,
+                           presentationTitle2: self.presentationTitle2,
+                           presentation2: self.presentation2,
+                           presentationTitle3: self.presentationTitle3,
+                           presentation3: self.presentation3,
+                           presentationTitle4: self.presentationTitle4,
+                           presentation4: self.presentation4,
+                           sourcePresentation: self.sourcePresentation)
     }
 }

@@ -63,55 +63,48 @@ class RemoteDataSourceSpec: QuickSpec {
                     // Get new write batch
                     let batch = firestore.batch()
 
-                    // Set the value of 'NYC'
                     accountRef = firestore.collection(Constants.ACCOUNT_TABLE).document(account.uid)
                     batch.setData(account.dictionary as [String : Any], forDocument: accountRef)
 
                     firstFavourite = RemoteFavourite.testFavourite()
-                    firstFavourite.uuidAccount = account.uid
+                    firstFavourite.uidAccount = account.uid
                     firstFavourite.idParentDirectory = nil
-                    firstFavourite.authors = [1,2]
+                    firstFavourite.idAuthors = [1,2]
                     
                     secondFavourite = RemoteFavourite.testFavourite()
-                    secondFavourite.uuidAccount = account.uid
+                    secondFavourite.uidAccount = account.uid
                     secondFavourite.idParentDirectory = firstFavourite.idDirectory
                     
                     thirdFavourite = RemoteFavourite.testFavourite()
-                    thirdFavourite.uuidAccount = account.uid
+                    thirdFavourite.uidAccount = account.uid
                     
                     thirdFavourite.idParentDirectory = firstFavourite.idDirectory
                     
                     fourthFavourite = RemoteFavourite.testFavourite()
-                    fourthFavourite.uuidAccount = UUID().uuidString
+                    fourthFavourite.uidAccount = UUID().uuidString
                     
                     fourthFavourite.idParentDirectory = firstFavourite.idDirectory
                     
                     fifthFavourite = RemoteFavourite.testFavourite()
-                    fifthFavourite.uuidAccount = account.uid
+                    fifthFavourite.uidAccount = account.uid
                     
                     fifthFavourite.idParentDirectory = secondFavourite.idDirectory
                     
-                    // Update the population of 'SF'
                     firstFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(firstFavourite.idDirectory)
                     batch.setData(firstFavourite.dictionary as [String : Any], forDocument: firstFavouriteRef)
 
-                    // Delete the city 'LA'
                     secondFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(secondFavourite.idDirectory)
                     batch.setData(secondFavourite.dictionary as [String : Any], forDocument: secondFavouriteRef)
                     
-                    // Delete the city 'LA'
                     thirdFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(thirdFavourite.idDirectory)
                     batch.setData(thirdFavourite.dictionary as [String : Any], forDocument: thirdFavouriteRef)
                     
-                    // Delete the city 'LA'
                     fourthFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(fourthFavourite.idDirectory)
                     batch.setData(fourthFavourite.dictionary as [String : Any], forDocument: fourthFavouriteRef)
                     
-                    // Delete the city 'LA'
                     fifthFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(fifthFavourite.idDirectory)
                     batch.setData(fifthFavourite.dictionary as [String : Any], forDocument: fifthFavouriteRef)
 
-                    // Commit the batch
                     batch.commit() { err in
                         if let err = err {
                             print("Error writing batch \(err)")
@@ -130,8 +123,7 @@ class RemoteDataSourceSpec: QuickSpec {
 
         afterEach {
             do {
-                try Future<Void, Error> { promise in
-                    // Get new write batch
+                _ = try Future<Void, Error> { promise in
                     let batch = firestore.batch()
                     
                     batch.deleteDocument(accountRef)
@@ -141,7 +133,6 @@ class RemoteDataSourceSpec: QuickSpec {
                     batch.deleteDocument(fourthFavouriteRef)
                     batch.deleteDocument(fifthFavouriteRef)
                     
-                    // Commit the batch
                     batch.commit() { err in
                         if let err = err {
                             print("Error writing batch \(err)")
@@ -172,8 +163,7 @@ class RemoteDataSourceSpec: QuickSpec {
             context("Found without Favourites") {
                 it("Account is returned") {
                     do {
-                        try Future<Void, Error> { promise in
-                            // Get new write batch
+                        _ = try Future<Void, Error> { promise in
                             let batch = firestore.batch()
                             
                             batch.deleteDocument(firstFavouriteRef)
@@ -182,7 +172,6 @@ class RemoteDataSourceSpec: QuickSpec {
                             batch.deleteDocument(fourthFavouriteRef)
                             batch.deleteDocument(fifthFavouriteRef)
                             
-                            // Commit the batch
                             batch.commit() { err in
                                 print("Batch write succeeded.")
                                 promise(.success(()))
@@ -211,7 +200,7 @@ class RemoteDataSourceSpec: QuickSpec {
                     
                     expect { try remoteDataSource.saveOrUpdate(account: newAccount).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.ACCOUNT_TABLE)
                             .document(newAccount.uid).getDocument(as: RemoteAccount.self) { result in
                                 switch result {
@@ -234,7 +223,7 @@ class RemoteDataSourceSpec: QuickSpec {
                     
                     expect { try remoteDataSource.saveOrUpdate(account: account).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.ACCOUNT_TABLE)
                             .document(account.uid).getDocument(as: RemoteAccount.self) { result in
                                 switch result {
@@ -257,7 +246,7 @@ class RemoteDataSourceSpec: QuickSpec {
                     
                     expect { try remoteDataSource.deleteAccount(byUid: account.uid).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.ACCOUNT_TABLE).getDocuments() { (querySnapshot, error) in
                             
                             guard let querySnapshot = querySnapshot else {
@@ -287,7 +276,7 @@ class RemoteDataSourceSpec: QuickSpec {
                     
                     expect { try remoteDataSource.saveOrUpdate(favourite: newFavourite).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.FAVOURITE_TABLE)
                             .document(newFavourite.idDirectory).getDocument(as: RemoteFavourite.self) { result in
                                 switch result {
@@ -310,7 +299,7 @@ class RemoteDataSourceSpec: QuickSpec {
                     
                     expect { try remoteDataSource.saveOrUpdate(favourite: firstFavourite).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.FAVOURITE_TABLE)
                             .document(firstFavourite.idDirectory).getDocument(as: RemoteFavourite.self) { result in
                                 switch result {
@@ -333,7 +322,7 @@ class RemoteDataSourceSpec: QuickSpec {
                     
                     expect { try remoteDataSource.deleteFavourite(byIdDirectory: firstFavourite.idDirectory).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.FAVOURITE_TABLE).getDocuments() { (querySnapshot, error) in
                             
                             guard let querySnapshot = querySnapshot else {

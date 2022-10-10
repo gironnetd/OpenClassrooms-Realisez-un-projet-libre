@@ -36,7 +36,7 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
                 switch result {
                 case .success(var account):
                     firestore.collection(Constants.FAVOURITE_TABLE)
-                        .whereField("uuidAccount", isEqualTo: account.uid)
+                        .whereField("uidAccount", isEqualTo: account.uid)
                         .getDocuments() { (querySnapshot, err) in
                             guard let querySnapshot = querySnapshot, !querySnapshot.isEmpty else {
                                 return promise(.success(account))

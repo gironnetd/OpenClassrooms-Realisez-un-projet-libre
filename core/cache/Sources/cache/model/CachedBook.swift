@@ -63,20 +63,39 @@ public class CachedBook: Object {
 
 extension CachedBook {
     
-    func asExternalModel() -> Book {
-        Book(idBook:  idBook,
-             name: name,
-             language: language.rawValue,
-             idRelatedBooks: !idRelatedBooks.isEmpty ? idRelatedBooks.toArray() : nil,
-             century: century?.asExternalModel(),
-             details: details,
-             period:  period,
-             idMovement: idMovement,
-             presentation: presentation?.asExternalModel(),
-             mcc1: mcc1,
-             quotes: quotes.map { quote in quote.asExternalModel()},
-             pictures : !pictures.isEmpty ? pictures.map { picture in picture.asExternalModel()} : nil,
-             urls: !urls.isEmpty ? urls.map { url in url.asExternalModel()} : nil)
+    public func asExternalModel() -> Book {
+        Book(idBook:  self.idBook,
+             name: self.name,
+             language: self.language.rawValue,
+             idRelatedBooks: !self.idRelatedBooks.isEmpty ? self.idRelatedBooks.toArray() : nil,
+             century: self.century?.asExternalModel(),
+             details: self.details,
+             period:  self.period,
+             idMovement: self.idMovement,
+             presentation: self.presentation?.asExternalModel(),
+             mcc1: self.mcc1,
+             quotes: self.quotes.map { quote in quote.asExternalModel()},
+             pictures : !self.pictures.isEmpty ? self.pictures.map { picture in picture.asExternalModel()} : nil,
+             urls: !self.urls.isEmpty ? self.urls.map { url in url.asExternalModel()} : nil)
+    }
+}
+
+extension Book {
+    
+    public func asCached() -> CachedBook {
+        CachedBook(idBook:  self.idBook,
+                   name: self.name,
+                   language: CachedLanguage(rawValue: self.language) ?? .none,
+                   idRelatedBooks: self.idRelatedBooks != nil ? self.idRelatedBooks!.toList() : List<Int>(),
+                   century: self.century?.asCached(),
+                   details: self.details,
+                   period:  self.period,
+                   idMovement: self.idMovement,
+                   presentation: self.presentation?.asCached(),
+                   mcc1: self.mcc1,
+                   quotes: self.quotes.map { quote in quote.asCached()}.toList(),
+                   pictures : self.pictures != nil ? self.pictures!.map { picture in picture.asCached()}.toList() : List<CachedPicture>(),
+                   urls: self.urls != nil ? self.urls!.map { url in url.asCached()}.toList() : List<CachedUrl>())
     }
 }
 
