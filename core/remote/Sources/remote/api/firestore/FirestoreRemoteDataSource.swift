@@ -10,114 +10,114 @@ import Combine
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseFirestoreCombineSwift
 
 /**
  * Default Implementation for the Remote Data Protocol.
  */
-class FirestoreRemoteDataSource: OlaRemoteDataSource {
+public class FirestoreRemoteDataSource: OlaRemoteDataSource {
     
     private let firestore: Firestore
     
-    init() {
-        firestore = Firestore.firestore()
+    public init(firestore: Firestore) {
+        self.firestore = firestore
     }
     
-    /// Retrieve an Account from its identifier UUID, from remote
+    /// Retrieve an User from its identifier UUID, from remote
     ///
     /// - Parameters:
-    ///   - uuid: The identifier of the account
+    ///   - uuid: The identifier of the user
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func findAccount(byUid uid: String) -> Future<RemoteAccount, Error> {
-        Future { [self] promise in
-            let docRef = firestore.collection(Constants.ACCOUNT_TABLE).document(uid)
-            
-            docRef.getDocument(as: RemoteAccount.self) { result in
-                switch result {
-                case .success(var account):
-                    firestore.collection(Constants.FAVOURITE_TABLE)
-                        .whereField("uidAccount", isEqualTo: account.uid)
-                        .getDocuments() { (querySnapshot, err) in
-                            guard let querySnapshot = querySnapshot, !querySnapshot.isEmpty else {
-                                return promise(.success(account))
-                            }
-                            
-                            let favourites = querySnapshot.documents.compactMap { document in try? document.data(as: RemoteFavourite.self) }
-                            
-                            account.favourites = favourites.reduce(into: favourites) { result, favourite in
-                                result.first(where: { idParentFavourite in idParentFavourite.idDirectory == favourite.idParentDirectory })?.subDirectories.append(favourite)
-                            }.first { favourite in favourite.idParentDirectory == nil }
-                            
-                            promise(.success(account))
+    /// - Returns: An AnyPublisher returning an RemoteUser or an Error
+    public func findUser(byUid uid: String) -> AnyPublisher<RemoteUser, Error> {
+        (self.firestore.collection(Constants.USER_TABLE).document(uid)
+            .getDocument() as Future<DocumentSnapshot, Error>)
+            .flatMap { documentSnapshot -> AnyPublisher<RemoteUser, Error> in
+                guard var user = try? documentSnapshot.data(as: RemoteUser.self) else {
+                    return Fail(error: NSError(domain: "", code: 0, userInfo: nil)).eraseToAnyPublisher()
+                }
+                
+                return (self.firestore.collection(Constants.FAVOURITE_TABLE)
+                            .whereField("uidUser", isEqualTo: user.uid)
+                            .getDocuments() as Future<QuerySnapshot, Error>).map { querySnapshot  in
+                        guard !querySnapshot.isEmpty else { return user }
+                        
+                        let favourites = querySnapshot.documents.compactMap { document in try? document.data(as: RemoteFavourite.self) }
+                        
+                        user.favourites = favourites.reduce(into: favourites) { result, favourite in
+                            result.first(where: { idParentFavourite in idParentFavourite.idDirectory == favourite.idParentDirectory })?.subDirectories?.append(favourite)
+                        }.first { favourite in favourite.idParentDirectory == nil }
+                        
+                        return user
+                    }.eraseToAnyPublisher()
+            }.eraseToAnyPublisher()
+    }
+    
+    /// Save or update an User to the cache
+    ///
+    /// - Parameters:
+    ///   - user: An RemoteUser
+    @discardableResult
+    public func saveOrUpdate(user: RemoteUser) -> AnyPublisher<Void, Error> {
+        (firestore.collection(Constants.USER_TABLE).document(user.uid)
+            .getDocument() as Future<DocumentSnapshot, Error>)
+            .flatMap { document -> Future<Void, Error> in
+                if document.exists {
+                    return document.reference.updateData(user.dictionary as [String : Any])
+                }
+                return document.reference.setData(from: user)
+            }.eraseToAnyPublisher()
+    }
+    
+    /// Delete an User to remote
+    ///
+    /// - Parameters:
+    ///   - uuid: The UUID of the user
+    @discardableResult
+    public func deleteUser(byUid uid: String) -> AnyPublisher<Void, Error> {
+        (firestore.collection(Constants.USER_TABLE)
+            .document(uid)
+            .getDocument() as Future<DocumentSnapshot, Error>)
+            .flatMap { documentSnapshot -> AnyPublisher<Void, Error> in
+                guard let user = try? documentSnapshot.data(as: RemoteUser.self) else {
+                    return Fail(error: NSError(domain: "", code: 0, userInfo: nil)).eraseToAnyPublisher()
+                }
+                
+                return Publishers.Zip(
+                    documentSnapshot.reference.delete(),
+                    (self.firestore.collection(Constants.FAVOURITE_TABLE)
+                        .whereField("uidUser", isEqualTo: user.uid)
+                        .getDocuments() as Future<QuerySnapshot, Error>)
+                        .flatMap { querySnapshot -> AnyPublisher<Void, Error> in
+                            return querySnapshot.documents.compactMap { queryDocumentSnapshot in
+                                queryDocumentSnapshot.reference.delete()
+                            }.publisher.setFailureType(to: Error.self).eraseToAnyPublisher()
                         }
-                case .failure(let error):
-                    promise(.failure(error))
-                }
-            }
-        }
-    }
-    
-    /// Save or update an Account to the cache
-    ///
-    /// - Parameters:
-    ///   - account: An RemoteAccount
-    @discardableResult
-    func saveOrUpdate(account: RemoteAccount) -> AnyPublisher<Void, Error> {
-        Future { [self] promise in
-            do {
-                let docRef = firestore.collection(Constants.ACCOUNT_TABLE).document(account.uid)
-                docRef.getDocument { (document, error) in
-                    guard let document = document, document.exists else {
-                        firestore.collection(Constants.ACCOUNT_TABLE).document(account.uid).setData(account.dictionary as [String : Any])
-                            return promise(.success(()))
-                    }
-                    docRef.updateData(account.dictionary as [AnyHashable : Any])
-                    promise(.success(()))
-                }
-            }
-        }.eraseToAnyPublisher()
-    }
-    
-    /// Delete an Account to remote
-    ///
-    /// - Parameters:
-    ///   - uuid: The UUID of the account
-    @discardableResult
-    func deleteAccount(byUid uid: String) -> AnyPublisher<Void, Error> {
-        Future { [self] promise in
-            let accountRef = firestore.collection(Constants.ACCOUNT_TABLE).document(uid)
-            
-            accountRef.getDocument(as: RemoteAccount.self) { result in
-                switch result {
-                case .success:
-                    accountRef.delete()
-                    promise(.success(()))
-                case .failure(let error):
-                    promise(.failure(error))
-                }
-            }
-        }.eraseToAnyPublisher()
+                        .collect()
+                        .map { _ in }
+                        .eraseToAnyPublisher()
+                )
+                .map { _ in }
+                .eraseToAnyPublisher()
+            }.eraseToAnyPublisher()
     }
     
     /// Save or update an Favourite to remote
     ///
     /// - Parameters:
-    ///   - account: A RemoteFavourite
+    ///   - user: A RemoteFavourite
     @discardableResult
-    func saveOrUpdate(favourite: RemoteFavourite) -> AnyPublisher<Void, Error> {
-        Future { [self] promise in
-            do {
-                let docRef = firestore.collection(Constants.FAVOURITE_TABLE).document(favourite.idDirectory)
-                docRef.getDocument { (document, error) in
-                    guard let document = document, document.exists else {
-                        firestore.collection(Constants.FAVOURITE_TABLE).document(favourite.idDirectory).setData(favourite.dictionary as [String : Any])
-                            return promise(.success(()))
-                    }
-                    docRef.updateData(favourite.dictionary as [AnyHashable : Any])
-                    promise(.success(()))
+    public func saveOrUpdate(favourite: RemoteFavourite) -> AnyPublisher<Void, Error> {
+        (firestore.collection(Constants.FAVOURITE_TABLE)
+            .document(favourite.idDirectory)
+            .getDocument() as Future<DocumentSnapshot, Error>)
+            .flatMap { document -> Future<Void, Error> in
+                if document.exists {
+                    return document.reference.updateData(favourite.dictionary as [String : Any])
                 }
+                return document.reference.setData(from: favourite)
             }
-        }.eraseToAnyPublisher()
+            .eraseToAnyPublisher()
     }
     
     /// Delete a Favourite to the remote
@@ -125,19 +125,41 @@ class FirestoreRemoteDataSource: OlaRemoteDataSource {
     /// - Parameters:
     ///   - idDirectory: The identifier of the favourite folder
     @discardableResult
-    func deleteFavourite(byIdDirectory idDirectory: String) -> AnyPublisher<Void, Error> {
-        Future { [self] promise in
-            let favouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(idDirectory)
-            
-            favouriteRef.getDocument(as: RemoteFavourite.self) { result in
-                switch result {
-                case .success:
-                    favouriteRef.delete()
-                    promise(.success(()))
-                case .failure(let error):
-                    promise(.failure(error))
-                }
+    public func deleteFavourite(byIdDirectory idDirectory: String) -> AnyPublisher<Void, Error> {
+        return Publishers.Zip(
+            firestore.collection(Constants.FAVOURITE_TABLE).document(idDirectory).delete(),
+            self.deleteFavourites(byIdParentDirectory: idDirectory)
+        )
+        .map { _ in }
+        .eraseToAnyPublisher()
+    }
+    
+    /// Delete all Favourite by idParentDirectory to the remote
+    ///
+    /// - Parameters:
+    ///   - idParentDirectory: The identifier of the parent directory
+    private func deleteFavourites(byIdParentDirectory idParentDirectory: String) -> AnyPublisher<Void, Error> {
+        (firestore.collection(Constants.FAVOURITE_TABLE)
+            .whereField("idParentDirectory", isEqualTo: idParentDirectory)
+            .getDocuments() as Future<QuerySnapshot, Error>)
+            .flatMap { querySnapshot -> AnyPublisher<Void, Error> in
+                Publishers.Sequence(sequence: querySnapshot.documents)
+                    .flatMap { document in
+                        return document.reference.delete()
+                    }.collect()
+                    .append(
+                        Publishers.Sequence(sequence: querySnapshot.documents.compactMap { document in try? document.data(as: RemoteFavourite.self) })
+                            .flatMap { subDirectory in
+                                return self.deleteFavourites(byIdParentDirectory: subDirectory.idDirectory)
+                            }
+                            .collect()
+                            .eraseToAnyPublisher()
+                    ).collect()
+                    .map { _ in }
+                    .eraseToAnyPublisher()
             }
-        }.eraseToAnyPublisher()
+            .collect()
+            .map { _ in }
+            .eraseToAnyPublisher()
     }
 }

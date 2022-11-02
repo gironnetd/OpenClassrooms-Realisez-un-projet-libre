@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Quotes.
  */
-public protocol QuoteDao: RealmDao {
+public protocol QuoteDao {
     
     /// Retrieve a quote from its identifier, from the cache
     ///

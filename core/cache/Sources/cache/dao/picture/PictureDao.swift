@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Pictures.
  */
-public protocol PictureDao: RealmDao {
+public protocol PictureDao {
     
     /// Retrieve a picture from its identifier, from the cache
     ///

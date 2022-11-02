@@ -10,20 +10,17 @@ import Foundation
 /**
  * Representation for a Book fetched from an external layer data source
  */
-public struct Book : Equatable {
+public struct Book: Equatable {
     
     public var idBook: Int
     public var name: String
     public var language: String
     public var idRelatedBooks: [Int]?
     public var century: Century?
-    public var surname: String?
     public var details: String?
     public var period: String?
     public var idMovement: Int?
-    public var bibliographie: String?
     public var presentation: Presentation?
-    public var mainPicture: Int?
     public var mcc1: String?
     public var quotes: [Quote]
     public var pictures: [Picture]?

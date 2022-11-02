@@ -15,17 +15,17 @@ import model
  */
 public class CachedPresentation: Object {
     
-    @Persisted(primaryKey: true) var idPresentation: Int
-    @Persisted var presentation: String?
-    @Persisted var presentationTitle1: String?
-    @Persisted var presentation1: String?
-    @Persisted var presentationTitle2: String?
-    @Persisted var presentation2: String?
-    @Persisted var presentationTitle3: String?
-    @Persisted var presentation3: String?
-    @Persisted var presentationTitle4: String?
-    @Persisted var presentation4: String?
-    @Persisted var sourcePresentation: String?
+    @Persisted(primaryKey: true) public var idPresentation: Int
+    @Persisted public var presentation: String?
+    @Persisted public var presentationTitle1: String?
+    @Persisted public var presentation1: String?
+    @Persisted public var presentationTitle2: String?
+    @Persisted public var presentation2: String?
+    @Persisted public var presentationTitle3: String?
+    @Persisted public var presentation3: String?
+    @Persisted public var presentationTitle4: String?
+    @Persisted public var presentation4: String?
+    @Persisted public var sourcePresentation: String?
     
     public override init() {}
     
@@ -52,6 +52,24 @@ public class CachedPresentation: Object {
         self.presentationTitle4 = presentationTitle4
         self.presentation4 = presentation4
         self.sourcePresentation = sourcePresentation
+    }
+    
+    public convenience init?(idPresentation: Int) {
+        guard let presentation = try? Realm().objects(CachedPresentation.self).where({ presentation in presentation.idPresentation == idPresentation }).first else {
+            return nil
+        }
+        
+        self.init(idPresentation: presentation.idPresentation,
+                  presentation: presentation.presentation,
+                  presentationTitle1: presentation.presentationTitle1,
+                  presentation1: presentation.presentation1,
+                  presentationTitle2: presentation.presentationTitle2,
+                  presentation2: presentation.presentation2,
+                  presentationTitle3: presentation.presentationTitle3,
+                  presentation3: presentation.presentation3,
+                  presentationTitle4: presentation.presentationTitle4,
+                  presentation4: presentation.presentation4,
+                  sourcePresentation: presentation.sourcePresentation)
     }
 }
 

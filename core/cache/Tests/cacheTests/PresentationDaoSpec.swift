@@ -28,7 +28,7 @@ class PresentationDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-presentation-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             presentationDatabase = try? Realm()
-            presentationDao = PresentationDaoImpl()
+            presentationDao = DefaultPresentationDao(realm: presentationDatabase)
             
             firstPresentation = CachedPresentation.testPresentation()
             secondPresentation = CachedPresentation.testPresentation()
@@ -42,7 +42,7 @@ class PresentationDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Presentation by idPresentation") {
+        describe("Find presentation by idPresentation") {
             context("Found") {
                 it("Presentation is returned") {
                     try? presentationDatabase.write {
@@ -54,7 +54,7 @@ class PresentationDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? presentationDatabase.write {
                         presentationDatabase.add([secondPresentation, thirdPresentation])
@@ -66,7 +66,7 @@ class PresentationDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Presentation by idAuthor") {
+        describe("Find presentation by idAuthor") {
             context("Found") {
                 it("Presentation is returned") {
                     let author = CachedAuthor.testAuthor()
@@ -80,7 +80,7 @@ class PresentationDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let author = CachedAuthor.testAuthor()
                     try? presentationDatabase.write {
@@ -95,7 +95,7 @@ class PresentationDaoSpec: QuickSpec {
         
         
         
-        describe("Find Presentation by idBook") {
+        describe("Find presentation by idBook") {
             context("Found") {
                 it("Presentation is returned") {
                     let book = CachedBook.testBook()
@@ -109,7 +109,7 @@ class PresentationDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let book = CachedBook.testBook()
                     try? presentationDatabase.write {
@@ -122,7 +122,7 @@ class PresentationDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Presentation by idMovement") {
+        describe("Find presentation by idMovement") {
             context("Found") {
                 it("Presentation is returned") {
                     let movement = CachedMovement.testMovement()
@@ -136,7 +136,7 @@ class PresentationDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let movement = CachedMovement.testMovement()
                     try? presentationDatabase.write {
@@ -149,9 +149,7 @@ class PresentationDaoSpec: QuickSpec {
             }
         }
         
-        
-        
-        describe("Find all Presentations") {
+        describe("Find all presentations") {
             context("Found") {
                 it("All presentations are returned") {
                     try? presentationDatabase.write {
@@ -163,7 +161,7 @@ class PresentationDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("Error is thrown") {
                     expect { try presentationDao.findAllPresentations().waitingCompletion().first }.to(throwError())
                 }
@@ -174,7 +172,7 @@ class PresentationDaoSpec: QuickSpec {
 
 extension CachedPresentation {
     
-    static func testPresentation() -> CachedPresentation {
+    internal static func testPresentation() -> CachedPresentation {
         CachedPresentation(idPresentation: DataFactory.randomInt(),
                            presentation: DataFactory.randomString(),
                            presentationTitle1: DataFactory.randomString(),

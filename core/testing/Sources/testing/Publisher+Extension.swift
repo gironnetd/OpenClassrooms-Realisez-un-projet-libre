@@ -11,7 +11,7 @@ import XCTest
 
 extension Publisher {
     
-    public func waitingCompletion(for timeout: TimeInterval = 10.0, file: StaticString = #file, line: UInt = #line) throws -> [Output] {
+    public func waitingCompletion(for timeout: TimeInterval = 30.0, file: StaticString = #file, line: UInt = #line) throws -> [Output] {
         let expectation = XCTestExpectation(description: "wait for completion")
         var completion: Subscribers.Completion<Failure>?
         var output = [Output]()

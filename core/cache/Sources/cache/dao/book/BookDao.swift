@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Books.
  */
-public protocol BookDao: RealmDao {
+public protocol BookDao {
     
     /// Retrieve an book from its identifier, from the cache
     ///

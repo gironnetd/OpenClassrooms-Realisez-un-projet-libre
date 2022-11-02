@@ -16,7 +16,7 @@ import testing
 class PictureDaoSpec: QuickSpec {
     
     override func spec() {
-       
+        
         var pictureDatabase : Realm!
         var pictureDao : PictureDao!
         
@@ -28,7 +28,7 @@ class PictureDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-picture-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             pictureDatabase = try? Realm()
-            pictureDao = PictureDaoImpl()
+            pictureDao = DefaultPictureDao(realm: pictureDatabase)
             
             firstPicture = CachedPicture.testPicture()
             secondPicture = CachedPicture.testPicture()
@@ -42,32 +42,31 @@ class PictureDaoSpec: QuickSpec {
             }
         }
         
-        
-            describe("Find Picture by idPicture") {
-                context("Found") {
-                    it("Picture is returned") {
-                        try? pictureDatabase.write {
-                            pictureDatabase.add([firstPicture, secondPicture, thirdPicture])
-                            try? pictureDatabase.commitWrite()
-                        }
-                        
-                        expect { try pictureDao.findPicture(byIdPicture: firstPicture.idPicture).waitingCompletion().first }.to(equal(firstPicture))
+        describe("Find picture by idPicture") {
+            context("Found") {
+                it("Picture is returned") {
+                    try? pictureDatabase.write {
+                        pictureDatabase.add([firstPicture, secondPicture, thirdPicture])
+                        try? pictureDatabase.commitWrite()
                     }
-                }
-                
-                context("Not Found") {
-                    it("Error is thrown") {
-                        try? pictureDatabase.write {
-                            pictureDatabase.add([secondPicture, thirdPicture])
-                            try? pictureDatabase.commitWrite()
-                        }
-                        
-                        expect { try pictureDao.findPicture(byIdPicture: firstPicture.idPicture).waitingCompletion().first }.to(throwError())
-                    }
+                    
+                    expect { try pictureDao.findPicture(byIdPicture: firstPicture.idPicture).waitingCompletion().first }.to(equal(firstPicture))
                 }
             }
             
-        describe("Find Pictures by idAuthor") {
+            context("Not found") {
+                it("Error is thrown") {
+                    try? pictureDatabase.write {
+                        pictureDatabase.add([secondPicture, thirdPicture])
+                        try? pictureDatabase.commitWrite()
+                    }
+                    
+                    expect { try pictureDao.findPicture(byIdPicture: firstPicture.idPicture).waitingCompletion().first }.to(throwError())
+                }
+            }
+        }
+        
+        describe("Find pictures by idAuthor") {
             context("Found") {
                 it("Pictures are returned") {
                     let author = CachedAuthor.testAuthor()
@@ -81,7 +80,7 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let author = CachedAuthor.testAuthor()
                     try? pictureDatabase.write {
@@ -94,8 +93,8 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Pictures by idBook") {
+        
+        describe("Find pictures by idBook") {
             context("Found") {
                 it("Pictures are returned") {
                     let book = CachedBook.testBook()
@@ -109,7 +108,7 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let book = CachedBook.testBook()
                     try? pictureDatabase.write {
@@ -122,10 +121,10 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Pictures by idMovement") {
+        
+        describe("Find pictures by idMovement") {
             context("Pictures are found") {
-                it("") {
+                it("Pictures are returned") {
                     let movement = CachedMovement.testMovement()
                     movement.pictures.append(objectsIn: [firstPicture, secondPicture])
                     try? pictureDatabase.write {
@@ -137,7 +136,7 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("An Error is thrown") {
                     let movement = CachedMovement.testMovement()
                     try? pictureDatabase.write {
@@ -150,10 +149,10 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Pictures by idTheme") {
+        
+        describe("Find pictures by idTheme") {
             context("Pictures are found") {
-                it("") {
+                it("Pictures are returned") {
                     let theme = CachedTheme.testTheme()
                     theme.pictures.append(objectsIn: [firstPicture, secondPicture])
                     try? pictureDatabase.write {
@@ -165,7 +164,7 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let theme = CachedTheme.testTheme()
                     try? pictureDatabase.write {
@@ -178,8 +177,8 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Pictures by nameSmall") {
+        
+        describe("Find pictures by nameSmall") {
             context("Found") {
                 it("Picture is returned") {
                     secondPicture.nameSmall = firstPicture.nameSmall
@@ -192,7 +191,7 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? pictureDatabase.write {
                         pictureDatabase.add([firstPicture, secondPicture, thirdPicture])
@@ -203,8 +202,8 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find all Pictures") {
+        
+        describe("Find all pictures") {
             context("Found") {
                 it("All Pictures are returned") {
                     try? pictureDatabase.write {
@@ -216,7 +215,7 @@ class PictureDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("Error is thrown") {
                     expect { try pictureDao.findAllPictures().waitingCompletion().first }.to(throwError())
                 }
@@ -227,12 +226,13 @@ class PictureDaoSpec: QuickSpec {
 
 extension CachedPicture {
     
-    static func testPicture() -> CachedPicture {
+    internal static func testPicture() -> CachedPicture {
         CachedPicture(idPicture: DataFactory.randomInt(),
                       nameSmall: DataFactory.randomString(),
                       extension: DataFactory.randomString(),
                       comments: Map<String, String>(),
                       width: DataFactory.randomInt(),
-                      height: DataFactory.randomInt())
+                      height: DataFactory.randomInt(),
+                      picture: DataFactory.randomData())
     }
 }

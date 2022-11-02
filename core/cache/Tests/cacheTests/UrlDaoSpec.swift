@@ -16,7 +16,7 @@ import testing
 class UrlDaoSpec: QuickSpec {
     
     override func spec() {
-      
+        
         var urlDatabase : Realm!
         var urlDao : UrlDao!
         
@@ -28,7 +28,7 @@ class UrlDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-url-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             urlDatabase = try? Realm()
-            urlDao = UrlDaoImpl()
+            urlDao = DefaultUrlDao(realm: urlDatabase)
             
             firstUrl = CachedUrl.testUrl()
             secondUrl = CachedUrl.testUrl()
@@ -42,31 +42,31 @@ class UrlDaoSpec: QuickSpec {
             }
         }
         
-            describe("Find Url by idUrl") {
-                context("Found") {
-                    it("Url is returned") {
-                        try? urlDatabase.write {
-                            urlDatabase.add([firstUrl, secondUrl, thirdUrl])
-                            try? urlDatabase.commitWrite()
-                        }
-                        
-                        expect { try urlDao.findUrl(byIdUrl: firstUrl.idUrl).waitingCompletion().first }.to(equal(firstUrl))
+        describe("Find url by idUrl") {
+            context("Found") {
+                it("Url is returned") {
+                    try? urlDatabase.write {
+                        urlDatabase.add([firstUrl, secondUrl, thirdUrl])
+                        try? urlDatabase.commitWrite()
                     }
-                }
-                
-                context("Not Found") {
-                    it("An Error is thrown") {
-                        try? urlDatabase.write {
-                            urlDatabase.add([secondUrl, thirdUrl])
-                            try? urlDatabase.commitWrite()
-                        }
-                        
-                        expect { try urlDao.findUrl(byIdUrl: firstUrl.idUrl).waitingCompletion().first }.to(throwError())
-                    }
+                    
+                    expect { try urlDao.findUrl(byIdUrl: firstUrl.idUrl).waitingCompletion().first }.to(equal(firstUrl))
                 }
             }
             
-        describe("Find Urls by idAuthor") {
+            context("Not found") {
+                it("An Error is thrown") {
+                    try? urlDatabase.write {
+                        urlDatabase.add([secondUrl, thirdUrl])
+                        try? urlDatabase.commitWrite()
+                    }
+                    
+                    expect { try urlDao.findUrl(byIdUrl: firstUrl.idUrl).waitingCompletion().first }.to(throwError())
+                }
+            }
+        }
+        
+        describe("Find urls by idAuthor") {
             context("Found") {
                 it("Urls are returned") {
                     let author = CachedAuthor.testAuthor()
@@ -80,7 +80,7 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let author = CachedAuthor.testAuthor()
                     
@@ -94,8 +94,8 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Urls by idBook") {
+        
+        describe("Find urls by idBook") {
             context("Found") {
                 it("Urls are returned") {
                     let book = CachedBook.testBook()
@@ -109,7 +109,7 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let book = CachedBook.testBook()
                     
@@ -123,8 +123,8 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Urls by idMovement") {
+        
+        describe("Find urls by idMovement") {
             context("Found") {
                 it("Urls are returned") {
                     let movement = CachedMovement.testMovement()
@@ -138,7 +138,7 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let movement = CachedMovement.testMovement()
                     
@@ -152,8 +152,8 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Urls by idSource") {
+        
+        describe("Find urls by idSource") {
             context("Found") {
                 it("Urls are returned") {
                     secondUrl.idSource = firstUrl.idSource
@@ -167,7 +167,7 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? urlDatabase.write {
                         urlDatabase.add([firstUrl, secondUrl, thirdUrl])
@@ -178,8 +178,8 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Urls by sourceType") {
+        
+        describe("Find urls by sourceType") {
             context("Found") {
                 it("Urls are returned") {
                     secondUrl.sourceType = firstUrl.sourceType
@@ -192,7 +192,7 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? urlDatabase.write {
                         urlDatabase.add([firstUrl, secondUrl, thirdUrl])
@@ -203,10 +203,8 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
         }
-            
-            
-            
-        describe("Find all Urls") {
+        
+        describe("Find all urls") {
             context("Found") {
                 it("All Urls are returned") {
                     try? urlDatabase.write {
@@ -218,9 +216,9 @@ class UrlDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("Error is thrown") {
-                    expect { try urlDao.findUrl(byIdUrl: firstUrl.idUrl).waitingCompletion().first }.to(throwError())
+                    expect { try urlDao.findAllUrls().waitingCompletion().first }.to(throwError())
                 }
             }
         }
@@ -229,7 +227,7 @@ class UrlDaoSpec: QuickSpec {
 
 extension CachedUrl {
     
-    static func testUrl() -> CachedUrl {
+    internal static func testUrl() -> CachedUrl {
         CachedUrl(idUrl: DataFactory.randomInt(),
                   sourceType: DataFactory.randomString(),
                   idSource: DataFactory.randomInt(),

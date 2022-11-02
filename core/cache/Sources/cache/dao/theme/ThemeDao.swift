@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Themes.
  */
-public protocol ThemeDao: RealmDao {
+public protocol ThemeDao {
     
     /// Retrieve a theme from its identifier, from the cache
     ///

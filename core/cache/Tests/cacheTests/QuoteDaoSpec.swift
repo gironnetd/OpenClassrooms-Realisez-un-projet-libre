@@ -28,7 +28,7 @@ class QuoteDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-quote-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             quoteDatabase = try? Realm()
-            quoteDao = QuoteDaoImpl()
+            quoteDao = DefaultQuoteDao(realm: quoteDatabase)
             
             firstQuote = CachedQuote.testQuote()
             secondQuote = CachedQuote.testQuote()
@@ -42,8 +42,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        
-        describe("Find Quote by idQuote") {
+        describe("Find quote by idQuote") {
             context("Found") {
                 it("Quote is returned") {
                     try? quoteDatabase.write {
@@ -55,7 +54,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? quoteDatabase.write {
                         quoteDatabase.add([secondQuote, thirdQuote])
@@ -67,7 +66,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Quotes by idAuthor") {
+        describe("Find quotes by idAuthor") {
             context("Found") {
                 it("Quotes are returned") {
                     let author = CachedAuthor.testAuthor()
@@ -82,7 +81,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let author = CachedAuthor.testAuthor()
                     try? quoteDatabase.write {
@@ -96,7 +95,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Quotes by Author name") {
+        describe("Find quotes by Author name") {
             context("Found") {
                 it("Quotes are returned") {
                     let firstAuthor = CachedAuthor.testAuthor()
@@ -114,7 +113,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Found Authors without Quotes") {
+            context("Found authors without quotes") {
                 it("Error is thrown") {
                     let firstAuthor = CachedAuthor.testAuthor()
                     let secondAuthor = CachedAuthor.testAuthor()
@@ -130,7 +129,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let firstAuthor = CachedAuthor.testAuthor()
                     firstAuthor.quotes.append(objectsIn: [firstQuote, secondQuote])
@@ -148,7 +147,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Quotes by idBook") {
+        describe("Find quotes by idBook") {
             context("Found") {
                 it("Quotes are returned") {
                     let book = CachedBook.testBook()
@@ -163,7 +162,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("An Error is thrown") {
                     let book = CachedBook.testBook()
                     try? quoteDatabase.write {
@@ -177,7 +176,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Quotes by Book name") {
+        describe("Find quotes by book name") {
             context("Found") {
                 it("Quotes are returned ") {
                     let firstBook = CachedBook.testBook()
@@ -195,7 +194,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Found Books without Quotes") {
+            context("Found books without quotes") {
                 it("Error is thrown") {
                     let firstBook = CachedBook.testBook()
                     let secondBook = CachedBook.testBook()
@@ -211,7 +210,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let firstBook = CachedBook.testBook()
                     firstBook.quotes.append(objectsIn: [firstQuote, secondQuote])
@@ -229,7 +228,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Quotes by idMovement") {
+        describe("Find quotes by idMovement") {
             context("Found") {
                 it("Quotes are returned") {
                     let movement = CachedMovement.testMovement()
@@ -251,7 +250,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let movement = CachedMovement.testMovement()
                     
@@ -274,9 +273,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        
-        
-        describe("Find Quotes by Movement name") {
+        describe("Find quotes by movement name") {
             context("Found") {
                 it("Quotes are returned") {
                     let firstMovement = CachedMovement.testMovement()
@@ -301,7 +298,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Found Movements without Quotes") {
+            context("Found movements without quotes") {
                 it("Error is thrown") {
                     let firstMovement = CachedMovement.testMovement()
                     let secondMovement = CachedMovement.testMovement()
@@ -326,7 +323,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let firstMovement = CachedMovement.testMovement()
                     let secondMovement = CachedMovement.testMovement()
@@ -351,7 +348,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Quotes by idTheme") {
+        describe("Find quotes by idTheme") {
             context("Found") {
                 it("Quotes are returned") {
                     let theme = CachedTheme.testTheme()
@@ -373,7 +370,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let theme = CachedTheme.testTheme()
                     
@@ -396,7 +393,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Quotes by Theme name") {
+        describe("Find quotes by theme name") {
             context("Found") {
                 it("Quotes are returned") {
                     let firstTheme = CachedTheme.testTheme()
@@ -421,7 +418,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Found Themes without Quotes") {
+            context("Found themes without quotes") {
                 it("Error is thrown") {
                     let firstTheme = CachedTheme.testTheme()
                     let secondTheme = CachedTheme.testTheme()
@@ -446,7 +443,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let firstTheme = CachedTheme.testTheme()
                     let secondTheme = CachedTheme.testTheme()
@@ -471,7 +468,7 @@ class QuoteDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find all Quotes") {
+        describe("Find all quotes") {
             context("Found") {
                 it("All Quotes are returned") {
                     try? quoteDatabase.write {
@@ -483,7 +480,7 @@ class QuoteDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("An Error is thrown") {
                     expect { try quoteDao.findAllQuotes().waitingCompletion().first }.to(throwError())
                 }
@@ -494,7 +491,7 @@ class QuoteDaoSpec: QuickSpec {
 
 extension CachedQuote {
     
-    static func testQuote() -> CachedQuote {
+    internal static func testQuote() -> CachedQuote {
         CachedQuote(idQuote: DataFactory.randomInt(),
                     idAuthor: DataFactory.randomInt(),
                     idBook: DataFactory.randomInt(),

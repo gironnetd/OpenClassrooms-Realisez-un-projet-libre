@@ -35,7 +35,9 @@ let package = Package(
                 "model",
                 .product(name: "FirebaseAuth", package: "Firebase"),
                 .product(name: "FirebaseFirestore", package: "Firebase"),
-                .product(name: "FirebaseFirestoreSwift", package: "Firebase")
+                .product(name: "FirebaseFirestoreSwift", package: "Firebase"),
+                .product(name: "FirebaseFirestoreCombine-Community", package: "Firebase"),
+                .product(name: "FirebaseAuthCombine-Community", package: "Firebase")
             ]
         ),
         .testTarget(

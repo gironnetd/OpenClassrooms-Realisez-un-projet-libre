@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Url fetched from an external layer data source
  */
-public struct Url : Equatable {
+public struct Url: Equatable {
     
     public var idUrl: Int
     public var sourceType: String

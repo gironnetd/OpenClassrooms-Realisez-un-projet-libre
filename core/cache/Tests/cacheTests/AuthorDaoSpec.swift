@@ -28,7 +28,7 @@ class AuthorDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-author-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             authorDatabase = try? Realm()
-            authorDao = AuthorDaoImpl()
+            authorDao = DefaultAuthorDao(realm: authorDatabase)
             
             firstAuthor = CachedAuthor.testAuthor()
             secondAuthor = CachedAuthor.testAuthor()
@@ -42,7 +42,7 @@ class AuthorDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Author by idAuthor") {
+        describe("Find author by idAuthor") {
             context("Found") {
                 it("Author is returned") {
                     try? authorDatabase.write {
@@ -57,7 +57,7 @@ class AuthorDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? authorDatabase.write {
                         authorDatabase.add([secondAuthor, thirdAuthor])
@@ -69,7 +69,7 @@ class AuthorDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Authors by name") {
+        describe("Find authors by name") {
             context("Found") {
                 it("Authors are returned") {
                     try? authorDatabase.write {
@@ -94,7 +94,7 @@ class AuthorDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? authorDatabase.write {
                         authorDatabase.add([secondAuthor, thirdAuthor])
@@ -106,7 +106,7 @@ class AuthorDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Authors by idMovement") {
+        describe("Find authors by idMovement") {
             context("Found") {
                 it("Authors are returned") {
                     let movement = CachedMovement.testMovement()
@@ -126,7 +126,7 @@ class AuthorDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? authorDatabase.write {
                         let movement = CachedMovement.testMovement()
@@ -146,7 +146,7 @@ class AuthorDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Authors by idTheme") {
+        describe("Find authors by idTheme") {
             context("Found") {
                 it("Authors are returned") {
                     let theme = CachedTheme.testTheme()
@@ -162,7 +162,7 @@ class AuthorDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let firstTheme = CachedTheme.testTheme()
                     let secondTheme = CachedTheme.testTheme()
@@ -181,7 +181,7 @@ class AuthorDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Author by idPresentation") {
+        describe("Find author by idPresentation") {
             context("Found") {
                 it("Author is returned") {
                     let presentation = CachedPresentation.testPresentation()
@@ -195,7 +195,7 @@ class AuthorDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let presentation = CachedPresentation.testPresentation()
                     try? authorDatabase.write {
@@ -209,7 +209,7 @@ class AuthorDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Author by idPicture") {
+        describe("Find author by idPicture") {
             context("Found") {
                 it("Author is returned") {
                     let picture = CachedPicture.testPicture()
@@ -223,7 +223,7 @@ class AuthorDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let picture = CachedPicture.testPicture()
                     try? authorDatabase.write {
@@ -237,7 +237,7 @@ class AuthorDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find all Authors") {
+        describe("Find all authors") {
             context("Found") {
                 it("All Authors are returned") {
                     try? authorDatabase.write {
@@ -249,7 +249,7 @@ class AuthorDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("Error is thrown") {
                     expect { try authorDao.findAllAuthors().waitingCompletion().first }.to(throwError())
                 }
@@ -260,7 +260,7 @@ class AuthorDaoSpec: QuickSpec {
 
 extension CachedAuthor {
     
-    static func testAuthor() -> CachedAuthor {
+    internal static func testAuthor() -> CachedAuthor {
         CachedAuthor(idAuthor: DataFactory.randomInt(),
                      language: .none,
                      name: DataFactory.randomString(),

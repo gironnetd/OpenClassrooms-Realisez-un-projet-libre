@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Urls.
  */
-public protocol UrlDao: RealmDao {
+public protocol UrlDao {
     
     /// Retrieve a url from its identifier, from the cache
     ///

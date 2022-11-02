@@ -28,7 +28,7 @@ class CenturyDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-century-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             centuryDatabase = try? Realm()
-            centuryDao = CenturyDaoImpl()
+            centuryDao = DefaultCenturyDao(realm: centuryDatabase)
             
             firstCentury = CachedCentury.testCentury()
             secondCentury = CachedCentury.testCentury()
@@ -42,7 +42,7 @@ class CenturyDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Century by idCentury") {
+        describe("Find century by idCentury") {
             context("Found") {
                 it("Century is returned") {
                     try? centuryDatabase.write {
@@ -54,7 +54,7 @@ class CenturyDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? centuryDatabase.write {
                         centuryDatabase.add([secondCentury, thirdCentury])
@@ -66,7 +66,7 @@ class CenturyDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Century by idAuthor") {
+        describe("Find century by idAuthor") {
             context("Found") {
                 it("Century is returned") {
                     let author = CachedAuthor.testAuthor()
@@ -81,7 +81,7 @@ class CenturyDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let author = CachedAuthor.testAuthor()
                     try? centuryDatabase.write {
@@ -95,7 +95,7 @@ class CenturyDaoSpec: QuickSpec {
             
         }
         
-        describe("Find Century by idBook") {
+        describe("Find century by idBook") {
             context("Found") {
                 it("Century is returned") {
                     let book = CachedBook.testBook()
@@ -109,7 +109,7 @@ class CenturyDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let book = CachedBook.testBook()
                     try? centuryDatabase.write {
@@ -122,7 +122,7 @@ class CenturyDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Century by name") {
+        describe("Find century by name") {
             context("Found") {
                 it("Century is returned") {
                     try? centuryDatabase.write {
@@ -134,7 +134,7 @@ class CenturyDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? centuryDatabase.write {
                         centuryDatabase.add([secondCentury, thirdCentury])
@@ -146,7 +146,7 @@ class CenturyDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find all Centuries") {
+        describe("Find all centuries") {
             context("Found") {
                 it("All Centuries are returned") {
                     try? centuryDatabase.write {
@@ -158,7 +158,7 @@ class CenturyDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("An Error is thrown") {
                     expect { try centuryDao.findAllCenturies().waitingCompletion().first }.to(throwError())
                 }
@@ -169,7 +169,7 @@ class CenturyDaoSpec: QuickSpec {
 
 extension CachedCentury {
     
-    static func testCentury() -> CachedCentury {
+    internal static func testCentury() -> CachedCentury {
         CachedCentury(idCentury: DataFactory.randomInt(),
                       century: DataFactory.randomString(),
                       presentations: Map<String, String>())

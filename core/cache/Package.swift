@@ -29,7 +29,7 @@ let package = Package(
             name: "cache",
             dependencies: [
                 "model",
-                "CatchRealmException",
+                "RealmException",
                 .product(name: "RealmSwift", package: "Realm")
             ],
             path: "Sources/cache",
@@ -38,7 +38,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "CatchRealmException",
+            name: "RealmException",
             path: "Sources/Objective-C"
         ),
         .testTarget(
@@ -48,7 +48,7 @@ let package = Package(
                 "Quick",
                 "Nimble",
                 "testing",
-                "CatchRealmException",
+                "RealmException",
                 .product(name: "RealmSwift", package: "Realm")
             ],
             resources: [

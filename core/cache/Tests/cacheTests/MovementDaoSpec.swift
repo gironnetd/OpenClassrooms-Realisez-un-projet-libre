@@ -16,25 +16,25 @@ import testing
 class MovementDaoSpec: QuickSpec {
     
     override func spec() {
-      
+        
         var movementDatabase : Realm!
         var movementDao : MovementDao!
-
+        
         var firstMovement: CachedMovement!
         var secondMovement: CachedMovement!
         var thirdMovement: CachedMovement!
-
+        
         beforeEach {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-movement-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             movementDatabase = try? Realm()
-            movementDao = MovementDaoImpl()
-
+            movementDao = DefaultMovementDao(realm: movementDatabase)
+            
             firstMovement = CachedMovement.testMovement()
             secondMovement = CachedMovement.testMovement()
             thirdMovement = CachedMovement.testMovement()
         }
-
+        
         afterEach {
             try? movementDatabase.write {
                 movementDatabase.deleteAll()
@@ -42,30 +42,30 @@ class MovementDaoSpec: QuickSpec {
             }
         }
         
-            describe("Find Movement by idMovement") {
-                context("Found") {
-                    it("Movement is returned") {
-                        try? movementDatabase.write {
-                            movementDatabase.add([firstMovement, secondMovement, thirdMovement])
-                            try? movementDatabase.commitWrite()
-                        }
-                        
-                        expect { try movementDao.findMovement(byIdMovement: firstMovement.idMovement).waitingCompletion().first }.to(equal(firstMovement))
+        describe("Find movement by idMovement") {
+            context("Found") {
+                it("Movement is returned") {
+                    try? movementDatabase.write {
+                        movementDatabase.add([firstMovement, secondMovement, thirdMovement])
+                        try? movementDatabase.commitWrite()
                     }
-                }
-                
-                context("Not Found") {
-                    it("Error is thrown") {
-                        try? movementDatabase.write {
-                            movementDatabase.add([secondMovement, thirdMovement])
-                            try? movementDatabase.commitWrite()
-                        }
-                        
-                        expect { try movementDao.findMovement(byIdMovement: firstMovement.idMovement).waitingCompletion().first }.to(throwError())
-                    }
+                    
+                    expect { try movementDao.findMovement(byIdMovement: firstMovement.idMovement).waitingCompletion().first }.to(equal(firstMovement))
                 }
             }
             
+            context("Not found") {
+                it("Error is thrown") {
+                    try? movementDatabase.write {
+                        movementDatabase.add([secondMovement, thirdMovement])
+                        try? movementDatabase.commitWrite()
+                    }
+                    
+                    expect { try movementDao.findMovement(byIdMovement: firstMovement.idMovement).waitingCompletion().first }.to(throwError())
+                }
+            }
+        }
+        
         describe("Find movements by name") {
             context("Found") {
                 it("Movements are returned") {
@@ -91,7 +91,7 @@ class MovementDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     secondMovement.name = firstMovement.name
                     try? movementDatabase.write {
@@ -103,10 +103,10 @@ class MovementDaoSpec: QuickSpec {
                 }
             }
         }
-            
-            
-            
-        describe("Find Movements by idParent") {
+        
+        
+        
+        describe("Find movements by idParent") {
             context("Found") {
                 it("Movements are returned") {
                     firstMovement.movements.append(objectsIn: [secondMovement, thirdMovement])
@@ -120,7 +120,7 @@ class MovementDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? movementDatabase.write {
                         movementDatabase.add([firstMovement, secondMovement, thirdMovement])
@@ -131,8 +131,8 @@ class MovementDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Main Movements") {
+        
+        describe("Find main Movements") {
             context("Found") {
                 it("Main movements are returned") {
                     firstMovement.idParentMovement = nil
@@ -146,7 +146,7 @@ class MovementDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? movementDatabase.write {
                         movementDatabase.add([firstMovement, secondMovement, thirdMovement])
@@ -158,7 +158,7 @@ class MovementDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find all Movements") {
+        describe("Find all movements") {
             context("Found") {
                 it("All Movements are returned") {
                     try? movementDatabase.write {
@@ -170,7 +170,7 @@ class MovementDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("Error is thrown") {
                     expect { try movementDao.findAllMovements().waitingCompletion().first }.to(throwError())
                 }
@@ -181,7 +181,7 @@ class MovementDaoSpec: QuickSpec {
 
 extension CachedMovement {
     
-    static func testMovement() -> CachedMovement {
+    internal static func testMovement() -> CachedMovement {
         CachedMovement(idMovement: DataFactory.randomInt(),
                        idParentMovement: DataFactory.randomInt(),
                        name: DataFactory.randomString(),

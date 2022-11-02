@@ -13,27 +13,11 @@ import FirebaseFirestoreSwift
  */
 public class RemoteFavourite: Codable, Equatable {
     
-    public static func == (lhs: RemoteFavourite, rhs: RemoteFavourite) -> Bool {
-         return lhs.idDirectory == rhs.idDirectory &&
-                lhs.uidAccount == rhs.uidAccount &&
-                lhs.idParentDirectory == rhs.idParentDirectory &&
-                lhs.directoryName == rhs.directoryName &&
-                lhs.subDirectories == rhs.subDirectories &&
-                lhs.idAuthors == rhs.idAuthors &&
-                lhs.idBooks == rhs.idBooks &&
-                lhs.idMovements == rhs.idMovements &&
-                lhs.idThemes == rhs.idThemes &&
-                lhs.idQuotes == rhs.idQuotes &&
-                lhs.idPictures == rhs.idPictures &&
-                lhs.idPresentations == rhs.idPresentations &&
-                lhs.idUrls == rhs.idUrls
-    }
-    
     public var idDirectory: String
-    public var uidAccount: String
+    public var uidUser: String
     public var idParentDirectory: String?
     public var directoryName: String?
-    public lazy var subDirectories: [RemoteFavourite] = {
+    public lazy var subDirectories: [RemoteFavourite]? = {
         [RemoteFavourite]()
     }()
     public var idAuthors: [Int]?
@@ -45,8 +29,8 @@ public class RemoteFavourite: Codable, Equatable {
     public var idPresentations: [Int]?
     public var idUrls: [Int]?
     
-    init(idDirectory: String,
-         uidAccount: String,
+    public init(idDirectory: String,
+                uidUser: String,
          idParentDirectory: String?,
          directoryName: String?,
          idAuthors: [Int]?,
@@ -58,7 +42,7 @@ public class RemoteFavourite: Codable, Equatable {
          idPresentations: [Int]?,
          idUrls: [Int]?) {
         self.idDirectory = idDirectory
-        self.uidAccount = uidAccount
+        self.uidUser = uidUser
         self.idParentDirectory = idParentDirectory
         self.directoryName = directoryName
         self.idAuthors = idAuthors
@@ -73,7 +57,7 @@ public class RemoteFavourite: Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case idDirectory
-        case uidAccount
+        case uidUser
         case idParentDirectory
         case directoryName
         case idAuthors
@@ -89,7 +73,7 @@ public class RemoteFavourite: Codable, Equatable {
     var dictionary: [String: Any?] {
         return [
             "idDirectory": idDirectory,
-            "uidAccount": uidAccount,
+            "uidUser": uidUser,
             "idParentDirectory": idParentDirectory,
             "directoryName": directoryName,
             "idAuthors": idAuthors,
@@ -101,6 +85,22 @@ public class RemoteFavourite: Codable, Equatable {
             "idPresentations": idPresentations,
             "idUrls": idUrls
         ]
+    }
+    
+    public static func == (lhs: RemoteFavourite, rhs: RemoteFavourite) -> Bool {
+         return lhs.idDirectory == rhs.idDirectory &&
+                lhs.uidUser == rhs.uidUser &&
+                lhs.idParentDirectory == rhs.idParentDirectory &&
+                lhs.directoryName == rhs.directoryName &&
+                lhs.subDirectories == rhs.subDirectories &&
+                lhs.idAuthors == rhs.idAuthors &&
+                lhs.idBooks == rhs.idBooks &&
+                lhs.idMovements == rhs.idMovements &&
+                lhs.idThemes == rhs.idThemes &&
+                lhs.idQuotes == rhs.idQuotes &&
+                lhs.idPictures == rhs.idPictures &&
+                lhs.idPresentations == rhs.idPresentations &&
+                lhs.idUrls == rhs.idUrls
     }
 }
 

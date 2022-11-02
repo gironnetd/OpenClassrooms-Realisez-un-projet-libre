@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Author fetched from an external layer data source
  */
-public struct Author : Equatable {
+public struct Author: Equatable {
     
     public var idAuthor: Int
     public var name: String

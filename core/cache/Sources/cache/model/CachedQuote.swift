@@ -15,15 +15,15 @@ import model
  */
 public class CachedQuote: Object {
     
-    @Persisted(primaryKey: true) var idQuote: Int
-    @Persisted var idAuthor: Int?
-    @Persisted var idBook: Int?
-    @Persisted var quote: String
-    @Persisted var source: String?
-    @Persisted var reference: String?
-    @Persisted var remarque: String?
-    @Persisted var comment: String?
-    @Persisted var commentName: String?
+    @Persisted(primaryKey: true) public var idQuote: Int
+    @Persisted public var idAuthor: Int?
+    @Persisted public var idBook: Int?
+    @Persisted public var quote: String
+    @Persisted public var source: String?
+    @Persisted public var reference: String?
+    @Persisted public var remarque: String?
+    @Persisted public var comment: String?
+    @Persisted public var commentName: String?
     
     public override init() {}
     
@@ -46,6 +46,20 @@ public class CachedQuote: Object {
         self.remarque = remarque
         self.comment = comment
         self.commentName = commentName
+    }
+    
+    public convenience init?(idQuote: Int) {
+        guard let quote = try? Realm().objects(CachedQuote.self).where({ quote in quote.idQuote == idQuote }).first else { return nil }
+        
+        self.init(idQuote: quote.idQuote,
+                  idAuthor: quote.idAuthor,
+                  idBook: quote.idBook,
+                  quote: quote.quote,
+                  source: quote.source,
+                  reference: quote.reference,
+                  remarque: quote.remarque,
+                  comment: quote.comment,
+                  commentName: quote.commentName)
     }
 }
 

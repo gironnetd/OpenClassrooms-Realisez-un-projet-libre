@@ -28,7 +28,7 @@ class BookDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-book-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             bookDatabase = try? Realm()
-            bookDao = BookDaoImpl()
+            bookDao = DefaultBookDao(realm: bookDatabase)
             
             firstBook = CachedBook.testBook()
             secondBook = CachedBook.testBook()
@@ -42,7 +42,7 @@ class BookDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Book by idBook") {
+        describe("Find book by idBook") {
             context("Found") {
                 it("Book is returned") {
                     try? bookDatabase.write {
@@ -54,7 +54,7 @@ class BookDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? bookDatabase.write {
                         bookDatabase.add([secondBook, thirdBook])
@@ -66,7 +66,7 @@ class BookDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Books by name") {
+        describe("Find books by name") {
             context("Found") {
                 it("Books are returned") {
                     try? bookDatabase.write {
@@ -91,7 +91,7 @@ class BookDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? bookDatabase.write {
                         bookDatabase.add([secondBook, thirdBook])
@@ -103,7 +103,7 @@ class BookDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Books by idMovement") {
+        describe("Find books by idMovement") {
             context("Found") {
                 it("Books are returned") {
                     let movement = CachedMovement.testMovement()
@@ -121,7 +121,7 @@ class BookDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? bookDatabase.write {
                         let movement = CachedMovement.testMovement()
@@ -141,7 +141,7 @@ class BookDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Books by idTheme") {
+        describe("Find books by idTheme") {
             context("Found") {
                 it("Books are returned") {
                     let theme = CachedTheme.testTheme()
@@ -156,7 +156,7 @@ class BookDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let firstTheme = CachedTheme.testTheme()
                     let secondTheme = CachedTheme.testTheme()
@@ -175,7 +175,7 @@ class BookDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Book by idPresentation") {
+        describe("Find book by idPresentation") {
             context("Found") {
                 it("Book is returned") {
                     let presentation = CachedPresentation.testPresentation()
@@ -189,7 +189,7 @@ class BookDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let presentation = CachedPresentation.testPresentation()
                     try? bookDatabase.write {
@@ -203,7 +203,7 @@ class BookDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find Book by idPicture") {
+        describe("Find book by idPicture") {
             context("Found") {
                 it("Book is returned") {
                     let picture = CachedPicture.testPicture()
@@ -217,7 +217,7 @@ class BookDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     let picture = CachedPicture.testPicture()
                     try? bookDatabase.write {
@@ -231,9 +231,9 @@ class BookDaoSpec: QuickSpec {
             }
         }
         
-        describe("Find all Books") {
+        describe("Find all books") {
             context("Found") {
-                it("All Books are returned") {
+                it("All books are returned") {
                     try? bookDatabase.write {
                         bookDatabase.add([firstBook, secondBook, thirdBook])
                         try? bookDatabase.commitWrite()
@@ -243,7 +243,7 @@ class BookDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("Error is thrown") {
                     expect { try bookDao.findAllBooks().waitingCompletion().first }.to(throwError())
                 }
@@ -254,7 +254,7 @@ class BookDaoSpec: QuickSpec {
 
 extension CachedBook {
     
-    static func testBook() -> CachedBook {
+    internal static func testBook() -> CachedBook {
         CachedBook(idBook: DataFactory.randomInt(),
                    name: DataFactory.randomString(),
                    language: .none,

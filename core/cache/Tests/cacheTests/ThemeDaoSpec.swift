@@ -16,7 +16,7 @@ import testing
 class ThemeDaoSpec: QuickSpec {
     
     override func spec() {
-       
+        
         var themeDatabase : Realm!
         var themeDao : ThemeDao!
         
@@ -28,7 +28,7 @@ class ThemeDaoSpec: QuickSpec {
             let configuration = Realm.Configuration(inMemoryIdentifier: "cached-theme-dao-testing")
             Realm.Configuration.defaultConfiguration = configuration
             themeDatabase = try? Realm()
-            themeDao = ThemeDaoImpl()
+            themeDao = DefaultThemeDao(realm: themeDatabase)
             
             firstTheme = CachedTheme.testTheme()
             secondTheme = CachedTheme.testTheme()
@@ -42,31 +42,31 @@ class ThemeDaoSpec: QuickSpec {
             }
         }
         
-            describe("Find theme by idTheme") {
-                context("Found") {
-                    it("Theme is returned") {
-                        try? themeDatabase.write {
-                            themeDatabase.add([firstTheme, secondTheme, thirdTheme])
-                            try? themeDatabase.commitWrite()
-                        }
-                        
-                        expect { try themeDao.findTheme(byIdTheme: firstTheme.idTheme).waitingCompletion().first }.to(equal(firstTheme))
+        describe("Find theme by idTheme") {
+            context("Found") {
+                it("Theme is returned") {
+                    try? themeDatabase.write {
+                        themeDatabase.add([firstTheme, secondTheme, thirdTheme])
+                        try? themeDatabase.commitWrite()
                     }
-                }
-                
-                context("Not Found") {
-                    it("Error is thrown") {
-                        try? themeDatabase.write {
-                            themeDatabase.add([secondTheme, thirdTheme])
-                            try? themeDatabase.commitWrite()
-                        }
-                        
-                        expect { try themeDao.findTheme(byIdTheme: firstTheme.idTheme).waitingCompletion().first }.to(throwError())
-                    }
+                    
+                    expect { try themeDao.findTheme(byIdTheme: firstTheme.idTheme).waitingCompletion().first }.to(equal(firstTheme))
                 }
             }
             
-        describe("Find Themes by name") {
+            context("Not found") {
+                it("Error is thrown") {
+                    try? themeDatabase.write {
+                        themeDatabase.add([secondTheme, thirdTheme])
+                        try? themeDatabase.commitWrite()
+                    }
+                    
+                    expect { try themeDao.findTheme(byIdTheme: firstTheme.idTheme).waitingCompletion().first }.to(throwError())
+                }
+            }
+        }
+        
+        describe("Find themes by name") {
             context("Found") {
                 it("Themes are returned") {
                     secondTheme.name = firstTheme.name
@@ -79,7 +79,7 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
             
-            context("Found Themes with idRelatedThemes") {
+            context("Found themes with idRelatedThemes") {
                 it("Themes are returned") {
                     firstTheme.idRelatedThemes.append(secondTheme.idTheme)
                     try? themeDatabase.write {
@@ -91,7 +91,7 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     secondTheme.name = firstTheme.name
                     try? themeDatabase.write {
@@ -103,7 +103,7 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
         }
-            
+        
         describe("Find themes by idParent") {
             context("Found") {
                 it("Themes are returned") {
@@ -118,7 +118,7 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     try? themeDatabase.write {
                         themeDatabase.add([firstTheme, secondTheme, thirdTheme])
@@ -129,8 +129,8 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
         }
-            
-        describe("Find Main Themes") {
+        
+        describe("Find main Themes") {
             context("Found") {
                 it("Main themes are returned") {
                     firstTheme.idParentTheme = nil
@@ -144,7 +144,7 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
             
-            context("Nout Found") {
+            context("Not found") {
                 it("Error is thrown") {
                     
                     try? themeDatabase.write {
@@ -156,12 +156,10 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
         }
-            
-            
-            
-        describe("Find all Themes") {
+        
+        describe("Find all themes") {
             context("Found") {
-                it("All Themes are returned") {
+                it("All themes are returned") {
                     try? themeDatabase.write {
                         themeDatabase.add([firstTheme, secondTheme, thirdTheme])
                         try? themeDatabase.commitWrite()
@@ -171,7 +169,7 @@ class ThemeDaoSpec: QuickSpec {
                 }
             }
             
-            context("Database Empty") {
+            context("Database empty") {
                 it("Error is thrown") {
                     expect { try themeDao.findAllThemes().waitingCompletion().first }.to(throwError())
                 }
@@ -182,7 +180,7 @@ class ThemeDaoSpec: QuickSpec {
 
 extension CachedTheme {
     
-    static func testTheme() -> CachedTheme {
+    internal static func testTheme() -> CachedTheme {
         CachedTheme(idTheme: DataFactory.randomInt(),
                     idParentTheme: DataFactory.randomInt(),
                     name: DataFactory.randomString(),

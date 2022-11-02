@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Movement fetched from an external layer data source
  */
-public struct Movement : Equatable {
+public struct Movement: Equatable {
     
     public var idMovement: Int
     public var idParentMovement: Int?

@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Movements.
  */
-public protocol MovementDao: RealmDao {
+public protocol MovementDao {
     
     /// Retrieve a movement from its identifier, from the cache
     ///

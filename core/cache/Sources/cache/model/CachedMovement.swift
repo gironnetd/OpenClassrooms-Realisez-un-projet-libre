@@ -15,32 +15,32 @@ import model
  */
 public class CachedMovement: Object {
     
-    @Persisted(primaryKey: true) var idMovement: Int
-    @Persisted var idParentMovement: Int?
-    @Persisted var name: String
-    @Persisted var language: CachedLanguage
-    @Persisted var idRelatedMovements: List<Int>
-    @Persisted var mcc1: String?
-    @Persisted var mcc2: String?
-    @Persisted var presentation: CachedPresentation?
-    @Persisted var mcc3: String?
-    @Persisted var nbQuotes: Int
-    @Persisted var nbAuthors: Int
-    @Persisted var nbAuthorsQuotes: Int
-    @Persisted var nbBooks: Int
-    @Persisted var nbBooksQuotes: Int
-    @Persisted var selected: Bool = false
-    @Persisted var nbTotalQuotes: Int
-    @Persisted var nbTotalAuthors: Int
-    @Persisted var nbTotalBooks: Int
-    @Persisted var nbSubcourants: Int
-    @Persisted var nbAuthorsSubcourants: Int
-    @Persisted var nbBooksSubcourants: Int
-    @Persisted var authors: List<CachedAuthor>
-    @Persisted var books: List<CachedBook>
-    @Persisted var movements: List<CachedMovement>
-    @Persisted var pictures: List<CachedPicture>
-    @Persisted var urls: List<CachedUrl>
+    @Persisted(primaryKey: true) public var idMovement: Int
+    @Persisted public var idParentMovement: Int?
+    @Persisted public var name: String
+    @Persisted public var language: CachedLanguage
+    @Persisted public var idRelatedMovements: List<Int>
+    @Persisted public var mcc1: String?
+    @Persisted public var mcc2: String?
+    @Persisted public var presentation: CachedPresentation?
+    @Persisted public var mcc3: String?
+    @Persisted public var nbQuotes: Int
+    @Persisted public var nbAuthors: Int
+    @Persisted public var nbAuthorsQuotes: Int
+    @Persisted public var nbBooks: Int
+    @Persisted public var nbBooksQuotes: Int
+    @Persisted public var selected: Bool = false
+    @Persisted public var nbTotalQuotes: Int
+    @Persisted public var nbTotalAuthors: Int
+    @Persisted public var nbTotalBooks: Int
+    @Persisted public var nbSubcourants: Int
+    @Persisted public var nbAuthorsSubcourants: Int
+    @Persisted public var nbBooksSubcourants: Int
+    @Persisted public var authors: List<CachedAuthor>
+    @Persisted public var books: List<CachedBook>
+    @Persisted public var movements: List<CachedMovement>
+    @Persisted public var pictures: List<CachedPicture>
+    @Persisted public var urls: List<CachedUrl>
     
     public override init() {}
     
@@ -97,6 +97,37 @@ public class CachedMovement: Object {
         self.movements = movements
         self.pictures = pictures
         self.urls = urls
+    }
+    
+    public convenience init?(idMovement: Int) {
+        guard let movement = try? Realm().objects(CachedMovement.self).where({ movement in movement.idMovement == idMovement }).first else { return nil }
+        
+        self.init(idMovement : movement.idMovement,
+                  idParentMovement: movement.idParentMovement,
+                  name: movement.name,
+                  language: movement.language,
+                  idRelatedMovements: movement.idRelatedMovements,
+                  mcc1: movement.mcc1,
+                  mcc2: movement.mcc2,
+                  presentation: movement.presentation,
+                  mcc3: movement.mcc3,
+                  nbQuotes: movement.nbQuotes,
+                  nbAuthors: movement.nbAuthors,
+                  nbAuthorsQuotes: movement.nbAuthorsQuotes,
+                  nbBooks: movement.nbBooks,
+                  nbBooksQuotes: movement.nbBooksQuotes,
+                  selected: movement.selected,
+                  nbTotalQuotes: movement.nbTotalQuotes,
+                  nbTotalAuthors: movement.nbTotalAuthors,
+                  nbTotalBooks: movement.nbTotalBooks,
+                  nbSubcourants: movement.nbSubcourants,
+                  nbAuthorsSubcourants: movement.nbAuthorsSubcourants,
+                  nbBooksSubcourants : movement.nbBooksSubcourants,
+                  authors: movement.authors,
+                  books: movement.books,
+                  movements: movement.movements,
+                  pictures: movement.pictures,
+                  urls: movement.urls)
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Favorite fetched from an external layer data source
  */
-public struct Favourite : Equatable {
+public struct Favourite: Equatable {
     
     public var idDirectory: String
     public var idParentDirectory: String?

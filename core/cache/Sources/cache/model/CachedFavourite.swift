@@ -29,7 +29,7 @@ public class CachedFavourite: Object {
     @Persisted public var urls: List<CachedUrl>
     
     public override init() {}
-
+    
     public init(idDirectory: String,
                 idParentDirectory: String?,
                 directoryName: String?,
@@ -58,240 +58,115 @@ public class CachedFavourite: Object {
     }
     
     public init(idDirectory: String,
-         idParentDirectory: String?,
-         directoryName: String?,
-         subDirectories: [CachedFavourite]?,
-         idAuthors: [Int]?,
-         idBooks: [Int]?,
-         idMovements: [Int]?,
-         idThemes: [Int]?,
-         idQuotes: [Int]?,
-         idPictures: [Int]?,
-         idPresentations: [Int]?,
-         idUrls: [Int]?) {
+                idParentDirectory: String?,
+                directoryName: String?,
+                subDirectories: [CachedFavourite]?,
+                idAuthors: [Int]?,
+                idBooks: [Int]?,
+                idMovements: [Int]?,
+                idThemes: [Int]?,
+                idQuotes: [Int]?,
+                idPictures: [Int]?,
+                idPresentations: [Int]?,
+                idUrls: [Int]?) {
         super.init()
         self.idDirectory = idDirectory
-        if let subDirectories = subDirectories {
-            self.subDirectories = subDirectories.reduce(into: List<CachedFavourite>(), { result, favourite in
-                    result.append(favourite)
-                }
-            )
-        }
         self.idParentDirectory = idParentDirectory
         self.directoryName = directoryName
         
+        if let subDirectories = subDirectories {
+            self.subDirectories = subDirectories.toList()
+        }
+        
         if let idAuthors = idAuthors {
-            self.authors = idAuthors.reduce(into: List<CachedAuthor>()) { result, idAuthor in
-                if let author = try? Realm().objects(CachedAuthor.self).where({ author in author.idAuthor == idAuthor }).first {
-                    result.append(author)
-                }
-            }
+            self.authors = idAuthors.compactMap { CachedAuthor(idAuthor: $0) }.toList()
         }
         
         if let idBooks = idBooks {
-            self.books = idBooks.reduce(into: List<CachedBook>()) { result, idBook in
-                if let book = try? Realm().objects(CachedBook.self).where({ book in book.idBook == idBook }).first {
-                    result.append(book)
-                }
-            }
+            self.books = idBooks.compactMap { CachedBook(idBook: $0) }.toList()
         }
         
         if let idMovements = idMovements {
-            self.movements = idMovements.reduce(into: List<CachedMovement>()) { result, idMovement in
-                if let movement = try? Realm().objects(CachedMovement.self).where({ movement in movement.idMovement == idMovement }).first {
-                    result.append(movement)
-                }
-            }
+            self.movements = idMovements.compactMap { CachedMovement(idMovement: $0) }.toList()
         }
         
         if let idThemes = idThemes {
-            self.themes = idThemes.reduce(into: List<CachedTheme>()) { result, idTheme in
-                if let theme = try? Realm().objects(CachedTheme.self).where({ theme in theme.idTheme == idTheme }).first {
-                    result.append(theme)
-                }
-            }
+            self.themes = idThemes.compactMap { CachedTheme(idTheme: $0) }.toList()
         }
         
         if let idQuotes = idQuotes {
-            self.quotes = idQuotes.reduce(into: List<CachedQuote>()) { result, idQuote in
-                if let quote = try? Realm().objects(CachedQuote.self).where({ quote in quote.idQuote == idQuote }).first {
-                    result.append(quote)
-                }
-            }
+            self.quotes = idQuotes.compactMap { CachedQuote(idQuote: $0) }.toList()
         }
         
         if let idPictures = idPictures {
-            self.pictures = idPictures.reduce(into: List<CachedPicture>()) { result, idPicture in
-                if let picture = try? Realm().objects(CachedPicture.self).where({ picture in picture.idPicture == idPicture }).first {
-                    result.append(picture)
-                }
-            }
+            self.pictures = idPictures.compactMap { CachedPicture(idPicture: $0) }.toList()
         }
         
         if let idPresentations = idPresentations {
-            self.presentations = idPresentations.reduce(into: List<CachedPresentation>()) { result, idPresentation in
-                if let presentation = try? Realm().objects(CachedPresentation.self).where({ presentation in presentation.idPresentation == idPresentation }).first {
-                    result.append(presentation)
-                }
-            }
+            self.presentations = idPresentations.compactMap { CachedPresentation(idPresentation: $0)
+            }.toList()
         }
         
         if let idUrls = idUrls {
-            self.urls = idUrls.reduce(into: List<CachedUrl>()) { result, idUrl in
-                if let url = try? Realm().objects(CachedUrl.self).where({ url in url.idUrl == idUrl }).first {
-                    result.append(url)
-                }
-            }
+            self.urls = idUrls.compactMap { CachedUrl(idUrl: $0)}.toList()
         }
+    }
+    
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let favourite = object as? CachedFavourite else {
+            return false
+        }
+        
+        return self.idDirectory == favourite.idDirectory &&
+            self.idParentDirectory == favourite.idParentDirectory &&
+            self.directoryName == favourite.directoryName &&
+            self.subDirectories == favourite.subDirectories &&
+            self.authors == favourite.authors &&
+            self.books == favourite.books &&
+            self.movements == favourite.movements &&
+            self.themes == favourite.themes &&
+            self.quotes == favourite.quotes &&
+            self.pictures == favourite.pictures &&
+            self.presentations == favourite.presentations &&
+            self.urls == favourite.urls
     }
 }
 
 extension CachedFavourite {
     
     public func asExternalModel() -> Favourite {
-        var favourite = Favourite(idDirectory: self.idDirectory,
-                                 idParentDirectory: self.idParentDirectory,
-                                 directoryName: self.directoryName)
-        
-        if !self.subDirectories.isEmpty {
-            favourite.subDirectories = self.subDirectories.reduce(
-                into: [Favourite](), { result, favourite in
-                    result.append(favourite.asExternalModel())
-            })
-        }
-        
-        if !self.authors.isEmpty {
-            favourite.authors = self.authors.reduce(
-                into: [Author](), { result, author in
-                    result.append(author.asExternalModel())
-            })
-        }
-
-        if !self.books.isEmpty {
-            favourite.books = self.books.reduce(
-                into: [Book](), { result, book in
-                    result.append(book.asExternalModel())
-            })
-        }
-
-        if !self.movements.isEmpty {
-            favourite.movements = self.movements.reduce(
-                into: [Movement](), { result, movement in
-                    result.append(movement.asExternalModel())
-            })
-        }
-
-        if !self.themes.isEmpty {
-            favourite.themes = self.themes.reduce(
-                into: [Theme](), { result, theme in
-                    result.append(theme.asExternalModel())
-            })
-        }
-
-        if !self.quotes.isEmpty {
-            favourite.quotes = self.quotes.reduce(
-                into: [Quote](), { result, quote in
-                    result.append(quote.asExternalModel())
-            })
-        }
-
-        if !self.pictures.isEmpty {
-            favourite.pictures = self.pictures.reduce(
-                into: [Picture](), { result, picture in
-                    result.append(picture.asExternalModel())
-            })
-        }
-
-        if !self.presentations.isEmpty {
-            favourite.presentations = self.presentations.reduce(
-                into: [Presentation](), { result, presentation in
-                    result.append(presentation.asExternalModel())
-            })
-        }
-
-        if !self.urls.isEmpty {
-            favourite.urls = self.urls.reduce(
-                into: [Url](), { result, url in
-                    result.append(url.asExternalModel())
-            })
-        }
-        
-        return favourite
+        Favourite(idDirectory: self.idDirectory,
+                  idParentDirectory: self.idParentDirectory,
+                  directoryName: self.directoryName,
+                  subDirectories: !self.subDirectories.isEmpty ? self.subDirectories.toArray().map { $0.asExternalModel() } : nil,
+                  authors: !self.authors.isEmpty ? self.authors.toArray().map { $0.asExternalModel() } : nil,
+                  books: !self.books.isEmpty ? self.books.toArray().map { $0.asExternalModel() } : nil,
+                  movements: !self.movements.isEmpty ? self.movements.toArray().map { $0.asExternalModel() } : nil,
+                  themes: !self.themes.isEmpty ? self.themes.toArray().map { $0.asExternalModel() } : nil,
+                  quotes: !self.quotes.isEmpty ? self.quotes.toArray().map { $0.asExternalModel() } : nil,
+                  pictures: !self.pictures.isEmpty ? self.pictures.toArray().map { $0.asExternalModel() } : nil,
+                  presentations: !self.presentations.isEmpty ? self.presentations.toArray().map { $0.asExternalModel() } : nil,
+                  urls: !self.urls.isEmpty ? self.urls.toArray().map { $0.asExternalModel() } : nil
+        )
     }
 }
 
 extension Favourite {
     
     public func asCached() -> CachedFavourite {
-        let favourite = CachedFavourite()
-        
-        favourite.idDirectory = self.idDirectory
-        favourite.idParentDirectory = self.idParentDirectory
-        favourite.directoryName = self.directoryName
-        
-        if let subDirectories = self.subDirectories {
-            favourite.subDirectories = subDirectories.reduce(
-                into: List<CachedFavourite>(), { result, favourite in
-                    result.append(favourite.asCached())
-            })
-        }
-        
-        if let authors = self.authors {
-            favourite.authors = authors.reduce(
-                into: List<CachedAuthor>(), { result, author in
-                    result.append(author.asCached())
-            })
-        }
-
-        if let books = self.books {
-            favourite.books = books.reduce(
-                into: List<CachedBook>(), { result, book in
-                    result.append(book.asCached())
-            })
-        }
-
-        if let movements = self.movements {
-            favourite.movements = movements.reduce(
-                into: List<CachedMovement>(), { result, movement in
-                    result.append(movement.asCached())
-            })
-        }
-
-        if let themes = self.themes {
-            favourite.themes = themes.reduce(
-                into: List<CachedTheme>(), { result, theme in
-                    result.append(theme.asCached())
-            })
-        }
-
-        if let quotes = self.quotes {
-            favourite.quotes = quotes.reduce(
-                into: List<CachedQuote>(), { result, quote in
-                    result.append(quote.asCached())
-            })
-        }
-
-        if let pictures = self.pictures {
-            favourite.pictures = pictures.reduce(
-                into: List<CachedPicture>(), { result, picture in
-                    result.append(picture.asCached())
-            })
-        }
-
-        if let presentations = self.presentations {
-            favourite.presentations = presentations.reduce(
-                into: List<CachedPresentation>(), { result, presentation in
-                    result.append(presentation.asCached())
-            })
-        }
-
-        if let urls = self.urls {
-            favourite.urls = urls.reduce(
-                into: List<CachedUrl>(), { result, url in
-                    result.append(url.asCached())
-            })
-        }
-        
-        return favourite
+        CachedFavourite(idDirectory: self.idDirectory,
+                        idParentDirectory: self.idParentDirectory,
+                        directoryName: self.directoryName,
+                        subDirectories: self.subDirectories != nil ? self.subDirectories!.map { $0.asCached() }.toList()
+                            : List<CachedFavourite>(),
+                        authors: self.authors != nil ? self.authors!.map { $0.asCached() }.toList() : List<CachedAuthor>(),
+                        books: self.books != nil ? self.books!.map { $0.asCached() }.toList() : List<CachedBook>(),
+                        movements: self.movements != nil ? self.movements!.map { $0.asCached() }.toList() : List<CachedMovement>(),
+                        themes: self.themes != nil ? self.themes!.map { $0.asCached() }.toList() : List<CachedTheme>(),
+                        quotes: self.quotes != nil ? self.quotes!.map { $0.asCached() }.toList() : List<CachedQuote>(),
+                        pictures: self.pictures != nil ? self.pictures!.map { $0.asCached() }.toList() : List<CachedPicture>(),
+                        presentations: self.presentations != nil ? self.presentations!.map { $0.asCached() }.toList() : List<CachedPresentation>(),
+                        urls: self.urls != nil ? self.urls!.map { $0.asCached() }.toList() : List<CachedUrl>()
+        )
     }
 }

@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Authors.
  */
-public protocol AuthorDao: RealmDao {
+public protocol AuthorDao {
     
     /// Retrieve an author from its identifier, from the cache
     ///

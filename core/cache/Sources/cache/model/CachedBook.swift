@@ -15,19 +15,19 @@ import model
  */
 public class CachedBook: Object {
     
-    @Persisted(primaryKey: true) var idBook: Int
-    @Persisted var name: String
-    @Persisted var language: CachedLanguage
-    @Persisted var idRelatedBooks: List<Int>
-    @Persisted var century: CachedCentury?
-    @Persisted var details: String?
-    @Persisted var period: String?
-    @Persisted var idMovement: Int?
-    @Persisted var presentation: CachedPresentation?
-    @Persisted var mcc1: String?
-    @Persisted var quotes: List<CachedQuote>
-    @Persisted var pictures: List<CachedPicture>
-    @Persisted var urls: List<CachedUrl>
+    @Persisted(primaryKey: true) public  var idBook: Int
+    @Persisted public  var name: String
+    @Persisted public  var language: CachedLanguage
+    @Persisted public  var idRelatedBooks: List<Int>
+    @Persisted public  var century: CachedCentury?
+    @Persisted public  var details: String?
+    @Persisted public  var period: String?
+    @Persisted public  var idMovement: Int?
+    @Persisted public  var presentation: CachedPresentation?
+    @Persisted public  var mcc1: String?
+    @Persisted public  var quotes: List<CachedQuote>
+    @Persisted public  var pictures: List<CachedPicture>
+    @Persisted public  var urls: List<CachedUrl>
     
     public override init() {}
     
@@ -58,6 +58,24 @@ public class CachedBook: Object {
         self.quotes = quotes
         self.pictures = pictures
         self.urls = urls
+    }
+    
+    public convenience init?(idBook: Int) {
+        guard let book = try? Realm().objects(CachedBook.self).where({ book in book.idBook == idBook }).first else { return nil }
+        
+        self.init(idBook: book.idBook,
+                  name: book.name,
+                  language: book.language,
+                  idRelatedBooks: book.idRelatedBooks,
+                  century: book.century,
+                  details: book.details,
+                  period: book.period,
+                  idMovement: book.idMovement,
+                  presentation: book.presentation,
+                  mcc1: book.mcc1,
+                  quotes: book.quotes,
+                  pictures: book.pictures,
+                  urls: book.urls)
     }
 }
 

@@ -12,7 +12,7 @@ import Combine
 /**
  * Protocol defining methods for the Data Access Object of Centuries.
  */
-public protocol CenturyDao: RealmDao {
+public protocol CenturyDao {
    
     /// Retrieve a century from its identifier, from the cache
     ///

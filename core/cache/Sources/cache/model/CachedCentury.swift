@@ -15,9 +15,9 @@ import model
  */
 public class CachedCentury: Object {
     
-    @Persisted(primaryKey: true) var idCentury: Int
-    @Persisted var century: String
-    @Persisted var presentations: Map<String, String>
+    @Persisted(primaryKey: true) public  var idCentury: Int
+    @Persisted public  var century: String
+    @Persisted public  var presentations: Map<String, String>
     
     public override init() {}
     
@@ -36,10 +36,7 @@ extension CachedCentury {
     public func asExternalModel() -> Century {
         Century(idCentury: self.idCentury,
                 century: self.century,
-                presentations: self.presentations.count != 0 ? self.presentations.asKeyValueSequence()
-                    .reduce(into: [String: String](), { result, presentation in
-                        result[presentation.key] = presentation.value
-                    }) : nil)
+                presentations: self.presentations.count != 0 ? self.presentations.toDictionary() : nil)
     }
 }
 
@@ -48,9 +45,7 @@ extension Century {
     public func asCached() -> CachedCentury {
         CachedCentury(idCentury: self.idCentury,
                       century: self.century,
-                      presentations: self.presentations?.reduce(into: Map<String, String>(), { result, presentation in
-                        result[presentation.key] = presentation.value
-                      }) ?? Map<String, String>()
+                      presentations: self.presentations?.toMap() ?? Map<String, String>()
         )
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Century fetched from an external layer data source
  */
-public struct Century : Equatable {
+public struct Century: Equatable {
     
     public var idCentury: Int
     public var century: String

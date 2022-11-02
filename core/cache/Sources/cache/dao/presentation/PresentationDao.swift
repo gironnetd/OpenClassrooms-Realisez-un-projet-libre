@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public protocol PresentationDao: RealmDao {
+public protocol PresentationDao {
     
     /// Retrieve a presentation from its identifier, from the cache
     ///

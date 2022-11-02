@@ -15,9 +15,12 @@ let package = Package(
             targets: ["data"]),
     ],
     dependencies: [
-        .package(path: "../model"),
-        .package(path: "../cache"),
-        .package(path: "../remote")
+        .package(name: "model", path: "../model"),
+        .package(name: "cache", path: "../cache"),
+        .package(name: "remote", path: "../remote"),
+        .package(name: "Nimble", url: "https://github.com/Quick/Nimble", from: "9.0.0"),
+        .package(name: "Quick", url: "https://github.com/Quick/Quick", from: "5.0.1"),
+        .package(name: "testing", path: "../testing")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -32,7 +35,10 @@ let package = Package(
         .testTarget(
             name: "dataTests",
             dependencies: [
-                "data"
+                "data",
+                "Quick",
+                "Nimble",
+                "testing"
             ]),
     ]
 )
