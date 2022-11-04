@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Quote fetched from an external layer data source
  */
-public struct Quote : Equatable {
+public struct Quote: Equatable {
     
     public var idQuote = 0
     public var idAuthor: Int?

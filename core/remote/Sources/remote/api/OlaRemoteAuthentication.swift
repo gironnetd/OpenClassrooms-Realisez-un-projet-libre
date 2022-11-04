@@ -12,31 +12,43 @@ import FirebaseAuth
 /**
  * Protocol defining methods for the Remote Authentication.
  */
-protocol OlaRemoteAuthentication {
+public protocol OlaRemoteAuthentication {
     
-    /// SignIn an Account with a Credential, from remote
+    /// SignIn an User with a Credential, from remote
     ///
     /// - Parameters:
-    ///   - credential: The AuthCredential of the account
+    ///   - credential: The AuthCredential of the user
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func signIn(with credential: AuthCredential) -> Future<RemoteAccount, Error>
+    /// - Returns: An AnyPublisher returning an User or an Error
+    func signIn(with credential: AuthCredential) -> AnyPublisher<User, Error>
     
-    /// SignIn an Account with email and password, from remote
+    /// SignIn an User with email and password, from remote
     ///
     /// - Parameters:
-    ///   - email: The email of the account
-    ///   - password: The password of the account
+    ///   - email: The email of the user
+    ///   - password: The password of the user
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func signIn(withEmail email: String, password: String) -> Future<RemoteAccount, Error>
+    /// - Returns: An AnyPublisher returning an User or an Error
+    func signIn(withEmail email: String, password: String) -> AnyPublisher<User, Error>
+    
+    /// SignOut current User
+    ///
+    /// - Returns: An AnyPublisher returning Void or an Error
+    func signOut() -> AnyPublisher<Void, Error>
     
     /// Create a User with email and password, from remote
     ///
     /// - Parameters:
-    ///   - email: The email of the account
-    ///   - password: The password of the account
+    ///   - email: The email of the user
+    ///   - password: The password of the user
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func createUser(withEmail email: String, password: String) -> Future<RemoteAccount, Error>
+    /// - Returns: An AnyPublisher returning an User or an Error
+    func createUser(withEmail email: String, password: String) -> AnyPublisher<User, Error>
+    
+    /// Delete a User
+    ///
+    /// - Parameters:
+    ///   - uid: The user to delete
+    @discardableResult
+    func deleteUser(byUser user: User) -> AnyPublisher<Void, Error>
 }

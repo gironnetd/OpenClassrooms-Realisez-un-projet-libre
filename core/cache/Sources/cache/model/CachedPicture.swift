@@ -15,17 +15,17 @@ import model
  */
 public class CachedPicture: Object {
     
-    @Persisted(primaryKey: true) var idPicture: Int
-    @Persisted var nameSmall: String
-    @Persisted var `extension`: String
-    @Persisted var comments: Map<String, String>
-    @Persisted var width: Int
-    @Persisted var height: Int
-    @Persisted var portrait: Bool
-    @Persisted var picture: Data?
+    @Persisted(primaryKey: true) public var idPicture: Int
+    @Persisted public var nameSmall: String
+    @Persisted public var `extension`: String
+    @Persisted public var comments: Map<String, String>
+    @Persisted public var width: Int
+    @Persisted public var height: Int
+    @Persisted public var portrait: Bool
+    @Persisted public var picture: Data?
     
     public override init() {}
-
+    
     public init(idPicture: Int,
                 nameSmall: String,
                 `extension`: String,
@@ -44,22 +44,46 @@ public class CachedPicture: Object {
         self.portrait = portrait
         self.picture = picture
     }
+    
+    public convenience init?(idPicture: Int) {
+        guard let picture = try? Realm().objects(CachedPicture.self).where({ picture in picture.idPicture == idPicture }).first else { return nil }
+        
+        self.init(idPicture: picture.idPicture,
+                  nameSmall: picture.nameSmall,
+                  extension: picture.extension,
+                  comments: picture.comments,
+                  width: picture.width,
+                  height: picture.height,
+                  portrait: picture.portrait,
+                  picture: picture.picture)
+    }
 }
 
 extension CachedPicture {
     
-    func asExternalModel() -> Picture {
-        Picture(idPicture: idPicture,
-                             nameSmall: nameSmall,
-                             extension: `extension`,
-                             comments: comments.count != 0 ? comments.asKeyValueSequence()
-                                .reduce(into: [String: String](), { result, comment in
-                                    result[comment.key] = comment.value
-                                }) : nil,
-                             width: width,
-                             height: height,
-                             portrait: portrait,
-                             picture: picture)
+    public func asExternalModel() -> Picture {
+        Picture(idPicture: self.idPicture,
+                nameSmall: self.nameSmall,
+                extension: self.`extension`,
+                comments: self.comments.count != 0 ? self.comments.toDictionary() : nil,
+                width: self.width,
+                height: self.height,
+                portrait: self.portrait,
+                picture: self.picture)
+    }
+}
+
+extension Picture {
+    
+    public func asCached() -> CachedPicture {
+        CachedPicture(idPicture: self.idPicture,
+                      nameSmall: self.nameSmall,
+                      extension: self.`extension`,
+                      comments: self.comments?.toMap() ?? Map<String, String>(),
+                      width: self.width,
+                      height: self.height,
+                      portrait: self.portrait,
+                      picture: self.picture)
     }
 }
 

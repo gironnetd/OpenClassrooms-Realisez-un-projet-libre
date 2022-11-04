@@ -59,15 +59,15 @@ public class DataFactory {
         return Int.random(in: 0...Int.max)
     }
     
-    public static func randomLong() -> UInt64 {
-        return UInt64(randomInt())
-    }
-    
     public static func randomString() -> String {
         return UUID().uuidString
     }
     
     public static func randomBoolean() -> Bool {
         return Bool.random()
+    }
+    
+    public static func randomData() -> Data {
+        return randomText(length: 5).data(using: .utf8)!
     }
 }

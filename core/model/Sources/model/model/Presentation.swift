@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Presentation fetched from an external layer data source
  */
-public struct Presentation : Equatable {
+public struct Presentation: Equatable {
     
     public var idPresentation = 0
     public var presentation: String?

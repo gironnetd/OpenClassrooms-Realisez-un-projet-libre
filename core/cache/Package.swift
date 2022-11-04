@@ -29,10 +29,18 @@ let package = Package(
             name: "cache",
             dependencies: [
                 "model",
+                "RealmException",
                 .product(name: "RealmSwift", package: "Realm")
             ],
-            resources: [.copy("database")]
-            ),
+            path: "Sources/cache",
+            resources: [
+                .process("database/default.realm")
+            ]
+        ),
+        .target(
+            name: "RealmException",
+            path: "Sources/Objective-C"
+        ),
         .testTarget(
             name: "cacheTests",
             dependencies: [
@@ -40,9 +48,12 @@ let package = Package(
                 "Quick",
                 "Nimble",
                 "testing",
+                "RealmException",
                 .product(name: "RealmSwift", package: "Realm")
             ],
-            resources: [.copy("database")]
+            resources: [
+                .process("default.realm")
+            ]
         ),
     ]
 )

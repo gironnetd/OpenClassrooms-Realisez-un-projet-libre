@@ -15,23 +15,23 @@ import model
  */
 public class CachedFavourite: Object {
     
-    @Persisted(primaryKey: true) var idDirectory: Int
-    @Persisted var idParentDirectory: Int?
-    @Persisted var directoryName: String?
-    @Persisted var subDirectories: List<CachedFavourite>
-    @Persisted var authors: List<CachedAuthor>
-    @Persisted var books: List<CachedBook>
-    @Persisted var movements: List<CachedMovement>
-    @Persisted var themes: List<CachedTheme>
-    @Persisted var quotes: List<CachedQuote>
-    @Persisted var pictures: List<CachedPicture>
-    @Persisted var presentations: List<CachedPresentation>
-    @Persisted var urls: List<CachedUrl>
+    @Persisted(primaryKey: true) public var idDirectory: String
+    @Persisted public var idParentDirectory: String?
+    @Persisted public var directoryName: String?
+    @Persisted public var subDirectories: List<CachedFavourite>
+    @Persisted public var authors: List<CachedAuthor>
+    @Persisted public var books: List<CachedBook>
+    @Persisted public var movements: List<CachedMovement>
+    @Persisted public var themes: List<CachedTheme>
+    @Persisted public var quotes: List<CachedQuote>
+    @Persisted public var pictures: List<CachedPicture>
+    @Persisted public var presentations: List<CachedPresentation>
+    @Persisted public var urls: List<CachedUrl>
     
     public override init() {}
-
-    public init(idDirectory: Int,
-                idParentDirectory: Int?,
+    
+    public init(idDirectory: String,
+                idParentDirectory: String?,
                 directoryName: String?,
                 subDirectories: List<CachedFavourite>,
                 authors: List<CachedAuthor>,
@@ -56,78 +56,117 @@ public class CachedFavourite: Object {
         self.presentations = presentations
         self.urls = urls
     }
+    
+    public init(idDirectory: String,
+                idParentDirectory: String?,
+                directoryName: String?,
+                subDirectories: [CachedFavourite]?,
+                idAuthors: [Int]?,
+                idBooks: [Int]?,
+                idMovements: [Int]?,
+                idThemes: [Int]?,
+                idQuotes: [Int]?,
+                idPictures: [Int]?,
+                idPresentations: [Int]?,
+                idUrls: [Int]?) {
+        super.init()
+        self.idDirectory = idDirectory
+        self.idParentDirectory = idParentDirectory
+        self.directoryName = directoryName
+        
+        if let subDirectories = subDirectories {
+            self.subDirectories = subDirectories.toList()
+        }
+        
+        if let idAuthors = idAuthors {
+            self.authors = idAuthors.compactMap { CachedAuthor(idAuthor: $0) }.toList()
+        }
+        
+        if let idBooks = idBooks {
+            self.books = idBooks.compactMap { CachedBook(idBook: $0) }.toList()
+        }
+        
+        if let idMovements = idMovements {
+            self.movements = idMovements.compactMap { CachedMovement(idMovement: $0) }.toList()
+        }
+        
+        if let idThemes = idThemes {
+            self.themes = idThemes.compactMap { CachedTheme(idTheme: $0) }.toList()
+        }
+        
+        if let idQuotes = idQuotes {
+            self.quotes = idQuotes.compactMap { CachedQuote(idQuote: $0) }.toList()
+        }
+        
+        if let idPictures = idPictures {
+            self.pictures = idPictures.compactMap { CachedPicture(idPicture: $0) }.toList()
+        }
+        
+        if let idPresentations = idPresentations {
+            self.presentations = idPresentations.compactMap { CachedPresentation(idPresentation: $0)
+            }.toList()
+        }
+        
+        if let idUrls = idUrls {
+            self.urls = idUrls.compactMap { CachedUrl(idUrl: $0)}.toList()
+        }
+    }
+    
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let favourite = object as? CachedFavourite else {
+            return false
+        }
+        
+        return self.idDirectory == favourite.idDirectory &&
+            self.idParentDirectory == favourite.idParentDirectory &&
+            self.directoryName == favourite.directoryName &&
+            self.subDirectories == favourite.subDirectories &&
+            self.authors == favourite.authors &&
+            self.books == favourite.books &&
+            self.movements == favourite.movements &&
+            self.themes == favourite.themes &&
+            self.quotes == favourite.quotes &&
+            self.pictures == favourite.pictures &&
+            self.presentations == favourite.presentations &&
+            self.urls == favourite.urls
+    }
 }
 
 extension CachedFavourite {
     
-    func asExternalModel() -> Favourite {
-        var favorite = Favourite(idDirectory: idDirectory,
-                              idParentDirectory: idParentDirectory,
-                              directoryName: directoryName)
-        
-        if !subDirectories.isEmpty {
-            favorite.subDirectories = subDirectories.reduce(
-                into: [Favourite](), { result, favourite in
-                    result.append(favourite.asExternalModel())
-            })
-        }
-        
-        if !authors.isEmpty {
-            favorite.authors = authors.reduce(
-                into: [Author](), { result, author in
-                    result.append(author.asExternalModel())
-            })
-        }
+    public func asExternalModel() -> Favourite {
+        Favourite(idDirectory: self.idDirectory,
+                  idParentDirectory: self.idParentDirectory,
+                  directoryName: self.directoryName,
+                  subDirectories: !self.subDirectories.isEmpty ? self.subDirectories.toArray().map { $0.asExternalModel() } : nil,
+                  authors: !self.authors.isEmpty ? self.authors.toArray().map { $0.asExternalModel() } : nil,
+                  books: !self.books.isEmpty ? self.books.toArray().map { $0.asExternalModel() } : nil,
+                  movements: !self.movements.isEmpty ? self.movements.toArray().map { $0.asExternalModel() } : nil,
+                  themes: !self.themes.isEmpty ? self.themes.toArray().map { $0.asExternalModel() } : nil,
+                  quotes: !self.quotes.isEmpty ? self.quotes.toArray().map { $0.asExternalModel() } : nil,
+                  pictures: !self.pictures.isEmpty ? self.pictures.toArray().map { $0.asExternalModel() } : nil,
+                  presentations: !self.presentations.isEmpty ? self.presentations.toArray().map { $0.asExternalModel() } : nil,
+                  urls: !self.urls.isEmpty ? self.urls.toArray().map { $0.asExternalModel() } : nil
+        )
+    }
+}
 
-        if !books.isEmpty {
-            favorite.books = books.reduce(
-                into: [Book](), { result, book in
-                    result.append(book.asExternalModel())
-            })
-        }
-
-        if !movements.isEmpty {
-            favorite.movements = movements.reduce(
-                into: [Movement](), { result, movement in
-                    result.append(movement.asExternalModel())
-            })
-        }
-
-        if !themes.isEmpty {
-            favorite.themes = themes.reduce(
-                into: [Theme](), { result, theme in
-                    result.append(theme.asExternalModel())
-            })
-        }
-
-        if !quotes.isEmpty {
-            favorite.quotes = quotes.reduce(
-                into: [Quote](), { result, quote in
-                    result.append(quote.asExternalModel())
-            })
-        }
-
-        if !pictures.isEmpty {
-            favorite.pictures = pictures.reduce(
-                into: [Picture](), { result, picture in
-                    result.append(picture.asExternalModel())
-            })
-        }
-
-        if !presentations.isEmpty {
-            favorite.presentations = presentations.reduce(
-                into: [Presentation](), { result, presentation in
-                    result.append(presentation.asExternalModel())
-            })
-        }
-
-        if !urls.isEmpty {
-            favorite.urls = urls.reduce(
-                into: [Url](), { result, url in
-                    result.append(url.asExternalModel())
-            })
-        }
-        
-        return favorite
+extension Favourite {
+    
+    public func asCached() -> CachedFavourite {
+        CachedFavourite(idDirectory: self.idDirectory,
+                        idParentDirectory: self.idParentDirectory,
+                        directoryName: self.directoryName,
+                        subDirectories: self.subDirectories != nil ? self.subDirectories!.map { $0.asCached() }.toList()
+                            : List<CachedFavourite>(),
+                        authors: self.authors != nil ? self.authors!.map { $0.asCached() }.toList() : List<CachedAuthor>(),
+                        books: self.books != nil ? self.books!.map { $0.asCached() }.toList() : List<CachedBook>(),
+                        movements: self.movements != nil ? self.movements!.map { $0.asCached() }.toList() : List<CachedMovement>(),
+                        themes: self.themes != nil ? self.themes!.map { $0.asCached() }.toList() : List<CachedTheme>(),
+                        quotes: self.quotes != nil ? self.quotes!.map { $0.asCached() }.toList() : List<CachedQuote>(),
+                        pictures: self.pictures != nil ? self.pictures!.map { $0.asCached() }.toList() : List<CachedPicture>(),
+                        presentations: self.presentations != nil ? self.presentations!.map { $0.asCached() }.toList() : List<CachedPresentation>(),
+                        urls: self.urls != nil ? self.urls!.map { $0.asCached() }.toList() : List<CachedUrl>()
+        )
     }
 }

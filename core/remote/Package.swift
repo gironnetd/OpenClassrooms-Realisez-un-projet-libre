@@ -35,7 +35,9 @@ let package = Package(
                 "model",
                 .product(name: "FirebaseAuth", package: "Firebase"),
                 .product(name: "FirebaseFirestore", package: "Firebase"),
-                .product(name: "FirebaseFirestoreSwift", package: "Firebase")
+                .product(name: "FirebaseFirestoreSwift", package: "Firebase"),
+                .product(name: "FirebaseFirestoreCombine-Community", package: "Firebase"),
+                .product(name: "FirebaseAuthCombine-Community", package: "Firebase")
             ]
         ),
         .testTarget(
@@ -50,8 +52,7 @@ let package = Package(
                 .product(name: "FirebaseFirestoreSwift", package: "Firebase")
             ],
             resources: [
-                .process("GoogleService-Info.plist"),
-                .process("mobile.entitlements")
+                .process("GoogleService-Info.plist")
             ]
         ),
     ]

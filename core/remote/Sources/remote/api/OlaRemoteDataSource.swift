@@ -11,34 +11,34 @@ import Combine
 /**
  * Protocol defining methods for the Remote Data.
  */
-protocol OlaRemoteDataSource {
+public protocol OlaRemoteDataSource {
     
-    /// Retrieve an Account from its identifier UUID, from remote
+    /// Retrieve an User from its identifier UUID, from remote
     ///
     /// - Parameters:
-    ///   - uuid: The identifier of the Account
+    ///   - uuid: The identifier of the User
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func findAccount(byUid uid: String) -> Future<RemoteAccount, Error>
+    /// - Returns: An AnyPublisher returning an RemoteUser or an Error
+    func findUser(byUid uid: String) -> AnyPublisher<RemoteUser, Error>
     
-    /// Save or update an Account to the cache
+    /// Save or update an User to the cache
     ///
     /// - Parameters:
-    ///   - account: An RemoteAccount
+    ///   - user: An RemoteUser
     @discardableResult
-    func saveOrUpdate(account: RemoteAccount) -> AnyPublisher<Void, Error>
+    func saveOrUpdate(user: RemoteUser) -> AnyPublisher<Void, Error>
     
-    /// Delete an Account to remote
+    /// Delete a User
     ///
     /// - Parameters:
-    ///   - uuid: The UUID identifier of the account
+    ///   - uid: The user to delete
     @discardableResult
-    func deleteAccount(byUid uid: String) -> AnyPublisher<Void, Error>
-
+    func deleteUser(byUid uid: String) -> AnyPublisher<Void, Error>
+    
     /// Save or update an Favourite to remote
     ///
     /// - Parameters:
-    ///   - account: A RemoteFavourite
+    ///   - user: A RemoteFavourite
     @discardableResult
     func saveOrUpdate(favourite: RemoteFavourite) -> AnyPublisher<Void, Error>
     

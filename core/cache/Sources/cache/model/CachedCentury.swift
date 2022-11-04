@@ -15,10 +15,10 @@ import model
  */
 public class CachedCentury: Object {
     
-    @Persisted(primaryKey: true) var idCentury: Int
-    @Persisted var century: String
-    @Persisted var presentations: Map<String, String>
-
+    @Persisted(primaryKey: true) public  var idCentury: Int
+    @Persisted public  var century: String
+    @Persisted public  var presentations: Map<String, String>
+    
     public override init() {}
     
     public init(idCentury: Int,
@@ -33,12 +33,19 @@ public class CachedCentury: Object {
 
 extension CachedCentury {
     
-    func asExternalModel() -> Century {
-        Century(idCentury: idCentury,
-                century: century,
-                presentations: presentations.count != 0 ? presentations.asKeyValueSequence()
-                    .reduce(into: [String: String](), { result, presentation in
-                        result[presentation.key] = presentation.value
-                    }) : nil)
+    public func asExternalModel() -> Century {
+        Century(idCentury: self.idCentury,
+                century: self.century,
+                presentations: self.presentations.count != 0 ? self.presentations.toDictionary() : nil)
+    }
+}
+
+extension Century {
+    
+    public func asCached() -> CachedCentury {
+        CachedCentury(idCentury: self.idCentury,
+                      century: self.century,
+                      presentations: self.presentations?.toMap() ?? Map<String, String>()
+        )
     }
 }

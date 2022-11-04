@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Theme fetched from an external layer data source
  */
-public struct Theme : Equatable {
+public struct Theme: Equatable {
 
     public var idTheme: Int
     public var idParentTheme: Int?

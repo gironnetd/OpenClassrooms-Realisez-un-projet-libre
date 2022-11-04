@@ -18,6 +18,6 @@ import Foundation
 
 public class Constants {
     
-    public static let ACCOUNT_TABLE: String = "accounts"
+    public static let USER_TABLE: String = "users"
     public static let FAVOURITE_TABLE: String = "favourites"
 }

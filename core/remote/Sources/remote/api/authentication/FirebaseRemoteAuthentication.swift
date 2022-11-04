@@ -8,125 +8,83 @@
 import Foundation
 import Combine
 import FirebaseAuth
+import FirebaseAuthCombineSwift
 
 /**
  * Default Implementation for the Remote Authentication Protocol.
  */
-class FirebaseRemoteAuthentication: OlaRemoteAuthentication {
+public class FirebaseRemoteAuthentication: OlaRemoteAuthentication {
     
     private let firebaseAuth: Auth
     
-    init() {
-        firebaseAuth = Auth.auth()
+    public init(firebaseAuth: Auth) {
+        self.firebaseAuth = firebaseAuth
     }
     
-    /// SignIn an Account with a Credential, from remote
+    /// SignIn an User with a Credential, from remote
     ///
     /// - Parameters:
-    ///   - credential: The AuthCredential of the account
+    ///   - credential: The AuthCredential of the user
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func signIn(with credential: AuthCredential) -> Future<RemoteAccount, Error> {
-        Future { [self] promise in
-            firebaseAuth.signIn(with: credential) { authResult, error in
-                guard let authResult = authResult else {
-                    if let error = error {
-                        promise(.failure(error))
-                    }
-                    return
-                }
-
-                var account = RemoteAccount(uid: authResult.user.uid,
-                                            providerID: authResult.user.providerID,
-                                            email: authResult.user.email,
-                                            displayName: authResult.user.displayName,
-                                            phoneNumber: authResult.user.phoneNumber)
-                
-                guard let photoUrl = authResult.user.photoURL else {
-                    return promise(.success(account))
-                }
-                
-                URLSession.shared.dataTask(with: photoUrl) { data, response, error in
-                    if let photo = data {
-                        account.photo = photo
-                    }
-                    promise(.success(account))
-                }.resume()
-            }
-        }
+    /// - Returns: An AnyPublisher returning an User or an Error
+    public func signIn(with credential: AuthCredential) -> AnyPublisher<User, Error> {
+        self.firebaseAuth.signIn(with: credential)
+            .map { authResult in authResult.user }
+            .eraseToAnyPublisher()
     }
     
-    /// SignIn an Account with email and password, from remote
+    /// SignIn an User with email and password, from remote
     ///
     /// - Parameters:
-    ///   - email: The email of the account
-    ///   - password: The password of the account
+    ///   - email: The email of the user
+    ///   - password: The password of the user
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func signIn(withEmail email: String, password: String) -> Future<RemoteAccount, Error> {
-        Future { [self] promise in
-            firebaseAuth.signIn(withEmail: email, password: password) { authResult, error in
-                guard let authResult = authResult else {
-                    if let error = error {
-                        promise(.failure(error))
-                    }
-                    return
-                }
-                
-                var account = RemoteAccount(uid: authResult.user.uid,
-                                            providerID: authResult.user.providerID,
-                                            email: authResult.user.email,
-                                            displayName: authResult.user.displayName,
-                                            phoneNumber: authResult.user.phoneNumber)
-                
-                guard let photoUrl = authResult.user.photoURL else {
-                    return promise(.success(account))
-                }
-                
-                URLSession.shared.dataTask(with: photoUrl) { data, response, error in
-                    if let photo = data {
-                        account.photo = photo
-                    }
-                    promise(.success(account))
-                }.resume()
-            }
+    /// - Returns: An AnyPublisher returning an RemoteUser or an Error
+    public func signIn(withEmail email: String, password: String) -> AnyPublisher<User, Error> {
+        self.firebaseAuth.signIn(withEmail: email, password: password)
+            .map { authResult in authResult.user }
+            .eraseToAnyPublisher()
+    }
+    
+    /// SignOut current User
+    ///
+    /// - Returns: An AnyPublisher returning Void or an Error
+    public func signOut() -> AnyPublisher<Void, Error> {
+        do {
+            return Just(try self.firebaseAuth.signOut())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } catch (let error) {
+            return Fail(error: error).eraseToAnyPublisher()
         }
     }
     
     /// Create a User with email and password, from remote
     ///
     /// - Parameters:
-    ///   - email: The email of the account
-    ///   - password: The password of the account
+    ///   - email: The email of the user
+    ///   - password: The password of the user
     ///
-    /// - Returns: A Future returning an RemoteAccount or an Error
-    func createUser(withEmail email: String, password: String) -> Future<RemoteAccount, Error> {
-        Future { [self] promise in
-            firebaseAuth.createUser(withEmail: email, password: password) { authResult, error in
-                guard let authResult = authResult else {
-                    if let error = error {
-                        promise(.failure(error))
-                    }
-                    return
+    /// - Returns: An AnyPublisher returning an RemoteUser or an Error
+    public func createUser(withEmail email: String, password: String) -> AnyPublisher<User, Error> {
+        self.firebaseAuth.createUser(withEmail: email, password: password)
+            .map { authResult in authResult.user }
+            .eraseToAnyPublisher()
+    }
+    
+    /// Delete a User
+    ///
+    /// - Parameters:
+    ///   - uid: The user to delete
+    public func deleteUser(byUser user: User) -> AnyPublisher<Void, Error> {
+        Future { promise in
+            user.delete { error in
+                if let error = error {
+                    promise(.failure(error))
+                } else {
+                    promise(.success(()))
                 }
-
-                var account = RemoteAccount(uid: authResult.user.uid,
-                                            providerID: authResult.user.providerID,
-                                            email: authResult.user.email,
-                                            displayName: authResult.user.displayName,
-                                            phoneNumber: authResult.user.phoneNumber)
-                
-                guard let photoUrl = authResult.user.photoURL else {
-                    return promise(.success(account))
-                }
-                
-                URLSession.shared.dataTask(with: photoUrl) { data, response, error in
-                    if let photo = data {
-                        account.photo = photo
-                    }
-                    promise(.success(account))
-                }.resume()
             }
-        }
+        }.eraseToAnyPublisher()
     }
 }

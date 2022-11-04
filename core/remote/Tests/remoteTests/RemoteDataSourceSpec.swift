@@ -22,8 +22,8 @@ class RemoteDataSourceSpec: QuickSpec {
         var remoteDataSource: OlaRemoteDataSource!
         var firestore: Firestore!
 
-        var account: RemoteAccount!
-        var accountRef: DocumentReference!
+        var user: RemoteUser!
+        var userRef: DocumentReference!
         
         var firstFavourite: RemoteFavourite!
         var firstFavouriteRef: DocumentReference!
@@ -40,6 +40,8 @@ class RemoteDataSourceSpec: QuickSpec {
         var fifthFavourite: RemoteFavourite!
         var fifthFavouriteRef: DocumentReference!
         
+        var batch: WriteBatch!
+        
         beforeSuite {
             let path = Bundle.module.url(forResource: "GoogleService-Info", withExtension: "plist")
             let firbaseOptions = FirebaseOptions(contentsOfFile: path!.path)
@@ -54,169 +56,122 @@ class RemoteDataSourceSpec: QuickSpec {
         
         beforeEach {
             firestore = Firestore.firestore()
-            remoteDataSource = FirestoreRemoteDataSource()
+            remoteDataSource = FirestoreRemoteDataSource(firestore: firestore)
             
-            do {
-                _ = try Future<Void, Error> { promise in
-                    account = RemoteAccount.testAccount()
+            user = RemoteUser.testUser()
 
-                    // Get new write batch
-                    let batch = firestore.batch()
+            // Get new write batch
+            batch = firestore.batch()
 
-                    // Set the value of 'NYC'
-                    accountRef = firestore.collection(Constants.ACCOUNT_TABLE).document(account.uid)
-                    batch.setData(account.dictionary as [String : Any], forDocument: accountRef)
+            userRef = firestore.collection(Constants.USER_TABLE).document(user.uid)
+            batch.setData(user.dictionary as [String : Any], forDocument: userRef)
 
-                    firstFavourite = RemoteFavourite.testFavourite()
-                    firstFavourite.uuidAccount = account.uid
-                    firstFavourite.idParentDirectory = nil
-                    firstFavourite.authors = [1,2]
-                    
-                    secondFavourite = RemoteFavourite.testFavourite()
-                    secondFavourite.uuidAccount = account.uid
-                    secondFavourite.idParentDirectory = firstFavourite.idDirectory
-                    
-                    thirdFavourite = RemoteFavourite.testFavourite()
-                    thirdFavourite.uuidAccount = account.uid
-                    
-                    thirdFavourite.idParentDirectory = firstFavourite.idDirectory
-                    
-                    fourthFavourite = RemoteFavourite.testFavourite()
-                    fourthFavourite.uuidAccount = UUID().uuidString
-                    
-                    fourthFavourite.idParentDirectory = firstFavourite.idDirectory
-                    
-                    fifthFavourite = RemoteFavourite.testFavourite()
-                    fifthFavourite.uuidAccount = account.uid
-                    
-                    fifthFavourite.idParentDirectory = secondFavourite.idDirectory
-                    
-                    // Update the population of 'SF'
-                    firstFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(firstFavourite.idDirectory)
-                    batch.setData(firstFavourite.dictionary as [String : Any], forDocument: firstFavouriteRef)
+            firstFavourite = RemoteFavourite.testFavourite()
+            firstFavourite.uidUser = user.uid
+            firstFavourite.idParentDirectory = nil
+            firstFavourite.idAuthors = [1,2]
+            
+            secondFavourite = RemoteFavourite.testFavourite()
+            secondFavourite.uidUser = user.uid
+            secondFavourite.idParentDirectory = firstFavourite.idDirectory
+            
+            thirdFavourite = RemoteFavourite.testFavourite()
+            thirdFavourite.uidUser = user.uid
+            
+            thirdFavourite.idParentDirectory = firstFavourite.idDirectory
+            
+            fourthFavourite = RemoteFavourite.testFavourite()
+            fourthFavourite.uidUser = UUID().uuidString
+            
+            fourthFavourite.idParentDirectory = firstFavourite.idDirectory
+            
+            fifthFavourite = RemoteFavourite.testFavourite()
+            fifthFavourite.uidUser = user.uid
+            
+            fifthFavourite.idParentDirectory = secondFavourite.idDirectory
+            
+            firstFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(firstFavourite.idDirectory)
+            batch.setData(firstFavourite.dictionary as [String : Any], forDocument: firstFavouriteRef)
 
-                    // Delete the city 'LA'
-                    secondFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(secondFavourite.idDirectory)
-                    batch.setData(secondFavourite.dictionary as [String : Any], forDocument: secondFavouriteRef)
-                    
-                    // Delete the city 'LA'
-                    thirdFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(thirdFavourite.idDirectory)
-                    batch.setData(thirdFavourite.dictionary as [String : Any], forDocument: thirdFavouriteRef)
-                    
-                    // Delete the city 'LA'
-                    fourthFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(fourthFavourite.idDirectory)
-                    batch.setData(fourthFavourite.dictionary as [String : Any], forDocument: fourthFavouriteRef)
-                    
-                    // Delete the city 'LA'
-                    fifthFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(fifthFavourite.idDirectory)
-                    batch.setData(fifthFavourite.dictionary as [String : Any], forDocument: fifthFavouriteRef)
-
-                    // Commit the batch
-                    batch.commit() { err in
-                        if let err = err {
-                            print("Error writing batch \(err)")
-                            promise(.failure(err))
-                        } else {
-                            print("Batch write succeeded.")
-                            promise(.success(()))
-                            
-                        }
-                    }
-                }.waitingCompletion()
-            } catch( let error) {
-                print(error)
-            }
+            secondFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(secondFavourite.idDirectory)
+            batch.setData(secondFavourite.dictionary as [String : Any], forDocument: secondFavouriteRef)
+            
+            thirdFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(thirdFavourite.idDirectory)
+            batch.setData(thirdFavourite.dictionary as [String : Any], forDocument: thirdFavouriteRef)
+            
+            fourthFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(fourthFavourite.idDirectory)
+            batch.setData(fourthFavourite.dictionary as [String : Any], forDocument: fourthFavouriteRef)
+            
+            fifthFavouriteRef = firestore.collection(Constants.FAVOURITE_TABLE).document(fifthFavourite.idDirectory)
+            batch.setData(fifthFavourite.dictionary as [String : Any], forDocument: fifthFavouriteRef)
         }
 
         afterEach {
-            do {
-                try Future<Void, Error> { promise in
-                    // Get new write batch
-                    let batch = firestore.batch()
+            batch = firestore.batch()
+            
+            batch.deleteDocument(userRef)
+            batch.deleteDocument(firstFavouriteRef)
+            batch.deleteDocument(secondFavouriteRef)
+            batch.deleteDocument(thirdFavouriteRef)
+            batch.deleteDocument(fourthFavouriteRef)
+            batch.deleteDocument(fifthFavouriteRef)
                     
-                    batch.deleteDocument(accountRef)
+            _ = try? (batch.commit() as Future<Void, Error>).waitingCompletion()
+        }
+        
+        describe("Find user by uid") {
+            context("Found") {
+                it("User is returned") {
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
+                    
+                    secondFavourite.subDirectories?.append(fifthFavourite)
+                    firstFavourite.subDirectories?.append(contentsOf: [secondFavourite, thirdFavourite])
+                    user.favourites = firstFavourite
+                    
+                    let expectedUser = try remoteDataSource.findUser(byUid: user.uid).waitingCompletion().first
+                    expect { expectedUser }.to(equal(user))
+                }
+            }
+            
+            context("Found without favourites") {
+                it("User is returned") {
                     batch.deleteDocument(firstFavouriteRef)
                     batch.deleteDocument(secondFavouriteRef)
                     batch.deleteDocument(thirdFavouriteRef)
                     batch.deleteDocument(fourthFavouriteRef)
                     batch.deleteDocument(fifthFavouriteRef)
                     
-                    // Commit the batch
-                    batch.commit() { err in
-                        if let err = err {
-                            print("Error writing batch \(err)")
-                            promise(.failure(err))
-                        } else {
-                            print("Batch write succeeded.")
-                            promise(.success(()))
-                        }
-                    }
-                }.waitingCompletion()
-            } catch( let error) {
-                print(error)
-            }
-        }
-        
-        describe("Find Account by Uuid") {
-            context("Found") {
-                it("Account is returned") {
-                    secondFavourite.subDirectories.append(fifthFavourite)
-                    firstFavourite.subDirectories.append(contentsOf: [secondFavourite, thirdFavourite])
-                    account.favourites = firstFavourite
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
                     
-                    let expectedAccount = try remoteDataSource.findAccount(byUid: account.uid).waitingCompletion().first
-                    expect { expectedAccount }.to(equal(account))
+                    let expectedUser = try remoteDataSource.findUser(byUid: user.uid).waitingCompletion().first
+                    expect { expectedUser }.to(equal(user))
                 }
             }
             
-            context("Found without Favourites") {
-                it("Account is returned") {
-                    do {
-                        try Future<Void, Error> { promise in
-                            // Get new write batch
-                            let batch = firestore.batch()
-                            
-                            batch.deleteDocument(firstFavouriteRef)
-                            batch.deleteDocument(secondFavouriteRef)
-                            batch.deleteDocument(thirdFavouriteRef)
-                            batch.deleteDocument(fourthFavouriteRef)
-                            batch.deleteDocument(fifthFavouriteRef)
-                            
-                            // Commit the batch
-                            batch.commit() { err in
-                                print("Batch write succeeded.")
-                                promise(.success(()))
-                            }
-                        }.waitingCompletion()
-                    } catch( let error) {
-                        print(error)
-                    }
-                    
-                    let expectedAccount = try remoteDataSource.findAccount(byUid: account.uid).waitingCompletion().first
-                    expect { expectedAccount }.to(equal(account))
-                }
-            }
-            
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
-                    expect { try remoteDataSource.findAccount(byUid: DataFactory.randomString()).waitingCompletion().first }.to(throwError())
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
+                    
+                    expect { try remoteDataSource.findUser(byUid: DataFactory.randomString()).waitingCompletion().first }.to(throwError())
                 }
             }
         }
         
-        describe("Save or Update Account") {
+        describe("Save or update user") {
             context("Saved") {
                 it("Return saved succeeded") {
-                    let newAccount = RemoteAccount.testAccount()
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
                     
-                    expect { try remoteDataSource.saveOrUpdate(account: newAccount).waitingCompletion().first }.to(beVoid())
+                    let newUser = RemoteUser.testUser()
                     
-                    try Future <Void, Error> { promise in
-                        firestore.collection(Constants.ACCOUNT_TABLE)
-                            .document(newAccount.uid).getDocument(as: RemoteAccount.self) { result in
+                    expect { try remoteDataSource.saveOrUpdate(user: newUser).waitingCompletion().first }.to(beVoid())
+                    
+                    _ = try Future <Void, Error> { promise in
+                        firestore.collection(Constants.USER_TABLE)
+                            .document(newUser.uid).getDocument(as: RemoteUser.self) { result in
                                 switch result {
-                                case .success(let account):
-                                    expect { account }.to(equal(newAccount))
+                                case .success(let user):
+                                    expect { user }.to(equal(newUser))
                                     
                                     promise(.success(()))
                                 case .failure (let error):
@@ -224,23 +179,25 @@ class RemoteDataSourceSpec: QuickSpec {
                                 }
                         }
                     }.waitingCompletion()
-                    _ = try? remoteDataSource.deleteAccount(byUid: newAccount.uid).waitingCompletion()
+                    _ = try? remoteDataSource.deleteUser(byUid: newUser.uid).waitingCompletion()
                 }
             }
             
             context("Updated") {
                 it("Return updated succeeded") {
-                    account.displayName = DataFactory.randomString()
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
                     
-                    expect { try remoteDataSource.saveOrUpdate(account: account).waitingCompletion().first }.to(beVoid())
+                    user.displayName = DataFactory.randomString()
                     
-                    try Future <Void, Error> { promise in
-                        firestore.collection(Constants.ACCOUNT_TABLE)
-                            .document(account.uid).getDocument(as: RemoteAccount.self) { result in
+                    expect { try remoteDataSource.saveOrUpdate(user: user).waitingCompletion().first }.to(beVoid())
+                    
+                    _ = try Future <Void, Error> { promise in
+                        firestore.collection(Constants.USER_TABLE)
+                            .document(user.uid).getDocument(as: RemoteUser.self) { result in
                                 switch result {
-                                case .success(let updatedAccount):
-                                    account.favourites = nil
-                                    expect { updatedAccount }.to(equal(account))
+                                case .success(let updatedUser):
+                                    user.favourites = nil
+                                    expect { updatedUser }.to(equal(user))
                                     promise(.success(()))
                                 case .failure (let error):
                                     promise(.failure(error))
@@ -251,14 +208,17 @@ class RemoteDataSourceSpec: QuickSpec {
             }
         }
         
-        describe("Delete Account by Uuid") {
+        describe("Delete user by uid") {
             context("Found") {
                 it("Return deletion succeeded") {
+                    firstFavourite.uidUser = user.uid
                     
-                    expect { try remoteDataSource.deleteAccount(byUid: account.uid).waitingCompletion().first }.to(beVoid())
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
                     
-                    try Future <Void, Error> { promise in
-                        firestore.collection(Constants.ACCOUNT_TABLE).getDocuments() { (querySnapshot, error) in
+                    expect { try remoteDataSource.deleteUser(byUid: user.uid).waitingCompletion().first }.to(beVoid())
+                    
+                    _ = try Future <Void, Error> { promise in
+                        firestore.collection(Constants.USER_TABLE).getDocuments() { (querySnapshot, error) in
                             
                             guard let querySnapshot = querySnapshot else {
                                 if let error = error {
@@ -266,28 +226,56 @@ class RemoteDataSourceSpec: QuickSpec {
                                 }
                                 return
                             }
-                            expect { querySnapshot.documents }.to(beEmpty())
+                            expect { querySnapshot.documents.compactMap { document in
+                                try? document.data(as: RemoteUser.self)
+                                }
+                            }.notTo(contain(user))
+                            promise(.success(()))
+                        }
+                    }.waitingCompletion()
+                    
+                    _ = try Future<Void, Error> { promise in
+                        firestore.collection(Constants.FAVOURITE_TABLE).getDocuments() { (querySnapshot, error) in
+                            
+                            guard let querySnapshot = querySnapshot else {
+                                if let error = error {
+                                    promise(.failure(error))
+                                }
+                                return
+                            }
+                            
+                            let actual = querySnapshot.documents.compactMap { document in
+                                try? document.data(as: RemoteFavourite.self).idDirectory
+                            }
+                            
+                            expect { actual }.notTo(contain([firstFavourite.idDirectory, secondFavourite.idDirectory, thirdFavourite.idDirectory,
+                                fifthFavourite.idDirectory
+                            ]))
                             promise(.success(()))
                         }
                     }.waitingCompletion()
                 }
             }
             
-            context("Not Found") {
+            context("Not found") {
                 it("Error is thrown") {
-                    expect { try remoteDataSource.deleteAccount(byUid: DataFactory.randomString()).waitingCompletion().first }.to(throwError())
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
+                    
+                    expect { try remoteDataSource.deleteUser(byUid: DataFactory.randomString()).waitingCompletion().first }.to(throwError())
                 }
             }
         }
         
-        describe("Save or Update Favourite") {
+        describe("Save or update Favourite") {
             context("Saved") {
                 it("Return saved succeeded") {
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
+                    
                     let newFavourite = RemoteFavourite.testFavourite()
                     
                     expect { try remoteDataSource.saveOrUpdate(favourite: newFavourite).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.FAVOURITE_TABLE)
                             .document(newFavourite.idDirectory).getDocument(as: RemoteFavourite.self) { result in
                                 switch result {
@@ -306,16 +294,18 @@ class RemoteDataSourceSpec: QuickSpec {
             
             context("Updated") {
                 it("Return updated succeeded") {
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
+                    
                     firstFavourite.directoryName = DataFactory.randomString()
                     
                     expect { try remoteDataSource.saveOrUpdate(favourite: firstFavourite).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future <Void, Error> { promise in
                         firestore.collection(Constants.FAVOURITE_TABLE)
                             .document(firstFavourite.idDirectory).getDocument(as: RemoteFavourite.self) { result in
                                 switch result {
                                 case .success(let updatedFavourite):
-                                    account.favourites = nil
+                                    user.favourites = nil
                                     expect { updatedFavourite }.to(equal(firstFavourite))
                                     promise(.success(()))
                                 case .failure (let error):
@@ -327,13 +317,14 @@ class RemoteDataSourceSpec: QuickSpec {
             }
         }
         
-        describe("Delete Favourite by idDirectory") {
+        describe("Delete favourite by idDirectory") {
             context("Found") {
                 it("Return deletion succeeded") {
+                    _ = try (batch.commit() as Future<Void, Error>).waitingCompletion()
                     
                     expect { try remoteDataSource.deleteFavourite(byIdDirectory: firstFavourite.idDirectory).waitingCompletion().first }.to(beVoid())
                     
-                    try Future <Void, Error> { promise in
+                    _ = try Future<Void, Error> { promise in
                         firestore.collection(Constants.FAVOURITE_TABLE).getDocuments() { (querySnapshot, error) in
                             
                             guard let querySnapshot = querySnapshot else {
@@ -342,19 +333,17 @@ class RemoteDataSourceSpec: QuickSpec {
                                 }
                                 return
                             }
-                            expect { querySnapshot.documents.compactMap { document in
-                                try? document.data(as: RemoteFavourite.self)
-                                }
-                            }.notTo(contain(firstFavourite))
+                            
+                            let actual = querySnapshot.documents.compactMap { document in
+                                try? document.data(as: RemoteFavourite.self).idDirectory
+                            }
+                            
+                            expect { actual }.notTo(contain([firstFavourite.idDirectory, secondFavourite.idDirectory, thirdFavourite.idDirectory,
+                                fifthFavourite.idDirectory
+                            ]))
                             promise(.success(()))
                         }
                     }.waitingCompletion()
-                }
-            }
-            
-            context("Not Found") {
-                it("Error is thrown") {
-                    expect { try remoteDataSource.deleteFavourite(byIdDirectory: DataFactory.randomString()).waitingCompletion().first }.to(throwError())
                 }
             }
         }

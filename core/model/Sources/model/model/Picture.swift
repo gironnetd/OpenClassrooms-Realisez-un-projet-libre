@@ -10,7 +10,7 @@ import Foundation
 /**
  * Representation for a Picture fetched from an external layer data source
  */
-public struct Picture : Equatable {
+public struct Picture: Equatable {
     
     public var idPicture: Int
     public var nameSmall: String
@@ -32,10 +32,10 @@ public struct Picture : Equatable {
         self.idPicture = idPicture
         self.nameSmall = nameSmall
         self.extension = `extension`
-        self.comments = comments
         self.width = width
         self.height = height
         self.portrait = portrait
         self.picture = picture
+        self.comments = comments
     }
 }

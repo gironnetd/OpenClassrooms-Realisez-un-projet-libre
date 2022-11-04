@@ -10,16 +10,17 @@ import testing
 
 @testable import remote
 
-extension RemoteAccount {
+extension RemoteUser {
     
-    static func testAccount() -> RemoteAccount {
-        RemoteAccount(uid: DataFactory.randomString(),
-                      providerID: DataFactory.randomString(),
-                      email: DataFactory.randomEmail(),
-                      displayName: DataFactory.randomString(),
-                      phoneNumber: DataFactory.randomString(),
-                      photo: nil,
-                      favourites: nil)
+    static func testUser() -> RemoteUser {
+        RemoteUser(uid: DataFactory.randomString(),
+                   providerID: DataFactory.randomString(),
+                   email: DataFactory.randomEmail(),
+                   displayName: DataFactory.randomString(),
+                   phoneNumber: DataFactory.randomString(),
+                   photo: DataFactory.randomData(),
+                   favourites: RemoteFavourite.testFavourite()
+        )
     }
 }
 
@@ -27,17 +28,18 @@ extension RemoteFavourite {
     
     static func testFavourite() -> RemoteFavourite {
         RemoteFavourite(idDirectory: DataFactory.randomString(),
-                        uuidAccount: DataFactory.randomString(),
+                        uidUser: DataFactory.randomString(),
                         idParentDirectory: DataFactory.randomString(),
                         directoryName: DataFactory.randomString(),
-                        authors: nil,
-                        books: nil,
-                        movements: nil,
-                        themes: nil,
-                        quotes: nil,
-                        pictures: nil,
-                        presentations: nil,
-                        urls: nil)
+                        idAuthors: [DataFactory.randomInt(), DataFactory.randomInt()],
+                        idBooks: [DataFactory.randomInt(), DataFactory.randomInt()],
+                        idMovements: [DataFactory.randomInt(), DataFactory.randomInt()],
+                        idThemes: [DataFactory.randomInt(), DataFactory.randomInt()],
+                        idQuotes: [DataFactory.randomInt(), DataFactory.randomInt()],
+                        idPictures: [DataFactory.randomInt(), DataFactory.randomInt()],
+                        idPresentations: [DataFactory.randomInt(), DataFactory.randomInt()],
+                        idUrls: [DataFactory.randomInt(), DataFactory.randomInt()]
+        )
     }
 }
 
